@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "deploy": "cd arco-system && npm run build && cd .. && git add . && git commit -m \"deploy\" && vercel"
   },
   "repository": {
     "type": "git",
