@@ -1,5 +1,7 @@
 // server/index.js
+const bodyParser = require("body-parser");
 const express = require("express");
+const bodyParser = require('body-parser');
 
 require('dotenv').config()
 const mysql = require('mysql2')
@@ -13,8 +15,8 @@ connection.connect(function(err) {
 });
 
 const PORT = process.env.PORT || 4000;
-
 const app = express();
+app.use(bodyParser.json());
 
 app.get("/api/users", (req, res) => {
   var query="SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID";

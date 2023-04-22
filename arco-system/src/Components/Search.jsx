@@ -1,13 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-export default function Search(){
-    const [users, setUsers] = useState([]);
-    const [search, setSearch] = useState("");
+export default function Search() {
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState("");
 
-    const showUsers = async () => {
-        const response = await fetch('https://kueski.vercel.app/api/users')
-        const data = await response.json();
-        console.log(data)
-    }
-    showUsers();
+  const URL = "https://kueski.vercel.app/api/users";
+
+  useEffect(() => {
+    fetch(URL, {mode: 'no-cors'})
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  }, []);
+  
+  return (
+    <>
+      <h1>{users[0]}</h1>
+    </>
+  );
 }
