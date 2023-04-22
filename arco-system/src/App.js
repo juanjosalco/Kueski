@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
 import Dashboard from "./Views/Dashboard";
-import Search from "./Components/Search";
+import Header from "./Components/Header";
 
 function App() {
   return (
     <>
-      <Search />
+      <Header/>
       <Dashboard/>
     </>
   );
