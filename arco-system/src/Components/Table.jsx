@@ -4,34 +4,30 @@ import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    border: "solid black",
-    borderWidth: 4,
-    borderTopWidth: 1,
-    flexDirection: "row",
-    display: "flex",
-  },
-  fatherContainer:{
-    border: "solid black",
-    borderWidth: 4,
-    borderTopWidth: 4,
-    flexDirection: "row",
-    display: "flex",
+  fatherContainer: {
+    display: 'flex',
+    flexDirection: 'row'
   },
   smallItem: {
-    flex: 1,
-    textAlign: "center",
-    borderInline: '2px solid black'
+    minWidth: '5%',
+    minWidth: '5%',
+    textAlign: 'center',
+    borderBlock: '4px solid black',
+    borderInline: '4px solid black'
   },
   item: {
-    flex: 2,
-    textAlign: "center",
+    minWidth: '10%',
+    minWidth: '10%',
+    textAlign: 'center',
+    borderBlock: '4px solid black',
     borderInline: '2px solid black'
   },
   bigItem: {
-    flex: 5,
+    minWidth: '17.5%',
+    minWidth: '17.5%',
     textAlign: 'center',
-    borderInline: '2px solid black'
+    borderBlock: '4px solid black',
+    borderInline: '2px solid black',
   }
 }));
 
@@ -62,7 +58,7 @@ function Table() {
         <Box className={classes.item}>
           <h3>Nacionalidad</h3>
         </Box>
-        <Box className={classes.bigItem}>
+        <Box className={classes.item}>
           <h3>Estado</h3>
         </Box>
         <Box className={classes.bigItem}>
@@ -78,7 +74,7 @@ function Table() {
       {data
         ? data.map((dato) => {
             return (
-              <Box className={classes.container}>
+              <Box className={classes.fatherContainer}>
                 <Box className={classes.smallItem}>
                   <h3>{dato.ID}</h3>
                 </Box>
@@ -91,7 +87,7 @@ function Table() {
                 <Box className={classes.item}>
                   <h3>{dato.NATIONALITY}</h3>
                 </Box>
-                <Box className={classes.bigItem}>
+                <Box className={classes.item}>
                   <h3>{dato.STATE_BORN_IN}</h3>
                 </Box>
                 <Box className={classes.bigItem}>
