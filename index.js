@@ -16,6 +16,15 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 
+app.get("/api/users", (req, res) => {
+  var query="SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID";
+  con.query(query, function (err, result) {
+    if (err) throw err;
+    res.send(result)
+  }
+  );
+});
+
 app.get("/api/users/:sort", (req, res) => {
   var query="SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID ORDER BY "+req.params.sort;
   con.query(query, function (err, result, fields) {
