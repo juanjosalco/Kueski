@@ -34,7 +34,9 @@ const useStyles = makeStyles((theme) => ({
   Arco2: {
     borderBottom: '3px solid black',
     '&:hover': {
-      background: "#A5ECFF",
+      background: "#80C5EB",
+      color: '#fff',
+      fontWeight: "bold"
    },
   },
   DataType:{
@@ -120,7 +122,7 @@ function Table() {
                   <Typography variant="b2" className={classes.Data}>{dato.CURP}</Typography>
                 </Box>
                 <Box className={[classes.smallItem, classes.Arco2]}>
-                  <Typography variant="b2" className={classes.Data}>...</Typography>
+                  <Typography variant="b1" className={classes.Data}>...</Typography>
                 </Box>
               </Box>
             );
