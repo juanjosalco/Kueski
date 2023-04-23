@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 function Dashboard() {
     const classes = useStyles()
   return (
-    <Container maxWidth='xl' style={{minWidth: '1550px'}}>
+    <Container maxWidth='xxl' style={{minWidth: '1550px'}}>
       <AppBar sx={{ backgroundColor: "#2A3852" }}>
         <Toolbar>
           <Typography>Arco System</Typography>
