@@ -13,17 +13,17 @@ const useStyles = makeStyles((theme) => ({
   smallItem: {
     flex: 1,
     textAlign: 'center',
-    padding: 15
+    padding: 10
   },
   item: {
     flex: 2,
     textAlign: 'center',
-    padding: 15
+    padding: 10
   },
   bigItem: {
     flex: 3,
     textAlign: 'center',
-    padding: 15
+    padding: 10
   },
   Arco:{
     backgroundColor: "#008ad8",
