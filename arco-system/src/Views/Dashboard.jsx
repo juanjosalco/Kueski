@@ -1,11 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "../Components/Table";
 
 import { makeStyles } from "@mui/styles";
-<<<<<<< HEAD
-=======
 import { AppBar, Toolbar, Button, Typography, Container } from "@mui/material";
->>>>>>> 7ecca6c (Added new Styles and Merged With Branch 3)
 import { Box } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
 
 function Dashboard() {
     const classes = useStyles()
+    const [view, setView] = useState("Users");
+
+    const handleView = (selectedView) =>{
+      setView(selectedView)
+    }
   return (
     <Container maxWidth='xxl' style={{minWidth: '1550px'}}>
       <AppBar sx={{ backgroundColor: "#2A3852" }}>
