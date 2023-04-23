@@ -14,14 +14,18 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '6%',
     textAlign: 'center',
     borderRight: '4px solid black',
-    borderBottom: '4px solid black'
+    borderBottom: '4px solid black',
+    paddingTop: "20px",
+    paddingBottom: "20px"
   },
   item: {
     minWidth: '12%',
     minWidth: '12%',
     textAlign: 'center',
     borderRight: '4px solid black',
-    borderBottom: '4px solid black'
+    borderBottom: '4px solid black',
+    paddingTop: "20px",
+    paddingBottom: "20px"
   },
   bigItem: {
     minWidth: '16.7%',
@@ -29,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     borderRight: '4px solid black',
     borderBottom: '4px solid black',
+    paddingTop: "20px",
+    paddingBottom: "20px"
   },
   Arco:{
     backgroundColor: "#008ad8",
