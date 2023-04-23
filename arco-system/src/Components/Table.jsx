@@ -7,41 +7,44 @@ const useStyles = makeStyles((theme) => ({
   fatherContainer: {
     display: 'flex',
     flexDirection: 'row',
-    borderRight: '4px solid black',
+    width: '100%',
+    flex: 1
   },
   smallItem: {
-    minWidth: '6%',
-    minWidth: '6%',
+    flex: 1,
     textAlign: 'center',
-    borderRight: '4px solid black',
-    borderBottom: '4px solid black',
-    paddingTop: "20px",
-    paddingBottom: "20px"
+    padding: 15
   },
   item: {
-    minWidth: '12%',
-    minWidth: '12%',
+    flex: 2,
     textAlign: 'center',
-    borderRight: '4px solid black',
-    borderBottom: '4px solid black',
-    paddingTop: "20px",
-    paddingBottom: "20px"
+    padding: 15
   },
   bigItem: {
-    minWidth: '16.7%',
-    minWidth: '16.7%',
+    flex: 3,
     textAlign: 'center',
-    borderRight: '4px solid black',
-    borderBottom: '4px solid black',
-    paddingTop: "20px",
-    paddingBottom: "20px"
+    padding: 15
   },
   Arco:{
     backgroundColor: "#008ad8",
-    color: "#ffffff"
+    color: "#ffffff",
+    borderBottom: '3px solid black',
+    fontWeight: "bold"
+  },
+  Arco2: {
+    borderBottom: '3px solid black',
+    '&:hover': {
+      background: "#A5ECFF",
+   },
   },
   DataType:{
-    color: "#008ad8"
+    borderRight: '3px solid black',
+    borderBottom: '3px solid black',
+  },
+  Highlighted: {
+    backgroundColor: '#008ad8',
+    color: '#FFF',
+    fontWeight: "bold"
   },
   Data:{
     display: '-webkit-box',
@@ -66,25 +69,25 @@ function Table() {
   return (
     <>
       <Box className={classes.fatherContainer}>
-        <Box className={[classes.smallItem, classes.DataType]}>
+        <Box className={[classes.smallItem, classes.DataType, classes.Highlighted]}>
           <Typography variant="b2" className={classes.Data}>ID</Typography>
         </Box>
-        <Box className={[classes.bigItem, classes.DataType]}>
+        <Box className={[classes.bigItem, classes.DataType, classes.Highlighted]}>
           <Typography variant="b2" className={classes.Data}>Nombre</Typography>
         </Box>
-        <Box className={[classes.item, classes.DataType]}>
+        <Box className={[classes.item, classes.DataType, classes.Highlighted]}>
           <Typography variant="b2" className={classes.Data}>F. Nacimiento</Typography>
         </Box>
-        <Box className={[classes.item, classes.DataType]}>
+        <Box className={[classes.item, classes.DataType, classes.Highlighted]}>
           <Typography variant="b2" className={classes.Data}>Nacionalidad</Typography>
         </Box>
-        <Box className={[classes.item, classes.DataType]}>
+        <Box className={[classes.item, classes.DataType, classes.Highlighted]}>
           <Typography variant="b2" className={classes.Data}>Estado</Typography>
         </Box>
-        <Box className={[classes.bigItem, classes.DataType]}>
+        <Box className={[classes.item, classes.DataType, classes.Highlighted]}>
           <Typography variant="b2" className={classes.Data}>Ocupación</Typography>
         </Box>
-        <Box className={[classes.bigItem, classes.DataType]}>
+        <Box className={[classes.bigItem, classes.DataType, classes.Highlighted]}>
           <Typography variant="b2" className={classes.Data}>CURP</Typography>
         </Box>
         <Box className={[classes.smallItem, classes.Arco]}>
@@ -95,28 +98,28 @@ function Table() {
         ? data.map((dato) => {
             return (
               <Box className={classes.fatherContainer}>
-                <Box className={classes.smallItem}>
+                <Box className={[classes.smallItem, classes.DataType]}>
                   <Typography variant="b2" className={classes.Data}>{dato.ID}</Typography>
                 </Box>
-                <Box className={classes.bigItem}>
+                <Box className={[classes.bigItem, classes.DataType]}>
                   <Typography variant="b2" className={classes.Data}>{dato.F_NAME + ' ' + dato.LNAME1 + ' ' + dato.LNAME2}</Typography>
                 </Box>
-                <Box className={classes.item}>
+                <Box  className={[classes.item, classes.DataType]}>
                   <Typography variant="b2" className={classes.Data}>{dato.BIRTH_DATE.substring(0, 10)}</Typography>
                 </Box>
-                <Box className={classes.item}>
+                <Box  className={[classes.item, classes.DataType]}>
                   <Typography variant="b2" className={classes.Data}>{dato.NATIONALITY}</Typography>
                 </Box>
-                <Box className={classes.item}>
+                <Box  className={[classes.item, classes.DataType]}>
                   <Typography variant="b2" className={classes.Data}>{dato.STATE_BORN_IN}</Typography>
                 </Box>
-                <Box className={classes.bigItem}>
+                <Box className={[classes.item, classes.DataType]}>
                   <Typography variant="b2" className={classes.Data}>{dato.OCCUPATION}</Typography>
                 </Box>
-                <Box className={classes.bigItem}>
+                <Box className={[classes.bigItem, classes.DataType]}>
                   <Typography variant="b2" className={classes.Data}>{dato.CURP}</Typography>
                 </Box>
-                <Box className={classes.smallItem}>
+                <Box className={[classes.smallItem, classes.Arco2]}>
                   <Typography variant="b2" className={classes.Data}>...</Typography>
                 </Box>
               </Box>
