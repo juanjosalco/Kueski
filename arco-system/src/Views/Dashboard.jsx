@@ -21,7 +21,7 @@ function Dashboard() {
       setView(selectedView)
     }
   return (
-    <Container maxWidth='xxl' style={{minWidth: '1550px'}}>
+    <Container maxWidth='xxl' style={{minWidth: '1450px'}}>
       <AppBar sx={{ backgroundColor: "#2A3852" }}>
         <Toolbar>
           <Typography>Arco System</Typography>
