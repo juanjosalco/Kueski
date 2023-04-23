@@ -6,8 +6,12 @@ import { Box } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: 80
+    padding: 80,
   },
+  TableContatiner:{
+    borderTop: '4px solid black',
+    borderLeft: '4px solid black',
+  }
 }));
 
 function Dashboard() {
@@ -15,7 +19,9 @@ function Dashboard() {
   return (
 
     <Box className={classes.container}>
-        <Table/>
+       <Box className={classes.TableContatiner}>
+          <Table/>
+       </Box>
     </Box>
   );
 }
