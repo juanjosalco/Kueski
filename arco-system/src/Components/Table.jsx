@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+import DataTable from "react-data-table-component";
+
 import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+
+import DropdownFilter from "./DropdownFilter";
 
 const useStyles = makeStyles((theme) => ({
   fatherContainer: {
@@ -33,18 +37,43 @@ const useStyles = makeStyles((theme) => ({
 
 function Table() {
   const classes = useStyles();
-
   const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch("/api/users")
-      .then((res) => res.json())
+      .then((res) => res.json()) 
       .then((data) => setData(data))
       .catch((err) => console.log(err));
   }, []);
 
+  const column = [
+    {name: 'ID', selector: 'ID', sortable: true},
+    {name: 'Nombre', selector: 'F_NAME', sortable: true},
+    {name: 'F. Nacimiento', selector: 'BIRTH_DATE', sortable: true,
+    cell: (row) => {
+      const birthDate = row.BIRTH_DATE;
+      // const maxLength = 10; // establecer la longitud máxima de caracteres permitidos
+      // if (birthDate.length > maxLength) {
+        return birthDate.substring(0, 10); // truncar y agregar puntos suspensivos
+      // }
+      // return birthDate;
+    },},
+    {name: 'Nacionalidad', selector: 'NATIONALITY', sortable: true},
+    {name: 'Estado', selector: 'STATE_BORN_IN', sortable: true},
+    {name: 'Ocupacion', selector: 'OCCUPATION', sortable: true},
+    {name: 'CURP', selector: 'CURP', sortable: true},
+
+  ]
+
   return (
     <>
+      <DataTable
+       columns={column}
+       data={data}
+       title='ARCO SYSTEM' />
+
+      <DropdownFilter />
+      <br/>
       <Box className={classes.fatherContainer}>
         <Box className={classes.smallItem}>
           <h3>ID</h3>
