@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import DataTable from "react-data-table-component";
 
-import { Box } from "@mui/material";
+// import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-import DropdownFilter from "./DropdownFilter";
+// import DropdownFilter from "./DropdownFilter";
 
 const useStyles = makeStyles((theme) => ({
   fatherContainer: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Table() {
   const classes = useStyles();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch("/api/users")
@@ -72,7 +72,7 @@ function Table() {
        data={data}
        title='ARCO SYSTEM' />
 
-      <DropdownFilter />
+      {/* <DropdownFilter />
       <br/>
       <Box className={classes.fatherContainer}>
         <Box className={classes.smallItem}>
@@ -131,7 +131,7 @@ function Table() {
               </Box>
             );
           })
-        : "Loading..."}
+        : "Loading..."} */}
     </>
   );
 }
