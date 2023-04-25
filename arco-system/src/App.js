@@ -7,7 +7,7 @@ import Oposicion from "./Components/Oposicion.jsx";
 function App() {
   return (
     <>
-      {/* <Oposicion/> */}
+      <Oposicion/>
       <Header/>
       <Dashboard/>
     </>
