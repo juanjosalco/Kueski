@@ -44,16 +44,6 @@ app.get("/api/users", (req, res) => {
   });
 });
 
-app.get("/api/users/:sort", (req, res) => {
-  var query =
-    "SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID ORDER BY " +
-    req.params.sort;
-  connection.query(query, function (err, result, fields) {
-    if (err) throw err;
-    res.send(result);
-  });
-});
-
 app.get("/api/users/:id", (req, res) => {
   var query =
     "SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID WHERE USERS.ID=" +
@@ -137,7 +127,7 @@ app.put("/users/:id", async (req, res) => {
 
 //arco
 app.get("/api/arco", (req, res) => {
-  var query = "SELECT * FROM SOLICITUD_ARCO";
+  var query = "SELECT * FROM SOLICITUD_ARCO JOIN USERS ON SOLICITUD_ARCO.USER_ID = USERS.ID";
   connection.query(query, function (err, result, fields) {
     if (err) throw err;
     res.send(result);
@@ -145,13 +135,31 @@ app.get("/api/arco", (req, res) => {
 });
 
 app.get("/api/arco/:id", (req, res) => {
-  var query = "SELECT * FROM SOLICITUD_ARCO WHERE ID=" + req.params.id;
+  var query = "SELECT * FROM SOLICITUD_ARCO JOIN USERS ON SOLICITUD_ARCO.USER_ID = USERS.ID WHERE SOLICITUD_ARCO.ID=" + req.params.id;
+  connection.query(query, function (err, result, fields) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+app.post("/api/arco", (req, res) => {
+  const { user_id, derecho, fecha_resuelta } = req.body;
+  var query =
+    "INSERT INTO SOLICITUD_ARCO (USER_ID, DERECHO, FECHA_RESUELTA) VALUES (" +
+    user_id + ", '" + derecho + "', '" + fecha_resuelta + "')";
   connection.query(query, function (err, result, fields) {
     if (err) throw err;
     res.send(result);
   });
 });
 
+app.get("/api/comentarios/:id", (req, res) => {
+  var query = "SELECT * FROM COMENTARIOS WHERE ID_SOLICITUD=" + req.params.id;
+  connection.query(query, function (err, result, fields) {
+    if (err) throw err;  
+    res.send(result);
+  });
+});
+  
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
