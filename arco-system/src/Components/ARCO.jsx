@@ -52,9 +52,7 @@ function ARCO() {
         flex: 2,
         align: "center",
         renderCell: (params) => {
-            //Show date in date format instead of datetime
-            const date = params.row.FECHA_RESUELTA;
-            return date.substring(0, 10);
+            <div>{new Date(params.row.FECHA_RESUELTA).toLocaleDateString()}</div>
         },
         },
     {
