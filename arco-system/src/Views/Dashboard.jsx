@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: 80
+    padding: 80,
   },
 }));
 

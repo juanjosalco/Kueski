@@ -1,138 +1,83 @@
 import React, { useEffect, useState } from "react";
 
-import DataTable from "react-data-table-component";
-
-// import { Box } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-
-// import DropdownFilter from "./DropdownFilter";
-
-const useStyles = makeStyles((theme) => ({
-  fatherContainer: {
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  smallItem: {
-    minWidth: '5%',
-    minWidth: '5%',
-    textAlign: 'center',
-    borderBlock: '4px solid black',
-    borderInline: '4px solid black'
-  },
-  item: {
-    minWidth: '10%',
-    minWidth: '10%',
-    textAlign: 'center',
-    borderBlock: '4px solid black',
-    borderInline: '2px solid black'
-  },
-  bigItem: {
-    minWidth: '17.5%',
-    minWidth: '17.5%',
-    textAlign: 'center',
-    borderBlock: '4px solid black',
-    borderInline: '2px solid black',
-  }
-}));
+import { Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 
 function Table() {
-  const classes = useStyles();
   const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch("/api/users")
-      .then((res) => res.json()) 
+      .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
   }, []);
 
-  const column = [
-    {name: 'ID', selector: 'ID', sortable: true},
-    {name: 'Nombre', selector: 'F_NAME', sortable: true},
-    {name: 'F. Nacimiento', selector: 'BIRTH_DATE', sortable: true,
-    cell: (row) => {
-      const birthDate = row.BIRTH_DATE;
-      // const maxLength = 10; // establecer la longitud máxima de caracteres permitidos
-      // if (birthDate.length > maxLength) {
+  const columns = [
+    { field: "ID", headerName: "ID", flex: 1, align: "center" },
+    { field: "F_NAME", headerName: "Nombre", flex: 1, align: "center" },
+    {
+      headerName: "F. Nacimiento",
+      field: "BIRTH_DATE",
+      sortable: true,
+      flex: 2,
+      align: "center",
+      cell: (row) => {
+        const birthDate = row.BIRTH_DATE;
+        console.log(birthDate.substring(0, 10));
         return birthDate.substring(0, 10); // truncar y agregar puntos suspensivos
-      // }
-      // return birthDate;
-    },},
-    {name: 'Nacionalidad', selector: 'NATIONALITY', sortable: true},
-    {name: 'Estado', selector: 'STATE_BORN_IN', sortable: true},
-    {name: 'Ocupacion', selector: 'OCCUPATION', sortable: true},
-    {name: 'CURP', selector: 'CURP', sortable: true},
+      },
+    },
+    {
+      headerName: "Nacionalidad",
+      field: "NATIONALITY",
+      sortable: true,
+      flex: 2,
+      align: "center",
+    },
+    {
+      headerName: "Estado",
+      field: "STATE_BORN_IN",
+      sortable: true,
+      flex: 2,
+      align: "center",
+    },
+    {
+      headerName: "Ocupacion",
+      field: "OCCUPATION",
+      sortable: true,
+      flex: 2,
+      align: "center",
+    },
+    {
+      headerName: "CURP",
+      field: "CURP",
+      sortable: true,
+      flex: 2,
+      align: "center",
+    },
+    {
+      field: "ARCO",
+      headerName: "ARCO",
+      width: 150,
+      align: "center",
+      renderCell: (params) => {
+        const handleDeleteClick = () => {
+          // Handle delete button click here
+        };
 
-  ]
+        return <Button onClick={handleDeleteClick}>ACCIONES</Button>;
+      },
+    },
+  ];
 
   return (
-    <>
-      <DataTable
-       columns={column}
-       data={data}
-       title='ARCO SYSTEM' />
-
-      {/* <DropdownFilter />
-      <br/>
-      <Box className={classes.fatherContainer}>
-        <Box className={classes.smallItem}>
-          <h3>ID</h3>
-        </Box>
-        <Box className={classes.bigItem}>
-          <h3>Nombre</h3>
-        </Box>
-        <Box className={classes.bigItem}>
-          <h3>F. Nacimiento</h3>
-        </Box>
-        <Box className={classes.item}>
-          <h3>Nacionalidad</h3>
-        </Box>
-        <Box className={classes.item}>
-          <h3>Estado</h3>
-        </Box>
-        <Box className={classes.bigItem}>
-          <h3>Ocupación</h3>
-        </Box>
-        <Box className={classes.bigItem}>
-          <h3>CURP</h3>
-        </Box>
-        <Box className={classes.smallItem}>
-          <h3>ARCO</h3>
-        </Box>
-      </Box>
-      {data
-        ? data.map((dato) => {
-            return (
-              <Box className={classes.fatherContainer}>
-                <Box className={classes.smallItem}>
-                  <h3>{dato.ID}</h3>
-                </Box>
-                <Box className={classes.bigItem}>
-                  <h3>{dato.F_NAME + ' ' + dato.LNAME1 + ' ' + dato.LNAME2}</h3>
-                </Box>
-                <Box className={classes.bigItem}>
-                  <h3>{dato.BIRTH_DATE.substring(0, 10)}</h3>
-                </Box>
-                <Box className={classes.item}>
-                  <h3>{dato.NATIONALITY}</h3>
-                </Box>
-                <Box className={classes.item}>
-                  <h3>{dato.STATE_BORN_IN}</h3>
-                </Box>
-                <Box className={classes.bigItem}>
-                  <h3>{dato.OCCUPATION}</h3>
-                </Box>
-                <Box className={classes.bigItem}>
-                  <h3>{dato.CURP}</h3>
-                </Box>
-                <Box className={classes.smallItem}>
-                  <h3>...</h3>
-                </Box>
-              </Box>
-            );
-          })
-        : "Loading..."} */}
-    </>
+    <DataGrid
+      getRowId={(row) => row.ID}
+      columns={columns}
+      rows={data}
+      title="ARCO SYSTEM"
+    ></DataGrid>
   );
 }
 
