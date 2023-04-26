@@ -1,63 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { Box, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles((theme) => ({
-  fatherContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '100%',
-    flex: 1
-  },
-  smallItem: {
-    flex: 1,
-    textAlign: 'center',
-    padding: 10
-  },
-  item: {
-    flex: 2,
-    textAlign: 'center',
-    padding: 10
-  },
-  bigItem: {
-    flex: 3,
-    textAlign: 'center',
-    padding: 10
-  },
-  Arco:{
-    backgroundColor: "#008ad8",
-    color: "#ffffff",
-    borderBottom: '3px solid black',
-    fontWeight: "bold"
-  },
-  Arco2: {
-    borderBottom: '3px solid black',
-    '&:hover': {
-      background: "#A5ECFF",
-   },
-  },
-  DataType:{
-    borderRight: '3px solid black',
-    borderBottom: '3px solid black',
-  },
-  Highlighted: {
-    backgroundColor: '#008ad8',
-    color: '#FFF',
-    fontWeight: "bold"
-  },
-  Data:{
-    display: '-webkit-box',
-    overflow: 'hidden',
-    WebkitBoxOrient: 'vertical',
-    WebkitLineClamp: 1
-  }
-}));
+import { Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 
 function Table() {
-  const classes = useStyles();
-
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     fetch("/api/users")
@@ -66,67 +13,71 @@ function Table() {
       .catch((err) => console.log(err));
   }, []);
 
+  const columns = [
+    { field: "ID", headerName: "ID", flex: 1, align: "center" },
+    { field: "F_NAME", headerName: "Nombre", flex: 1, align: "center" },
+    {
+      headerName: "F. Nacimiento",
+      field: "BIRTH_DATE",
+      sortable: true,
+      flex: 2,
+      align: "center",
+      cell: (row) => {
+        const birthDate = row.BIRTH_DATE;
+        console.log(birthDate.substring(0, 10));
+        return birthDate.substring(0, 10); // truncar y agregar puntos suspensivos
+      },
+    },
+    {
+      headerName: "Nacionalidad",
+      field: "NATIONALITY",
+      sortable: true,
+      flex: 2,
+      align: "center",
+    },
+    {
+      headerName: "Estado",
+      field: "STATE_BORN_IN",
+      sortable: true,
+      flex: 2,
+      align: "center",
+    },
+    {
+      headerName: "Ocupacion",
+      field: "OCCUPATION",
+      sortable: true,
+      flex: 2,
+      align: "center",
+    },
+    {
+      headerName: "CURP",
+      field: "CURP",
+      sortable: true,
+      flex: 2,
+      align: "center",
+    },
+    {
+      field: "ARCO",
+      headerName: "ARCO",
+      width: 150,
+      align: "center",
+      renderCell: (params) => {
+        const handleDeleteClick = () => {
+          // Handle delete button click here
+        };
+
+        return <Button onClick={handleDeleteClick}>ACCIONES</Button>;
+      },
+    },
+  ];
+
   return (
-    <>
-      <Box className={classes.fatherContainer}>
-        <Box className={[classes.smallItem, classes.DataType, classes.Highlighted]}>
-          <Typography variant="b2" className={classes.Data}>ID</Typography>
-        </Box>
-        <Box className={[classes.bigItem, classes.DataType, classes.Highlighted]}>
-          <Typography variant="b2" className={classes.Data}>Nombre</Typography>
-        </Box>
-        <Box className={[classes.item, classes.DataType, classes.Highlighted]}>
-          <Typography variant="b2" className={classes.Data}>F. Nacimiento</Typography>
-        </Box>
-        <Box className={[classes.item, classes.DataType, classes.Highlighted]}>
-          <Typography variant="b2" className={classes.Data}>Nacionalidad</Typography>
-        </Box>
-        <Box className={[classes.item, classes.DataType, classes.Highlighted]}>
-          <Typography variant="b2" className={classes.Data}>Estado</Typography>
-        </Box>
-        <Box className={[classes.item, classes.DataType, classes.Highlighted]}>
-          <Typography variant="b2" className={classes.Data}>Ocupación</Typography>
-        </Box>
-        <Box className={[classes.bigItem, classes.DataType, classes.Highlighted]}>
-          <Typography variant="b2" className={classes.Data}>CURP</Typography>
-        </Box>
-        <Box className={[classes.smallItem, classes.Arco]}>
-          <Typography variant="b2" className={classes.Data}>ARCO</Typography>
-        </Box>
-      </Box>
-      {data
-        ? data.map((dato) => {
-            return (
-              <Box className={classes.fatherContainer}>
-                <Box className={[classes.smallItem, classes.DataType]}>
-                  <Typography variant="b2" className={classes.Data}>{dato.ID}</Typography>
-                </Box>
-                <Box className={[classes.bigItem, classes.DataType]}>
-                  <Typography variant="b2" className={classes.Data}>{dato.F_NAME + ' ' + dato.LNAME1 + ' ' + dato.LNAME2}</Typography>
-                </Box>
-                <Box  className={[classes.item, classes.DataType]}>
-                  <Typography variant="b2" className={classes.Data}>{dato.BIRTH_DATE.substring(0, 10)}</Typography>
-                </Box>
-                <Box  className={[classes.item, classes.DataType]}>
-                  <Typography variant="b2" className={classes.Data}>{dato.NATIONALITY}</Typography>
-                </Box>
-                <Box  className={[classes.item, classes.DataType]}>
-                  <Typography variant="b2" className={classes.Data}>{dato.STATE_BORN_IN}</Typography>
-                </Box>
-                <Box className={[classes.item, classes.DataType]}>
-                  <Typography variant="b2" className={classes.Data}>{dato.OCCUPATION}</Typography>
-                </Box>
-                <Box className={[classes.bigItem, classes.DataType]}>
-                  <Typography variant="b2" className={classes.Data}>{dato.CURP}</Typography>
-                </Box>
-                <Box className={[classes.smallItem, classes.Arco2]}>
-                  <Typography variant="b2" className={classes.Data}>...</Typography>
-                </Box>
-              </Box>
-            );
-          })
-        : "Loading..."}
-    </>
+    <DataGrid
+      getRowId={(row) => row.ID}
+      columns={columns}
+      rows={data}
+      title="ARCO SYSTEM"
+    ></DataGrid>
   );
 }
 
