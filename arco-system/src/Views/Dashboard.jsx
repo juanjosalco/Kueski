@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Table from "../Components/Table";
+import ARCO from "../Components/ARCO";
 
 import { makeStyles } from "@mui/styles";
 import { AppBar, Toolbar, Button, Typography, Container } from "@mui/material";
@@ -7,7 +8,8 @@ import { Box } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    padding: 80,
+    paddingTop:80,
+    paddingSide: 80,
   },
 }));
 
@@ -19,7 +21,7 @@ function Dashboard() {
       setView(selectedView)
     }
   return (
-    <Container maxWidth='xxl' style={{minWidth: '1450px'}}>
+    <div maxWidth='xxl' style={{minWidth: '1450px'}}>
       <AppBar sx={{ backgroundColor: "#2A3852" }}>
         <Toolbar>
           <Typography>Arco System</Typography>
@@ -44,8 +46,10 @@ function Dashboard() {
           <Table />
         </Box>
       )}
-      {view === "Logs" && <Box className={classes.container}></Box>}
-    </Container>
+      {view === "Logs" && (<Box className={classes.container}>
+        <ARCO />
+      </Box>)}
+    </div>
   );
 }
 

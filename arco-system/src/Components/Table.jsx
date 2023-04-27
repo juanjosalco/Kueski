@@ -22,8 +22,10 @@ function Table() {
       sortable: true,
       flex: 2,
       align: "center",
-      cell: (row) => {
-        return <div>{new Date(row.BIRTH_DATE).toLocaleDateString()}</div>;
+      renderCell: (row) => {
+        const date = row.row.BIRTH_DATE.split("T")[0].split("-");
+        const newDate = `${date[2]}/${date[1]}/${date[0]}`;
+        return <div>{newDate}</div>;
       },
     },
     {

@@ -127,7 +127,7 @@ app.put("/users/:id", async (req, res) => {
 
 //arco
 app.get("/api/arco", (req, res) => {
-  var query = "SELECT * FROM SOLICITUD_ARCO JOIN USERS ON SOLICITUD_ARCO.USER_ID = USERS.ID";
+  var query = "SELECT S.* FROM SOLICITUD_ARCO AS SA JOIN USERS ON SOLICITUD_ARCO.USER_ID = USERS.ID";
   connection.query(query, function (err, result, fields) {
     if (err) throw err;
     res.send(result);
