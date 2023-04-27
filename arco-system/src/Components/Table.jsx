@@ -23,9 +23,7 @@ function Table() {
       flex: 2,
       align: "center",
       cell: (row) => {
-        const birthDate = row.BIRTH_DATE;
-        console.log(birthDate.substring(0, 10));
-        return birthDate.substring(0, 10); // truncar y agregar puntos suspensivos
+        return <div>{new Date(row.BIRTH_DATE).toLocaleDateString()}</div>;
       },
     },
     {
