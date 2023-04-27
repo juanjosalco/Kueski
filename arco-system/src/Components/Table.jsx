@@ -64,20 +64,24 @@ function Table() {
       renderCell: (params) => {
         const handleDeleteClick = () => {
           // Handle delete button click here
+          console.log(params.row);
         };
 
-        return <Button onClick={handleDeleteClick}>ACCIONES</Button>;
+        return <Button onClick={handleDeleteClick}>ACCIONES
+              </Button>;
       },
     },
   ];
 
-  return (
+  return (<>
     <DataGrid
+      style={{zIndex:"0"}}
       getRowId={(row) => row.ID}
       columns={columns}
       rows={data}
       title="ARCO SYSTEM"
     ></DataGrid>
+    </>
   );
 }
 

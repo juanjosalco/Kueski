@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Table from "../Components/Table";
 
-import { makeStyles } from "@mui/styles";
 import { AppBar, Toolbar, Button, Typography, Container } from "@mui/material";
 import { Box } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Actions from "../Components/Actions";
 
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: 80,
-  },
+  }
 }));
 
 function Dashboard() {
@@ -41,7 +42,8 @@ function Dashboard() {
       </AppBar>
       {view === "Users" && (
         <Box className={classes.container}>
-          <Table />
+          {/* <Actions/> */}
+          <Table/>
         </Box>
       )}
       {view === "Logs" && <Box className={classes.container}></Box>}
