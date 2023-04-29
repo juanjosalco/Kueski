@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 function ARCO() {
   const [data, setData] = useState([]);
   const [modalID, setModalID] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     fetch("/api/arco")
       .then((res) => res.json())
@@ -47,27 +47,25 @@ function ARCO() {
         const openView = () => {
             console.log(params.row.ARCO_ID);
             setModalID(params.row.ARCO_ID);
-            setShowModal(true);
+            setOpen(true);
         };
         return <Button onClick={openView}>VIEW</Button>;
         },
     },
   ];
   return(
-  showModal ? (
-      <Box>
-        <ModalSolicitud id={modalID} />
+    <>
+      <ModalSolicitud id={modalID} isOpen={open} handleClose={() => setOpen(false)} />
+      <Box style={{width: '100%'}}>
+        <DataGrid
+          getRowId={(row) => row.ARCO_ID}
+          columns={columns}
+          rows={data}
+          title="ARCO SYSTEM"
+          ></DataGrid>
       </Box>
-    ):(
-    <Box style={{width: '100%'}}>
-      <DataGrid
-        getRowId={(row) => row.ARCO_ID}
-        columns={columns}
-        rows={data}
-        title="ARCO SYSTEM"
-      ></DataGrid>
-    </Box>
-  ));
+    </>
+  );
 }
 
 export default ARCO;

@@ -165,8 +165,6 @@ app.listen(PORT, () => {
 });
 
 app.use(express.static(path.resolve("arco-system/build")));
-// Todas las peticiones GET que no manejamos ahora regresarán nuestra React App
-// Agrega esto antes del “app.listen”
 app.get("*", (req, res) => {
     res.sendFile(path.resolve("arco-system/build", "index.html"));
 });
