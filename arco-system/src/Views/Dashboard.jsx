@@ -8,8 +8,9 @@ import { Box } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    paddingTop:80,
-    paddingSide: 80,
+    marginTop: "80px",
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 
@@ -21,7 +22,7 @@ function Dashboard() {
       setView(selectedView)
     }
   return (
-    <div maxWidth='xxl' style={{minWidth: '1450px'}}>
+    <div style={{width: "90%", margin: 'auto'}}>
       <AppBar sx={{ backgroundColor: "#2A3852" }}>
         <Toolbar>
           <Typography>Arco System</Typography>
@@ -46,9 +47,11 @@ function Dashboard() {
           <Table />
         </Box>
       )}
-      {view === "Logs" && (<Box className={classes.container}>
+      {view === "Logs" && (
+        <Box className={classes.container}>
         <ARCO />
-      </Box>)}
+      </Box>
+      )}
     </div>
   );
 }

@@ -135,7 +135,7 @@ app.get("/api/arco", (req, res) => {
 });
 
 app.get("/api/arco/:id", (req, res) => {
-  var query = "SELECT * FROM SOLICITUD_ARCO JOIN USERS ON SOLICITUD_ARCO.USER_ID = USERS.ID WHERE SOLICITUD_ARCO.ID=" + req.params.id;
+  var query = "SELECT * FROM SOLICITUD_ARCO JOIN USERS ON SOLICITUD_ARCO.USER_ID = USERS.ID WHERE SOLICITUD_ARCO.ARCO_ID=" + req.params.id;
   connection.query(query, function (err, result, fields) {
     if (err) throw err;
     res.send(result);

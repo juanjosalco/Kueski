@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from "react";
+import ModalSolicitud from "./ModalSolicitud";
 
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
+import { Box } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+
+}));
 function ARCO() {
   const [data, setData] = useState([]);
-
+  const [modalID, setModalID] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     fetch("/api/arco")
       .then((res) => res.json())
@@ -38,20 +46,28 @@ function ARCO() {
         renderCell: (params) => {
         const openView = () => {
             console.log(params.row.ARCO_ID);
+            setModalID(params.row.ARCO_ID);
+            setShowModal(true);
         };
         return <Button onClick={openView}>VIEW</Button>;
         },
     },
   ];
-
-  return (
-    <DataGrid
-      getRowId={(row) => row.ARCO_ID}
-      columns={columns}
-      rows={data}
-      title="ARCO SYSTEM"
-    ></DataGrid>
-  );
+  return(
+  showModal ? (
+      <Box>
+        <ModalSolicitud id={modalID} />
+      </Box>
+    ):(
+    <Box style={{width: '100%'}}>
+      <DataGrid
+        getRowId={(row) => row.ARCO_ID}
+        columns={columns}
+        rows={data}
+        title="ARCO SYSTEM"
+      ></DataGrid>
+    </Box>
+  ));
 }
 
 export default ARCO;
