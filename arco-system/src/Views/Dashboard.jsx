@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import Table from "../Components/Table";
 import ARCO from "../Components/ARCO";
 
-import { makeStyles } from "@mui/styles";
 import { AppBar, Toolbar, Button, Typography, Container } from "@mui/material";
 import { Box } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import Actions from "../Components/Actions";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -44,7 +45,8 @@ function Dashboard() {
       </AppBar>
       {view === "Users" && (
         <Box className={classes.container}>
-          <Table />
+          {/* <Actions/> */}
+          <Table/>
         </Box>
       )}
       {view === "Logs" && (
