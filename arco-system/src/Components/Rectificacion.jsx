@@ -226,84 +226,96 @@ function Rectificacion({ isOpen, handleClose , id}) {
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Nombre</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={f_name}
+                  onChange={(e) => setf_name(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Primer Apellido</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={lname1}
+                  onChange={(e) => setlname1(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Segundo Apellido</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={lname2}
+                  onChange={(e) => setlname2(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Fecha de Nacimiento</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={birth_date}
+                  onChange={(e) => setbirth_date(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Nacionalidad</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={nationality}
+                  onChange={(e) => setnationality(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Estado</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={state_born_in}
+                  onChange={(e) => setstate_born_in(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Actividad Económica</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={occupation}
+                  onChange={(e) => setoccupation(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>CURP</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={curp}
+                  onChange={(e) => setcurp(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>RFC</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={rfc}
+                  onChange={(e) => setrfc(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Genero</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={gender}
+                  onChange={(e) => setgender(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Número de Telefono</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={phone_number}
+                  onChange={(e) => setphone_number(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Email</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={email}
+                  onChange={(e) => setemail(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
@@ -323,69 +335,70 @@ function Rectificacion({ isOpen, handleClose , id}) {
             </section>
             <section className={classes.side}>
               <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Otro</h1>
-                <textarea
-                  value="Velit recusandae non voluptas earum est aut non. non voluptas earum est aut non. non voluptas earum est aut non."
-                  className={classes.textInputArea}
-                />
-              </section>
-              <section className={classes.dataSection}>
                 <h1 className={classes.newSectionTitle}>Dirección</h1>
                 <hr className={classes.divisor} />
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>País</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={country}
+                  onChange={(e) => setcountry(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Estado</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={state}
+                  onChange={(e) => setstate(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Ciudad</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={city}
+                  onChange={(e) => setcity(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Colonia</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={neighborhood}
+                  onChange={(e) => setneighborhood(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Código Postal</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={zip_code}
+                  onChange={(e) => setzip_code(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Calle</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={street}
+                  onChange={(e) => setstreet(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Número Exterior</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={ext_number}
+                  onChange={(e) => setext_number(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Número Interior</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={int_number}
+                  onChange={(e) => setint_number(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
@@ -396,14 +409,16 @@ function Rectificacion({ isOpen, handleClose , id}) {
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={id_type}
+                  onChange={(e) => setid_type(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
               <section className={classes.dataSection}>
                 <h1 className={classes.dataTitle}>Número de Identificación</h1>
                 <input
-                  value="voluptate occaecati iusto"
+                  value={id_number}
+                  onChange={(e) => setid_number(e.target.value)}
                   className={classes.inputAction}
                 ></input>
               </section>
