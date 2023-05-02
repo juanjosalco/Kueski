@@ -167,6 +167,10 @@ function Acceso({isOpen, handleClose, user}) {
                                     <h1 className={classes.dataTitle}>Calle</h1>
                                     <p className={classes.data}>{user.row.STREET}</p>
                                 </section>
+                                <section className={classes.dataSection}>
+                                    <h1 style={{ color: "#ffffff", fontSize: "24px"}}>.</h1>
+                                    <p style={{ color: "#ffffff", fontSize: "18px"}}>.</p>
+                                </section>
                             </section>
                         </section>
                         <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
