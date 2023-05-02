@@ -58,20 +58,27 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
     const classes = useStyles();
     const [data, setData] = useState([]);
     const [comentarios, setComentarios] = useState([]);
-    
+    const [oposicion, setOposicion] = useState([]);
     useEffect(() => {
         fetch(`/api/arco/${id}`)
         .then((res) => res.json())
         .then((data) => setData(data))
         .catch((err) => console.log(err));
+        data.map((dato) => {
+            fetch(`/api/oposicion/${dato.USER_ID}`)
+            .then((res) => res.json())
+            .then((data) => setOposicion(data))
+            .catch((err) => console.log(err));
+        })
     }, [id]);
+
     useEffect(() => {
         fetch(`/api/comentarios/${id}`)
         .then((res) => res.json())
         .then((data) => setComentarios(data))
         .catch((err) => console.log(err));
     }, [id]);
-    
+
     return(
         <Modal open={isOpen} onClose={handleClose}>
             <div className={classes.modalContent}>
@@ -90,7 +97,13 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                                         <p>Nombre:  {dato.F_NAME} {dato.LNAME1} </p>
                                         <p>Email:   {dato.EMAIL}</p>
                                         <p>Derecho: {dato.DERECHO}</p>
-                                        {dato.DERECHO === "O" ? <p>METER BASE DE DATOS OPOSICÓN</p> : null}
+                                        {dato.DERECHO === "O" ? 
+                                        <div>
+                                            <p>Publicidad: {oposicion.PUBLICIDAD}</p>
+                                            <p>Estadisticas: {oposicion.STATISTICS}</p>
+                                            <p>Marketing: {oposicion.MARKETING}</p>
+                                        </div>
+                                        : null}
                                         <p>Fecha de resolución: {dato.FECHA_RESUELTA.slice(0,10).split("-").reverse().join("/")}</p>
                                         <p>Telefono:    {dato.PHONE_NUMBER}</p>
                                     </div>)

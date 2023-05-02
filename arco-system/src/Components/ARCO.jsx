@@ -45,7 +45,6 @@ function ARCO() {
         align: "center",
         renderCell: (params) => {
         const openView = () => {
-            console.log(params.row.ARCO_ID);
             setModalID(params.row.ARCO_ID);
             setOpen(true);
         };

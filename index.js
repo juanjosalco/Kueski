@@ -140,7 +140,6 @@ app.get("/api/oposicion/:id", (req, res) => {
     res.send(result);
   });
 });
-
 app.post("/api/oposicion", (req, res) => {
   const { user_id, publicidad, statistics, marketing } = req.body;
   var query =
