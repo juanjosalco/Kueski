@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Box, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   blackBack:{
@@ -44,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Oposicion({isOpen, handleClose}) {
   const classes = useStyles();
+  
+  const [cualtext, setCualtext] = useState('');
+  const [portext, setPortext] = useState('');
+
   return (
     <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
@@ -79,7 +84,7 @@ function Oposicion({isOpen, handleClose}) {
                             <label for="html" className={classes.optionText}>HTML</label>
                         </div>
                     </section>
-                    <textarea value="Velit recusandae non voluptas earum est aut non." className={classes.textAreas}/>
+                    <textarea value={cualtext} className={classes.textAreas} onChange={(e) => setCualtext(e.target.value)}/>
                     <h1 style={{fontSize: "30px"}}>¿Porque se realiza la oposición?</h1>
                     <section style={{display: "flex", justifyContent: "space-between"}}>
                         <div className={classes.element}>
@@ -103,7 +108,7 @@ function Oposicion({isOpen, handleClose}) {
                             <label for="html" className={classes.optionText}>HTML</label>
                         </div>
                     </section>
-                    <textarea value="Velit recusandae non voluptas earum est aut non." className={classes.textAreas}/>
+                    <textarea value={portext} onChange={(e) => setPortext(e.target.value)} className={classes.textAreas}/>
                     <button style={{display: "flex", maxWidth: "300px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize: "18px", padding: "8px", justifySelf: "end", border: "0"}}>Registrar Cancelación</button>
                 </section>
             </section>
