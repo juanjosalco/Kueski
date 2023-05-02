@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 function Oposicion({isOpen, handleClose}) {
   const classes = useStyles();
   return (
-    <Modal open={isOpen} onClose={handleClose}>
+    <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
             <section style={{display: "flex", flexDirection: "column", width:"80%", padding: "64px", backgroundColor: "#ffffff", gap: "48px"}}>
                 <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
