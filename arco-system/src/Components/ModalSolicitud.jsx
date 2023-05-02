@@ -52,7 +52,28 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "#3A8CF5", 
         }
     },
-
+    op:{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "100%",
+    },
+    cntr:{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    //input type Checkbox
+    checkbox: {
+        width: "20px",
+        height: "20px",
+        borderRadius: "5px",
+        "&:checked": {
+        },
+    },
+    
+    
 }));    
 const ModalSolicitud = function({id, isOpen, handleClose}){
     const classes = useStyles();
@@ -97,11 +118,27 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                                         <p>Nombre:  {dato.F_NAME} {dato.LNAME1} </p>
                                         <p>Email:   {dato.EMAIL}</p>
                                         <p>Derecho: {dato.DERECHO}</p>
-                                        {dato.DERECHO === "O" ? 
+                                        {dato.DERECHO === "O" && oposicion.length > 0 ? 
                                         <div>
-                                            <p>Publicidad: {oposicion.PUBLICIDAD}</p>
-                                            <p>Estadisticas: {oposicion.STATISTICS}</p>
-                                            <p>Marketing: {oposicion.MARKETING}</p>
+                                            <p>El usuario ha solicitado oposición a:</p>
+                                            {oposicion.map((op) => {
+                                                return(
+                                                    <div className={classes.op}>
+                                                        <div className={classes.cntr}>
+                                                        <label for="cbx" className={classes.cbx}>Publicidad</label>
+                                                        <input checked={op.PUBLICIDAD} disabled type="checkbox" className={classes.checkbox} id="cbx"/>
+                                                        </div>
+                                                        <div className={classes.cntr}>
+                                                        <label for="cbx" className={classes.cbx}>Estadisticas</label>
+                                                        <input checked={op.ESTADISTICAS} disabled type="checkbox" id="cbx" className={classes.checkbox}/>
+                                                        </div>
+                                                        <div className={classes.cntr}>
+                                                        <label for="cbx" className={classes.cbx}>Marketing</label>
+                                                        <input checked={op.MARKETING} disabled type="checkbox" id="cbx" className={classes.checkbox}/>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })}
                                         </div>
                                         : null}
                                         <p>Fecha de resolución: {dato.FECHA_RESUELTA.slice(0,10).split("-").reverse().join("/")}</p>
