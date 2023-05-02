@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import Actions from "./Actions";
+import Oposicion from "./Oposicion"
 
 function Table() {
   const [data, setData] = useState([]);
+
+  const [open, setOpen] = useState(false);
+  const [openOP, setOpenOP] = useState(false);
 
   useEffect(() => {
     fetch("/api/users")
@@ -62,18 +67,20 @@ function Table() {
       width: 150,
       align: "center",
       renderCell: (params) => {
-        const handleDeleteClick = () => {
+        const openView = () => {
           // Handle delete button click here
-          console.log(params.row);
+          setOpen(true);
         };
 
-        return <Button onClick={handleDeleteClick}>ACCIONES
+        return <Button onClick={openView}>ACCIONES
               </Button>;
       },
     },
   ];
 
   return (<>
+    <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)}/>
+    <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP}/>
     <DataGrid
       style={{zIndex:"0"}}
       getRowId={(row) => row.ID}
