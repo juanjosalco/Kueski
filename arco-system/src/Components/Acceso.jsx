@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
     },
     dataSection:{
         display: "grid",
-        gap: "16px"
+        gap: "16px",
+        width: "100%",
     },
     dataTitle:{
         fontSize: "24px"
@@ -37,9 +38,18 @@ const useStyles = makeStyles((theme) => ({
     },
     side:{
         display: "grid",
+        width: "33%",
+        height: "100%",
+        gap: "32px"
+    },
+    side2:{
+        display: "grid",
         width: "50%",
         height: "100%",
         gap: "32px"
+    },
+    columns: {
+        display: "flex",
     }
 }));
 
@@ -56,113 +66,131 @@ function Acceso({isOpen, handleClose}) {
                     </button>
                 </div>
                 <section style={{display: "flex", width: "100%", justifyContent: "space-between", gap: "32px"}}>
-                    <section className={classes.side}>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Nombre</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
+                    <section className={classes.dataSection}>
+                        <h1 className={classes.newSectionTitle}>Información del usuario</h1>
+                        <hr className={classes.divisor}/>
+                        <section className={classes.columns}>
+                            <section className={classes.side}>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Nombre</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Fecha de Nacimiento</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Estado</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>RFC</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                            </section>
+                            <section className={classes.side}>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Primer Apellido</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Nacionalidad</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Actividad Económica</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Número de Telefono</h1>
+                                    <p className={classes.data}>voluptate occaecati iusto</p>
+                                </section>
+                            </section>
+                            <section className={classes.side}>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Segundo Apellido</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Género</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>CURP</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Email</h1>
+                                    <p className={classes.data}>voluptate occaecati iusto</p>
+                                </section>
+                            </section>
                         </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Primer Apellido</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
+
+                        <h1 className={classes.newSectionTitle}>Direccción del usuario</h1>
+                        <hr className={classes.divisor}/>
+                        <section className={classes.columns}>
+                            <section className={classes.side}>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>País</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Colonia</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Número Exterior</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+
+                            </section>
+                            <section className={classes.side}>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Estado</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Código Postal</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Número Interior</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                            </section>
+                            <section className={classes.side}>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Ciudad</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Calle</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                            
+                            </section>
                         </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Segundo Apellido</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
+
+                        <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
+                        <hr className={classes.divisor}/>
+                        <section className={classes.columns}>
+                            <section className={classes.side2}>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                            </section>
+                            <section className={classes.side2}>
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Número de Identificación</h1>
+                                    <p className={classes.data}></p>
+                                </section>
+                            </section>
                         </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Fecha de Nacimiento</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Nacionalidad</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Estado</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Actividad Económica</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>CURP</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>RFC</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Genero</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Número de Telefono</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Email</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <button style={{maxWidth: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
-                    </section>
-                    <section className={classes.side}>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Otro</h1>
-                            <p className={classes.data}>Est sed nihil quo sunt sapiente eaque veritatis quia fugit blanditiis molestiae labore. Omnis optio impedit sit ab dolorem quia et impedit pariatur facere.</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.newSectionTitle}>Dirección</h1>
-                            <hr className={classes.divisor}/>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>País</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Estado</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Ciudad</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Colonia</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Código Postal</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Calle</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Número Exterior</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Número Interior</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.newSectionTitle}>Identificación</h1>
-                            <hr className={classes.divisor} />
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
-                        <section className={classes.dataSection}>
-                            <h1 className={classes.dataTitle}>Número de Identificación</h1>
-                            <p className={classes.data}>voluptate occaecati iusto</p>
-                        </section>
+
                     </section>
                 </section>
-
+                <button style={{maxWidth: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
             </section>
         </div>
     </Modal>
