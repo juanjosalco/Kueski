@@ -16,7 +16,7 @@ function Table() {
   const [openCN, setOpenCN] = useState(false);
   const [openAC, setOpenAC] = useState(false);
   const [openRN, setOpenRN] = useState(false);
-  const [userID, setId] = useState(null);
+  const [user, setUser] = useState(null);
   useEffect(() => {
     fetch("/api/users")
       .then((res) => res.json())
@@ -74,7 +74,7 @@ function Table() {
       align: "center",
       renderCell: (params) => {
         const openView = () => {
-          setId(params.id);
+          setUser(params);
           setOpen(true);
         };
 
@@ -86,7 +86,7 @@ function Table() {
 
   return (<>
     <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)}/>
-    <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)} id={userID} />
+    {openAC && <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)} user={user} />}
     <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
     <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)}/>
     <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN} setOpenAC={setOpenAC} setOpenRN={setOpenRN}/>
