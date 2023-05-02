@@ -4,12 +4,14 @@ import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Actions from "./Actions";
 import Oposicion from "./Oposicion"
+import Cancelacion from "./Cancelacion";
 
 function Table() {
   const [data, setData] = useState([]);
 
   const [open, setOpen] = useState(false);
   const [openOP, setOpenOP] = useState(false);
+  const [openCN, setOpenCN] = useState(false);
 
   useEffect(() => {
     fetch("/api/users")
@@ -79,8 +81,9 @@ function Table() {
   ];
 
   return (<>
+    <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
     <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)}/>
-    <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP}/>
+    <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN}/>
     <DataGrid
       style={{zIndex:"0"}}
       getRowId={(row) => row.ID}

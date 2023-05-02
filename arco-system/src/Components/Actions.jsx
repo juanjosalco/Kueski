@@ -12,12 +12,17 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function Actions({isOpen, handleClose,setOpenOP}) {
+function Actions({isOpen, handleClose,setOpenOP, setOpenCN}) {
     const classes = useStyles()
     function HandleOposicion(e){
       e.preventDefault();
       handleClose();
       setOpenOP(true);
+    }
+    function HandleCancelacion(e){
+      e.preventDefault();
+      handleClose();
+      setOpenCN(true);
     }
   return (
     <Modal open={isOpen} onClose={handleClose}>
@@ -46,7 +51,7 @@ function Actions({isOpen, handleClose,setOpenOP}) {
                   </p>
               </div>
               <div className={classes.DDOption}>
-                  <Button variant="contained">Cancelación</Button>
+                  <Button variant="contained" onClick={(e) => HandleCancelacion(e)}>Cancelación</Button>
                   <p>Es la facultad de solicitar que los datos
                   personales sean suprimidos o eliminados de los archivos, registros,
                   expedientes, sistemas, bases de datos de la SFP y dejen de ser tratados
