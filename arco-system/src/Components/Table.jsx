@@ -5,6 +5,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import Actions from "./Actions";
 import Oposicion from "./Oposicion"
 import Cancelacion from "./Cancelacion";
+import Acceso from "./Acceso";
+import Rectificacion from "./Rectificacion";
 
 function Table() {
   const [data, setData] = useState([]);
@@ -12,6 +14,8 @@ function Table() {
   const [open, setOpen] = useState(false);
   const [openOP, setOpenOP] = useState(false);
   const [openCN, setOpenCN] = useState(false);
+  const [openAC, setOpenAC] = useState(false);
+  const [openRN, setOpenRN] = useState(false);
 
   useEffect(() => {
     fetch("/api/users")
@@ -81,9 +85,11 @@ function Table() {
   ];
 
   return (<>
+    <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)}/>
+    <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)}/>
     <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
     <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)}/>
-    <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN}/>
+    <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN} setOpenAC={setOpenAC} setOpenRN={setOpenRN}/>
     <DataGrid
       style={{zIndex:"0"}}
       getRowId={(row) => row.ID}

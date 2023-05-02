@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function Actions({isOpen, handleClose,setOpenOP, setOpenCN}) {
+function Actions({isOpen, handleClose,setOpenOP, setOpenCN,setOpenAC,setOpenRN}) {
     const classes = useStyles()
     function HandleOposicion(e){
       e.preventDefault();
@@ -23,6 +23,16 @@ function Actions({isOpen, handleClose,setOpenOP, setOpenCN}) {
       e.preventDefault();
       handleClose();
       setOpenCN(true);
+    }
+    function HandleAcceso(e){
+      e.preventDefault();
+      handleClose();
+      setOpenAC(true);
+    }
+    function HandleRectificacion(e){
+      e.preventDefault();
+      handleClose();
+      setOpenRN(true);
     }
   return (
     <Modal open={isOpen} onClose={handleClose}>
@@ -35,7 +45,7 @@ function Actions({isOpen, handleClose,setOpenOP, setOpenCN}) {
               </section>
               <section style={{display: "flex", flexDirection: "column", gap: "50px" }}>
               <div className={classes.DDOption}>
-                  <Button variant="contained">Acceso</Button>
+                  <Button variant="contained" onClick={(e) => HandleAcceso(e)}>Acceso</Button>
                   <p>Es la facultad de solicitar el acceso a los datos
                   personales que se encuentran en las bases de datos, sistemas, archivos,
                   registros o expedientes de la SFP, que los almacena o utiliza, así como
@@ -44,7 +54,7 @@ function Actions({isOpen, handleClose,setOpenOP, setOpenCN}) {
                   </p>
               </div>
               <div className={classes.DDOption}>
-                  <Button variant="contained">Rectificación</Button>
+                  <Button variant="contained" onClick={(e) => HandleRectificacion(e)}>Rectificación</Button>
                   <p>Es la facultad de solicitar a la SFP la corrección
                   de los datos personales en su posesión, cuando éstos sean inexactos o
                   incompletos o no se encuentren actualizados. 
