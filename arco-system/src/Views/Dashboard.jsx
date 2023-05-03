@@ -24,8 +24,9 @@ function Dashboard() {
     }
   return (
     <div style={{width: "90%", margin: 'auto'}}>
-      <AppBar sx={{ backgroundColor: "#2A3852" }}>
+      <AppBar sx={{ backgroundColor: "#ffffff", padding:"10px"}}>
         <Toolbar>
+          <img src="https://firebasestorage.googleapis.com/v0/b/nolbertocastroweb.appspot.com/o/kueskilogo.png?alt=media&token=c6bdb00b-1ce0-4346-a618-c5f7c69a00c7" alt="kueski Logo" style={{width: "200px"}}/>
           <Typography>Arco System</Typography>
           <Button
             sx={{ marginLeft: "auto" }}

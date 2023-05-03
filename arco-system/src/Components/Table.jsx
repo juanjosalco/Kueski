@@ -91,7 +91,7 @@ function Table() {
     <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)}/>
     <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN} setOpenAC={setOpenAC} setOpenRN={setOpenRN}/>
     <DataGrid
-      style={{zIndex:"0"}}
+      style={{zIndex:"0", marginTop: "50px"}}
       getRowId={(row) => row.ID}
       columns={columns}
       rows={data}
