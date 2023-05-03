@@ -153,7 +153,7 @@ function Rectificacion({ isOpen, handleClose , id}) {
   console.log(body);
    
   fetch(`/users/${id}`,{
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
         'Content-Type': 'application/json'
           },

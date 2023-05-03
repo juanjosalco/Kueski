@@ -45,7 +45,7 @@ app.get("/api/users/:id", (req, res) => {
   });
 });
 
-app.put("/users/:id", async (req, res) => {
+app.patch("/users/:id", async (req, res) => {
   const userId = req.params.id;
   const {
     address_id, f_name,
