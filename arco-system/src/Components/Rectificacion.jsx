@@ -91,7 +91,7 @@ function Rectificacion({ isOpen, handleClose , id}) {
       setf_name(user.F_NAME);
       setlname1(user.LNAME1);
       setlname2(user.LNAME2);
-      setbirth_date(user.BIRTH_DATE);
+      setbirth_date(user.BIRTH_DATE.slice(0,10));
       setnationality(user.NATIONALITY);
       setstate_born_in(user.STATE_BORN_IN);
       setoccupation(user.OCCUPATION);
