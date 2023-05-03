@@ -129,7 +129,8 @@ function Rectificacion({ isOpen, handleClose , id}) {
     f_name: f_name,
     lname1: lname1,
     lname2: lname2,
-    birth_date: birth_date,
+    //turn birth_date 03-04-08T00:00:00.000Z to 03-04-08
+    birth_date: birth_date.slice(0,10), 
     nationality: nationality,
     state_born_in: state_born_in,
     occupation: occupation,
