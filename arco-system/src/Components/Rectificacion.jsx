@@ -154,10 +154,11 @@ function Rectificacion({ isOpen, handleClose , id}) {
    
   fetch(`https://kueski.vercel.app//users/${id}`,{
     method: 'PATCH',
-    cors: 'no-cors',
+    mode: 'cors',
     headers: {
-        'Content-Type': 'application/json'
-          },
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+      },
     body:body,
     })
 .then(res => res.json())

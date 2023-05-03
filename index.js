@@ -16,6 +16,8 @@ connection.connect(function (err) {
 const PORT = process.env.PORT || 3001;
 const app = express();
 const path = require("path");
+const cors = require('cors');
+
 
 app.use(bodyParser.json());
 
@@ -145,6 +147,14 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
+app.use(cors());
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+  });
 app.use(express.static(path.resolve("arco-system/build")));
 app.get("*", (req, res) => {
     res.sendFile(path.resolve("arco-system/build", "index.html"));
