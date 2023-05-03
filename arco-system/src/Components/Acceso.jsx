@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize:"18px", 
         padding: "8px", 
         alignSelf: "flex-end"
+
     }
 }));
 
@@ -84,7 +85,6 @@ function Acceso({isOpen, handleClose, user}) {
         .then(data => console.log(data))
         .catch(error => console.error(error));
     }
-
     return (
         <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
