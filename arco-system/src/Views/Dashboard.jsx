@@ -33,14 +33,14 @@ function Dashboard() {
             variant="outlined"
             onClick={() => handleView("Users")}
           >
-            Users{" "}
+            Usuarios{" "}
           </Button>
           <Button
             sx={{ marginLeft: "10px" }}
             variant="outlined"
             onClick={() => handleView("Logs")}
           >
-            Logs{" "}
+            Solicitudes{" "}
           </Button>
         </Toolbar>
       </AppBar>

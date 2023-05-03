@@ -17,16 +17,15 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         width: "50%",
-        height: "80%",
         backgroundColor: "rgba(255, 255, 255, 0.9)",
+        padding: "50px",
+        gap: "50px"
     
     },
     column: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        width: "70%",
-        height: "70%",
+        display: "grid",
+        gridTemplateColumns: "50% 50%",
+        width: "100%",
         fontSize: "150%",
         borderRadius: "10px",
     },
@@ -36,13 +35,12 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-around",
         alignItems: "center",
         width: "100%",
-        height: "100%",
     },
     title: {
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
+        alignItems: "center",
         height: "10%", 
-        backgroundColor: "#E0F1CD",
     },
     button: {
         height: "10%",
@@ -51,6 +49,16 @@ const useStyles = makeStyles((theme) => ({
         "&:hover": {
             backgroundColor: "#3A8CF5", 
         }
+    },
+    dataSection:{
+        display: "grid",
+        gap: "16px"
+    },
+    dataTitle:{
+        fontSize: "24px"
+    },
+    data:{
+        fontSize: "18px"
     },
 
 }));    
@@ -77,39 +85,51 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
             <div className={classes.modalContent}>
                 <div className={classes.container}>
                     <div className={classes.title}>
-                        <h1>ARCO</h1>
+                        <h1 style={{fontSize: "36px"}}>Solicitud ARCO</h1>
+                        <Button onClick={handleClose} variant="outlined">Cerrar</Button>
                     </div>
                     <div className={classes.row}>
                         <div className={classes.column}>
-                            <h2>Información</h2>
-                            <div>
                                 {data.map((dato) =>{
                                     return(
-                                        <div>
-                                        <p>ARCO_ID: {dato.ARCO_ID}</p>
-                                        <p>Nombre:  {dato.F_NAME} {dato.LNAME1} </p>
-                                        <p>Email:   {dato.EMAIL}</p>
-                                        <p>Derecho: {dato.DERECHO}</p>
+                                        <div style={{display: "flex", flexDirection: "column", gap: "32px"}}>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>Nombre</h1>
+                                            <p className={classes.data}>{dato.F_NAME} {dato.LNAME1}</p>
+                                        </section>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>Email</h1>
+                                            <p className={classes.data}>{dato.EMAIL}</p>
+                                        </section>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>ARCO_ID</h1>
+                                            <p className={classes.data}>{dato.ARCO_ID}</p>
+                                        </section>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>Derecho</h1>
+                                            <p className={classes.data}>{dato.DERECHO}</p>
+                                        </section>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>Fecha de resolución</h1>
+                                            <p className={classes.data}>{dato.FECHA_RESUELTA.slice(0,10).split("-").reverse().join("/")}</p>
+                                        </section>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>Telefono</h1>
+                                            <p className={classes.data}>{dato.PHONE_NUMBER}</p>
+                                        </section>
                                         {dato.DERECHO === "O" ? <p>METER BASE DE DATOS OPOSICÓN</p> : null}
-                                        <p>Fecha de resolución: {dato.FECHA_RESUELTA.slice(0,10).split("-").reverse().join("/")}</p>
-                                        <p>Telefono:    {dato.PHONE_NUMBER}</p>
                                     </div>)
                                 })}
-                            </div>
                             <div>
-                                <h2>Comentarios</h2>
-                                {comentarios.length >0 ? comentarios.map((comentario) => {
-                                    return(
-                                        <div>
-                                            <p>Comentario: {comentario.COMENTARIO}</p>
-                                        </div>
-                                    )
-                                }) : <p>No hay comentarios</p>
-                                }
+                                <section className={classes.dataSection}>
+                                    <h1 className={classes.dataTitle}>Comentario</h1>
+                                    {comentarios.length >0 ? comentarios.map((comentario) => {
+                                        return(<p className={classes.data}>{comentario.COMENTARIO}</p>)
+                                    }) : "sin comentarios"}
+                                </section>
                             </div>
                         </div>
                     </div>
-                    <button onClick={handleClose} className={classes.button}>Cerrar</button>
                 </div>
             </div>
         </Modal>
