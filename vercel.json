@@ -7,7 +7,7 @@
         }
     ],
     "rewrites": [
-        { "src": "/(.*)", "dest": "/" }
+        { "source": "/(.*)", "destination": "/" }
     ],
     "headers": [
         {
