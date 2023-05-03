@@ -70,7 +70,7 @@ function Acceso({isOpen, handleClose, user}) {
 
     const date = new Date();
     
-    const handleClick = () => {
+    const handlePostRequest = () => {
         fetch("/api/arco", {
             method: "POST",
             headers: {
@@ -82,7 +82,6 @@ function Acceso({isOpen, handleClose, user}) {
             })
         })
         .then(response => response.json())
-        .then(data => console.log(data))
         .catch(error => console.error(error));
     }
     return (
@@ -220,7 +219,7 @@ function Acceso({isOpen, handleClose, user}) {
                     </section>
                 </section>
                <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}>
-                    <button className={classes.button} onClick={handleClick()}>Generar Reporte</button>
+                    <button className={classes.button} onClick={()=>handlePostRequest()}>Generar Reporte</button>
                 </PDFDownloadLink> 
                 <section>
                 </section>
