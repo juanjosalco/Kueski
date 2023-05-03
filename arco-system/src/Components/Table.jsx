@@ -78,7 +78,7 @@ function Table() {
           setOpen(true);
         };
 
-        return <Button onClick={openView}>ACCIONES
+        return <Button onClick={openView} variant="outlined">ACCIONES
               </Button>;
       },
     },

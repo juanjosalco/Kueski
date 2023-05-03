@@ -30,14 +30,14 @@ function Dashboard() {
           <Typography>Arco System</Typography>
           <Button
             sx={{ marginLeft: "auto" }}
-            variant="contained"
+            variant="outlined"
             onClick={() => handleView("Users")}
           >
             Users{" "}
           </Button>
           <Button
             sx={{ marginLeft: "10px" }}
-            variant="contained"
+            variant="outlined"
             onClick={() => handleView("Logs")}
           >
             Logs{" "}

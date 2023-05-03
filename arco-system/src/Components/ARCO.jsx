@@ -49,7 +49,7 @@ function ARCO() {
             setModalID(params.row.ARCO_ID);
             setOpen(true);
         };
-        return <Button onClick={openView}>VIEW</Button>;
+        return <Button onClick={openView} variant="outlined">VIEW</Button>;
         },
     },
   ];
