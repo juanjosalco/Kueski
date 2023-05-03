@@ -158,8 +158,6 @@ function Rectificacion({ isOpen, handleClose , id}) {
       },
     body:body,
     })
-.then(res => res.json())
-.catch(err => {console.log(err)})
 //Log Request
   fetch("/api/arco", {
     method: "POST",
