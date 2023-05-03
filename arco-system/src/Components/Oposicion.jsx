@@ -109,7 +109,7 @@ function Oposicion({isOpen, handleClose}) {
                         </div>
                     </section>
                     <textarea value={portext} onChange={(e) => setPortext(e.target.value)} className={classes.textAreas}/>
-                    <Button variant="contained">Registrar Cancelación</Button>
+                    <Button variant="contained" onClick={()=>{handleClose()}}>Registrar Cancelación</Button>
                 </section>
             </section>
         </div>

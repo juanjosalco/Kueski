@@ -1,4 +1,4 @@
-import {React, useEffect} from "react";
+import { React, useEffect } from "react";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
@@ -56,9 +56,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Rectificacion({ isOpen, handleClose , id}) {
+function Rectificacion({ isOpen, handleClose, id }) {
   const classes = useStyles();
-  const [data, setData] = useState([]);
   const [address_id, setaddress_id] = useState("");
   const [f_name, setf_name] = useState("");
   const [lname1, setlname1] = useState("");
@@ -91,7 +90,7 @@ function Rectificacion({ isOpen, handleClose , id}) {
       setf_name(user.F_NAME);
       setlname1(user.LNAME1);
       setlname2(user.LNAME2);
-      setbirth_date(user.BIRTH_DATE.slice(0,10));
+      setbirth_date(user.BIRTH_DATE.slice(0, 10));
       setnationality(user.NATIONALITY);
       setstate_born_in(user.STATE_BORN_IN);
       setoccupation(user.OCCUPATION);
@@ -117,63 +116,69 @@ function Rectificacion({ isOpen, handleClose , id}) {
   }
   useEffect(() => {
     fetch(`api/users/${id}`)
-    .then(res => res.json())
-    .then(data =>  loadUser(data))
-    .catch(err => {console.log(err)});
+      .then((res) => res.json())
+      .then((data) => loadUser(data))
+      .catch((err) => {
+        console.log(err);
+      });
   }, [id, isOpen]);
 
-  function handleClick(){
-  const date = new Date();
-  const body =  JSON.stringify({
-    address_id: address_id,
-    f_name: f_name,
-    lname1: lname1,
-    lname2: lname2,
-    birth_date: birth_date.slice(0,10), 
-    nationality: nationality,
-    state_born_in: state_born_in,
-    occupation: occupation,
-    curp: curp,
-    gender: gender,
-    phone_number: phone_number,
-    email: email,
-    rfc: rfc,
-    is_client: is_client,
-    id_type: id_type,
-    id_number: id_number,
-    country: country,
-    state: state,
-    city: city,
-    neighborhood: neighborhood,
-    zip_code: zip_code,
-    street: street,
-    ext_number: ext_number,
-    int_number: int_number,
-  });
-   
-  fetch(`https://kueski.vercel.app/users/${id}`,{
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json'
+  function handleClick() {
+    const date = new Date();
+    const body = JSON.stringify({
+      address_id: address_id,
+      f_name: f_name,
+      lname1: lname1,
+      lname2: lname2,
+      birth_date: birth_date.slice(0, 10),
+      nationality: nationality,
+      state_born_in: state_born_in,
+      occupation: occupation,
+      curp: curp,
+      gender: gender,
+      phone_number: phone_number,
+      email: email,
+      rfc: rfc,
+      is_client: is_client,
+      id_type: id_type,
+      id_number: id_number,
+      country: country,
+      state: state,
+      city: city,
+      neighborhood: neighborhood,
+      zip_code: zip_code,
+      street: street,
+      ext_number: ext_number,
+      int_number: int_number,
+    });
+
+    fetch(`https://kueski.vercel.app/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
       },
-    body:body,
-    })
-//Log Request
-  fetch("/api/arco", {
-    method: "POST",
-    headers: {
-        'Content-Type': 'application/json'
-    }, body: JSON.stringify({
+      body: body,
+    });
+    //Log Request
+    fetch("/api/arco", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         user_id: id,
         derecho: "R",
-        fecha_resuelta: date.toISOString().substring(0,10)+" "+date.toTimeString().substring(0,8),
+        fecha_resuelta:
+          date.toISOString().substring(0, 10) +
+          " " +
+          date.toTimeString().substring(0, 8),
+      }),
     })
-  })
-  .then(response => response.json())
-  .catch(error => console.error(error));
-  handleClose();
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
+    handleClose();
   }
-    return (
+  return (
     <Modal open={isOpen} onClose={handleClose} style={{ overflow: "scroll" }}>
       <div className={classes.blackBack}>
         <section
@@ -314,9 +319,7 @@ function Rectificacion({ isOpen, handleClose , id}) {
                   className={classes.inputAction}
                 ></input>
               </section>
-              <Button
-                variant="contained"
-              >
+              <Button variant="contained" onClick={handleClick}>
                 Generar Reporte
               </Button>
             </section>
