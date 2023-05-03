@@ -56,11 +56,16 @@ app.put("/users/:id", async (req, res) => {
     phone_number, email,
     rfc, is_client,
     id_type, id_number,
+    country, state,
+    city, neighborhood,
+    zip_code, street,
+    ext_number, int_number,
   } = req.body;
+  const updated_at = new Date();
 
   // Update user in the database
   const userQuery =
-    "UPDATE USERS SET ADDRESS_ID = ?, F_NAME = ?, LNAME1 = ?, LNAME2 = ?, BIRTH_DATE = ?, NATIONALITY = ?, STATE_BORN_IN = ?, OCCUPATION = ?, CURP = ?, GENDER = ?, PHONE_NUMBER = ?, EMAIL = ?, RFC = ?, IS_CLIENT = ? WHERE ID = ?";
+    "UPDATE USERS SET ADDRESS_ID = ?, F_NAME = ?, LNAME1 = ?, LNAME2 = ?, BIRTH_DATE = ?, NATIONALITY = ?, STATE_BORN_IN = ?, OCCUPATION = ?, CURP = ?, GENDER = ?, PHONE_NUMBER = ?, EMAIL = ?, RFC = ?, IS_CLIENT = ?, UPDATED_AT = ? WHERE ID = ?";
   const userValues = [
     address_id, f_name,
     lname1, lname2,
@@ -69,6 +74,7 @@ app.put("/users/:id", async (req, res) => {
     curp, gender,
     phone_number, email,
     rfc, is_client,
+    updated_at,
     userId,
   ];
   const userResult = await pool.query(userQuery, userValues);
@@ -77,14 +83,10 @@ app.put("/users/:id", async (req, res) => {
   const addressQuery =
     "UPDATE ADDRESS SET COUNTRY = ?, STATE = ?, CITY = ?, NEIGHBORHOOD = ?, ZIP_CODE = ?, STREET = ?, EXT_NUMBER = ?, INT_NUMBER = ? WHERE ADDRESS_ID = ?";
   const addressValues = [
-    req.body.country,
-    req.body.state,
-    req.body.city,
-    req.body.neighborhood,
-    req.body.zip_code,
-    req.body.street,
-    req.body.ext_number,
-    req.body.int_number,
+    country, state,
+    city, neighborhood,
+    zip_code, street,
+    ext_number, int_number,
     address_id,
   ];
   const addressResult = await pool.query(addressQuery, addressValues);
