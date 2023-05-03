@@ -152,7 +152,7 @@ function Rectificacion({ isOpen, handleClose , id}) {
   });
   console.log(body);
    
-  fetch(`/users/${id}`,{
+  fetch(`https://kueski.vercel.app//users/${id}`,{
     method: 'PATCH',
     headers: {
         'Content-Type': 'application/json'
