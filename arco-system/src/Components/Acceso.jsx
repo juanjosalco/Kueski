@@ -3,7 +3,7 @@ import { Box, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState, useEffect } from 'react';
 import AccesoPDF from "./AccesoPDF";
-import Test from "./teste";
+//import Test from "./Test";
 import { PDFViewer, PDFDownloadLink} from '@react-pdf/renderer'
 
 const useStyles = makeStyles((theme) => ({
@@ -62,11 +62,7 @@ function Acceso({isOpen, handleClose, user}) {
     return (
         <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
-            <h1>Test</h1>
-            <PDFDownloadLink document={<Test/>} fileName='Prueba.pdf'>
-                    <button style={{maxWidtccesoPDh: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
-                </PDFDownloadLink> 
-{/*             <section style={{display: "flex", flexDirection: "column", width:"80%", padding: "64px", backgroundColor: "#ffffff", gap: "48px"}}>
+            <section style={{display: "flex", flexDirection: "column", width:"80%", padding: "64px", backgroundColor: "#ffffff", gap: "48px"}}>
                 <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                     <h1 style={{fontSize: "36px"}}>Acceso</h1>
                     <button style={{height: "50px", backgroundColor: "#ffffff", border: "0"}} onClick={handleClose}>
@@ -197,15 +193,12 @@ function Acceso({isOpen, handleClose, user}) {
                         </section>
                     </section>
                 </section>
-{/*                 <PDFDownloadLink document={<Test/>} fileName='Prueba.pdf'>
+               <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName='Prueba.pdf'>
                     <button style={{maxWidtccesoPDh: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
                 </PDFDownloadLink> 
                 <section>
-                    {/* <PDFViewer>
-                        <AccesoPDF/>
-                    </PDFViewer>  
                 </section>
-            </section> */}
+            </section> 
         </div>
     </Modal>
   )

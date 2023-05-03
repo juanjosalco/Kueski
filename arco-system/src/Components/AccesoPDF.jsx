@@ -4,60 +4,60 @@ import {Page, Text, View, Document, StyleSheet} from "@react-pdf/renderer";
 
 const styles = StyleSheet.create  ({
     blackBack:{
-        disTextlay: "flex",
+        display: "flex",
         width: "100vw",
         minHeight: "100vh",
         background: "rgba(0, 0, 0, .5)",
-        Textosition: "absolute",
+        position: "absolute",
         justifyContent: "center",
         zIndex: "20",
-        Textadding: "64Textx"
+        padding: "64px"
     },
     dataSection:{
-        disTextlay: "grid",
-        gaText: "16Textx",
+        display: "grid",
+        gap: "16px",
         width: "100%",
         heigth:  "100%"
     },
     dataTitle:{
-        fontSize: "24Textx"
+        fontSize: "24px"
     },
     data:{
-        fontSize: "18Textx"
+        fontSize: "18px"
     },
     newSectionTitle:{
-        fontSize: "30Textx"
+        fontSize: "30px"
     },
-    Viewisor:{
-        marginToText: "16Textx",
-        marginBottom: "16Textx",
-        height: "4Textx",
-        borderToTextWidth: "0",
+    divisor:{
+        marginTop: "16px",
+        marginBottom: "16px",
+        height: "4px",
+        borderTopWidth: "0",
         backgroundColor: "#000000"
     },
     side:{
-        disTextlay: "grid",
+        display: "grid",
         width: "33%",
         height: "100%",
-        gaText: "32Textx"
+        gap: "32px"
     },
     side2:{
-        disTextlay: "grid",
+        display: "grid",
         width: "50%",
         height: "100%",
-        gaText: "32Textx"
+        gap: "32px"
     },
     columns: {
-        disTextlay: "flex",
+        display: "flex",
     }
 });
 
-function AccesoPDF() {
+function AccesoPDF({user}) {
     return (
         <Document>
             <Page size="A4">
-                <Text>Mimmmi</Text>
-                {/*<View style={styles.blackBack}>
+                {/* <Text>Mimmmi</Text> */}
+                <View style={styles.blackBack}>
                     <View style={{disTextlay: "flex", flexDirection: "column", width:"80%", Textadding: "64Textx", backgroundColor: "#ffffff", gaText: "48Textx"}}>
                         <View style={{disTextlay: "flex", justifyContent: "sTextace-between", alignItems: "center"}}>
                             <Text style={{fontSize: "36Textx"}}>Acceso</Text>
@@ -184,7 +184,7 @@ function AccesoPDF() {
                             </View>
                         </View> 
                     </View>
-                </View>*/}
+                </View>
             </Page>
     </Document>
   )
