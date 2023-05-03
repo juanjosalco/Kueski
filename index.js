@@ -84,8 +84,9 @@ app.patch("/users/:id", async (req, res) => {
     is_client,
     userId,
   ];
-  const userResult = await connection.query(userQuery, userValues);
-
+  connection.query(userQuery, userValues, function (err, result, fields) {
+    if (err) throw err;
+  });
   // Update address in the database
   const addressQuery =
     "UPDATE ADDRESS SET COUNTRY = ?, STATE = ?, CITY = ?, NEIGHBORHOOD = ?, ZIP_CODE = ?, STREET = ?, EXT_NUMBER = ?, INT_NUMBER = ? WHERE ADDRESS_ID = ?";
@@ -96,13 +97,18 @@ app.patch("/users/:id", async (req, res) => {
       ext_number, int_number,
       address_id,
     ];
-  const addressResult = await connection.query(addressQuery, addressValues);
-
+  connection.query(addressQuery, addressValues, function (err, result, fields) {
+    if (err) throw err;
+  });
   // Update identification in the database
   const idQuery =
     "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE USER_ID = ?";
   const idValues = [id_type, id_number, userId];
-  const idResult = await connection.query(idQuery, idValues);
+  
+  connection.query(idQuery, idValues, function (err, result, fields) {
+    if (err) throw err;
+  });
+  
 
   res.send({
     message: "User updated successfully",
