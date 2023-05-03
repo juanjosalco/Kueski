@@ -143,15 +143,15 @@ app.get("/api/oposicion/:id", (req, res) => {
   });
 });
 app.post("/api/oposicion", (req, res) => {
-  const { user_id, publicidad, statistics, marketing } = req.body;
+  const { user_id, marketing,rewards, testimony, services } = req.body;
   var query =
-    "INSERT INTO OPPOSITION (USER_ID, PUBLICIDAD, STATISTICS, MARKETING) VALUES (" +  
-    user_id + ", " + publicidad + ", " + statistics + ", " + marketing + ")";
+    "INSERT INTO OPPOSITION (USER_ID, MARKETING, REWARDS, TESTIMONY, SERVICES) VALUES (" +  
+    user_id + ", " + marketing+ ", " + rewards+ ", " + testimony+ ", " + services+ ")";
   connection.query(query, function (err, result, fields) {
     if (err) throw err;
     res.send(result);
   });
-});
+})
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
