@@ -52,11 +52,38 @@ const useStyles = makeStyles((theme) => ({
     },
     columns: {
         display: "flex",
+    },
+    button : {
+        maxWidtccesoPDh: "200px", 
+        backgroundColor: "#48cd00", 
+        fontWeight: "700", 
+        color: "#ffffff", 
+        fontSize:"18px", 
+        padding: "8px", 
+        alignSelf: "flex-end"
     }
 }));
 
 function Acceso({isOpen, handleClose, user}) {
     const classes = useStyles();
+
+    const date = new Date();
+    
+    const handleClick = () => {
+        fetch("/api/arco", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify({
+                user_id: user.row.ID,
+                derecho: "A",
+                fecha_resuelta: date.toISOString().substring(0,10)+" "+date.toTimeString().substring(0,8),
+            })
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    }
 
     return (
         <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
@@ -193,7 +220,7 @@ function Acceso({isOpen, handleClose, user}) {
                     </section>
                 </section>
                <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}>
-                    <button style={{maxWidtccesoPDh: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
+                    <button className={classes.button} onClick={handleClick()}>Generar Reporte</button>
                 </PDFDownloadLink> 
                 <section>
                 </section>
