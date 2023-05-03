@@ -67,6 +67,22 @@ function Oposicion({isOpen, handleClose, user}) {
       .catch(error => console.error(error)); */
   }
 
+  const [checkboxes, setCheckboxes] = useState([
+    { id: 1, isChecked: false },
+    { id: 2, isChecked: false },
+    { id: 3, isChecked: false },
+    { id: 4, isChecked: false },
+  ]);
+
+  const handleCheckboxChange = (event, checkboxId) => {
+    const updatedCheckboxes = checkboxes.map((checkbox) =>
+      checkbox.id === checkboxId
+        ? { ...checkbox, isChecked: event.target.checked }
+        : checkbox
+    );
+    setCheckboxes(updatedCheckboxes);
+  };
+  
   return (
     <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
