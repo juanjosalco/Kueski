@@ -44,10 +44,12 @@ const useStyles = makeStyles((theme) => ({
     border: "0"}
 }));
 
-function Oposicion({isOpen, handleClose}) {
+function Oposicion({isOpen, handleClose, user}) {
   const classes = useStyles();
 
   const date = new Date();
+
+  console.log(user.row)
     
   const handlePostRequest = () => {
      /*  fetch("/api/arco", {
@@ -74,74 +76,74 @@ function Oposicion({isOpen, handleClose}) {
                         <img src="https://firebasestorage.googleapis.com/v0/b/nolbertocastroweb.appspot.com/o/button.png?alt=media&token=470e1b7a-7a01-454b-9cce-0bfdeaf12681" alt="close"  style={{height: "100%"}}></img>
                     </button>
                 </div>
-                <p style={{fontSize: "18px"}}>Selecciona las razones por la que  desea oponerse al uso de sus datos personales.</p> 
-                <section style={{display: "grid", gap: "15px"}}>
+                <p style={{fontSize: "18px"}}>Selecciona las razones por la que {user.row.F_NAME} {user.row.LNAME1} {user.row.LNAME2}  desea oponerse al uso de sus datos personales.</p> 
+                <section style={{display: "grid", gap: "15px", paddingBottom:"5px"}}>
                     <section style={{justifyContent: "left"}}>
                     <h2 style={{fontSize: "20px", paddingBottom: "5px"}}>Razones Primarias de Oposición </h2>
-                    <p style={{fontSize: "16px", paddingBottom: "5px"}}>Finalidad de uso de datos: prestación de servicios</p>
-                    <section style={{gap: "15px"}}>
+                    <p style={{fontSize: "16px", paddingBottom: "5px"}}>Finalidad de uso de datos: prestación de servicios.</p>
+                    <section style={{gap: "20px"}}>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}> Identificación del solicitante y/o cliente, según sea el caso.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Integración del expediente de información de nuestro cliente.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Prestación de los servicios y/o comercialización de los bienes de que se trate.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Gestión, control, administración y procesamiento de las solicitudes del solicitante y/o cliente.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Gestión, control y administración de la cobranza administrativa (a través de cualquier medio de contacto otorgado en la solicitud), extrajudicial y, en su caso, judicial derivada de los servicios proporcionados por Kueski.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Investigación de cambios en el perfil transaccional del cliente.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Cumplimiento a obligaciones de carácter fiscal o comercial.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Atención de consultas, dudas, aclaraciones o quejas del cliente.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Estadística y registro histórico de usuarios y clientes.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Creación, mantenimiento y entrenamiento de los modelos de riesgo predictivos de Kueski.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
                             <label for="html" className={classes.optionText}>Mantener la seguridad de la información y de la operación.</label>
                         </div>
                     </section>
                     <h2 style={{fontSize: "20px", paddingBottom: "5px"}}>Razones Secundarias de Oposición </h2>
                     <section style={{ justifyContent: "space-between"}}>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox"  className={classes.check}/>
                             <label for="html" className={classes.optionText}>Fines  mercadotécnicos, publicitarios y/o de prospección comercial. </label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox"  className={classes.check}/>
                             <label for="html" className={classes.optionText}> Otorgamiento de estímulos o reconocimientos a clientes, cuando participen en nuestras campañas publicitarias, mercadológicas o comerciales.</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox"  className={classes.check}/>
                             <label for="html" className={classes.optionText}>Uso de imágenes y testimonios de clientes y/o usuarios para fines publicitarios y de ofertas
                             comerciales referentes a productos y/o servicios ofrecidos o relacionados con productos y/o servicios contratados</label>
                         </div>
                         <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
+                            <input type="checkbox" className={classes.check}/>
                             <label for="html" className={classes.optionText}>Mejoras en el servicio de atención y trato con el cliente.</label>
                         </div>
                     </section>
