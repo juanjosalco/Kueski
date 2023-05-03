@@ -120,7 +120,7 @@ function Rectificacion({ isOpen, handleClose , id}) {
     .then(res => res.json())
     .then(data =>  loadUser(data))
     .catch(err => {console.log(err)});
-  }, [id]);
+  }, [id, isOpen]);
 
   function handleClick(){
   const date = new Date();
