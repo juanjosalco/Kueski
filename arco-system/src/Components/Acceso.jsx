@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState, useEffect } from 'react';
+import AccesoPDF from "./AccesoPDF";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -192,6 +193,9 @@ function Acceso({isOpen, handleClose, user}) {
                     </section>
                 </section>
                 <button style={{maxWidth: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
+                <section>
+                    <AccesoPDF></AccesoPDF>
+                </section>
             </section>
         </div>
     </Modal>
