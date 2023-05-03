@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from 'react';
 
@@ -109,7 +109,7 @@ function Oposicion({isOpen, handleClose}) {
                         </div>
                     </section>
                     <textarea value={portext} onChange={(e) => setPortext(e.target.value)} className={classes.textAreas}/>
-                    <button style={{display: "flex", maxWidth: "300px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize: "18px", padding: "8px", justifySelf: "end", border: "0"}}>Registrar Cancelación</button>
+                    <Button variant="contained">Registrar Cancelación</Button>
                 </section>
             </section>
         </div>

@@ -1,5 +1,5 @@
 import {React, useEffect} from "react";
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
 
@@ -319,19 +319,11 @@ function Rectificacion({ isOpen, handleClose , id}) {
                   className={classes.inputAction}
                 ></input>
               </section>
-              <button
-                style={{
-                  maxWidth: "200px",
-                  backgroundColor: "#48cd00",
-                  fontWeight: "700",
-                  color: "#ffffff",
-                  fontSize: "18px",
-                  padding: "8px",
-                  alignSelf: "flex-end",
-                }} onClick={handleClick}
+              <Button
+                variant="contained"
               >
                 Generar Reporte
-              </button>
+              </Button>
             </section>
             <section className={classes.side}>
               <section className={classes.dataSection}>

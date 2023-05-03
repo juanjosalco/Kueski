@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from 'react';
 
@@ -105,7 +105,7 @@ function Acceso({isOpen, handleClose}) {
                             <h1 className={classes.dataTitle}>Email</h1>
                             <p className={classes.data}>voluptate occaecati iusto</p>
                         </section>
-                        <button style={{maxWidth: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
+                        <Button variant="contained">Generar Reporte</Button>
                     </section>
                     <section className={classes.side}>
                         <section className={classes.dataSection}>
