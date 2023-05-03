@@ -1,5 +1,5 @@
 import React from 'react'
-import {Page, Text, View, Document, StyleSheet} from "@react-Textdf/renderer";
+import {Page, Text, View, Document, StyleSheet} from "@react-pdf/renderer";
 
 
 const styles = StyleSheet.create  ({
@@ -52,19 +52,19 @@ const styles = StyleSheet.create  ({
     }
 });
 
-function AccesoPDF({user}) {
+function AccesoPDF() {
     return (
         <Document>
             <Page size="A4">
-                <View style={styles.blackBack}>
+                <Text>Mimmmi</Text>
+                {/*<View style={styles.blackBack}>
                     <View style={{disTextlay: "flex", flexDirection: "column", width:"80%", Textadding: "64Textx", backgroundColor: "#ffffff", gaText: "48Textx"}}>
                         <View style={{disTextlay: "flex", justifyContent: "sTextace-between", alignItems: "center"}}>
                             <Text style={{fontSize: "36Textx"}}>Acceso</Text>
                         </View>
-                        <View style={{disTextlay: "flex", width: "100%", justifyContent: "sTextace-between", gaText: "32Textx"}}>
+                         <View style={{disTextlay: "flex", width: "100%", justifyContent: "sTextace-between", gaText: "32Textx"}}>
                         <View style={styles.dataSection}>
                                 <Text style={styles.newSectionTitle}>Información del usuario</Text>
-                                <hr style={styles.Viewisor}/>
                                 <View style={styles.columns}>
                                     <View style={styles.side}>
                                         <View style={styles.dataSection}>
@@ -122,7 +122,6 @@ function AccesoPDF({user}) {
                                     </View>
                                 </View>
                                 <Text style={styles.newSectionTitle}>Direccción del usuario</Text>
-                                <hr style={styles.Viewisor}/>
                                 <View style={styles.columns}>
                                     <View style={styles.side}>
                                         <View style={styles.dataSection}>
@@ -168,7 +167,6 @@ function AccesoPDF({user}) {
                                     </View>
                                 </View>
                                 <Text style={styles.newSectionTitle}>Identificaciones del usuario</Text>
-                                <hr style={styles.Viewisor}/>
                                 <View style={styles.columns}>
                                     <View style={styles.side2}>
                                         <View style={styles.dataSection}>
@@ -184,9 +182,9 @@ function AccesoPDF({user}) {
                                     </View>
                                 </View>
                             </View>
-                        </View>
+                        </View> 
                     </View>
-                </View>
+                </View>*/}
             </Page>
     </Document>
   )
