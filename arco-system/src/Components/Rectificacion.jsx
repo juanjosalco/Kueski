@@ -65,7 +65,7 @@ function Rectificacion({isOpen, handleClose}) {
             <section style={{display: "flex", flexDirection: "column", width:"80%", padding: "64px", backgroundColor: "#ffffff", gap: "48px"}}>
                 <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                     <h1 style={{fontSize: "36px"}}>Rectificación</h1>
-                    <button style={{height: "50px", backgroundColor: "#ffffff", border: "0"}} onClick={handleClose}>
+                    <button style={{height: "50px", backgroundColor: "#ffffff", border: "0", cursor: "pointer"}} onClick={handleClose}>
                             <img src="https://firebasestorage.googleapis.com/v0/b/nolbertocastroweb.appspot.com/o/button.png?alt=media&token=470e1b7a-7a01-454b-9cce-0bfdeaf12681" alt="close"  style={{height: "100%"}}></img>
                     </button>
                 </div>
@@ -119,7 +119,7 @@ function Rectificacion({isOpen, handleClose}) {
                             <h1 className={classes.dataTitle}>Email</h1>
                             <input value="voluptate occaecati iusto" className={classes.inputAction}></input> 
                         </section>
-                        <button style={{maxWidth: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
+                        <button style={{maxWidth: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end", cursor: "pointer"}}>Guardar Cambios</button>
                     </section>
                     <section className={classes.side}>
                         <section className={classes.dataSection}>

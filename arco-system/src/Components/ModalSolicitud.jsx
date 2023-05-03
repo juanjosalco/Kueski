@@ -109,7 +109,7 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                             </div>
                         </div>
                     </div>
-                    <button onClick={handleClose} className={classes.button}>Cerrar</button>
+                    <button style={{height: "50px", border: "0", cursor: "pointer"}} onClick={handleClose} className={classes.button}>Cerrar</button>
                 </div>
             </div>
         </Modal>

@@ -55,7 +55,7 @@ function Oposicion({isOpen, handleClose}) {
             <section style={{display: "flex", flexDirection: "column", width:"80%", padding: "64px", backgroundColor: "#ffffff", gap: "48px"}}>
                 <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                     <h1 style={{fontSize: "36px"}}>Oposición</h1>
-                    <button style={{height: "50px", backgroundColor: "#ffffff", border: "0"}} onClick={handleClose}>
+                    <button style={{height: "50px", backgroundColor: "#ffffff", border: "0", cursor: "pointer"}} onClick={handleClose}>
                         <img src="https://firebasestorage.googleapis.com/v0/b/nolbertocastroweb.appspot.com/o/button.png?alt=media&token=470e1b7a-7a01-454b-9cce-0bfdeaf12681" alt="close"  style={{height: "100%"}}></img>
                     </button>
                 </div>
