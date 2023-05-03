@@ -68,10 +68,10 @@ function Oposicion({isOpen, handleClose, user}) {
   }
 
   const [checkboxes, setCheckboxes] = useState([
-    { id: 1, isChecked: false },
-    { id: 2, isChecked: false },
-    { id: 3, isChecked: false },
-    { id: 4, isChecked: false },
+    { id: 1, isChecked: false, label: "Fines mercadotécnicos, publicitarios y/o de prospección comercial." },
+    { id: 2, isChecked: false, label: "Otorgamiento de estímulos o reconocimientos a clientes, cuando participen en nuestras campañas publicitarias, mercadológicas o comerciales." },
+    { id: 3, isChecked: false, label: "Uso de imágenes y testimonios de clientes y/o usuarios para fines publicitarios y de ofertas comerciales referentes a productos y/o servicios ofrecidos o relacionados con productos y/o servicios contratados" },
+    { id: 4, isChecked: false, label: "Mejoras en el servicio de atención y trato con el cliente." },
   ]);
 
   const handleCheckboxChange = (event, checkboxId) => {
@@ -82,7 +82,7 @@ function Oposicion({isOpen, handleClose, user}) {
     );
     setCheckboxes(updatedCheckboxes);
   };
-  
+
   return (
     <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
@@ -155,23 +155,19 @@ function Oposicion({isOpen, handleClose, user}) {
                         </p>
                     </Tooltip>
                     <section style={{ justifyContent: "space-between"}}>
-                        <div className={classes.element}>
-                            <input type="checkbox"  className={classes.check}/>
-                            <label for="html" className={classes.optionText}>Fines  mercadotécnicos, publicitarios y/o de prospección comercial. </label>
+                        {checkboxes.map((checkbox) => (
+                        <div key={checkbox.id} className={classes.element}>
+                            <input
+                            type="checkbox"
+                            className={classes.check}
+                            checked={checkbox.isChecked}
+                            onChange={(event) => handleCheckboxChange(event, checkbox.id)}
+                            />
+                            <label className={classes.optionText} htmlFor="html">
+                            {checkbox.label}
+                            </label>
                         </div>
-                        <div className={classes.element}>
-                            <input type="checkbox"  className={classes.check}/>
-                            <label for="html" className={classes.optionText}> Otorgamiento de estímulos o reconocimientos a clientes, cuando participen en nuestras campañas publicitarias, mercadológicas o comerciales.</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox"  className={classes.check}/>
-                            <label for="html" className={classes.optionText}>Uso de imágenes y testimonios de clientes y/o usuarios para fines publicitarios y de ofertas
-                            comerciales referentes a productos y/o servicios ofrecidos o relacionados con productos y/o servicios contratados</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>Mejoras en el servicio de atención y trato con el cliente.</label>
-                        </div>
+                        ))}
                     </section>
                     <section style={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "20px", paddingTop: "15px"}}>
                     <button className={classes.button} onClick={()=>handlePostRequest()}> Registrar Oposición</button>
