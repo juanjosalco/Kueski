@@ -51,21 +51,6 @@ function Oposicion({isOpen, handleClose, user}) {
   const date = new Date();
 
   console.log(user.row)
-    
-  const handlePostRequest = () => {
-     /*  fetch("/api/arco", {
-          method: "POST",
-          headers: {
-              'Content-Type': 'application/json'
-          }, body: JSON.stringify({
-              user_id: user.row.ID,
-              derecho: "O",
-              fecha_resuelta: date.toISOString().substring(0,10)+" "+date.toTimeString().substring(0,8),
-          })
-      })
-      .then(response => response.json())
-      .catch(error => console.error(error)); */
-  }
 
   const [checkboxes, setCheckboxes] = useState([
     { id: 1, isChecked: false, label: "Fines mercadotécnicos, publicitarios y/o de prospección comercial." },
@@ -82,6 +67,39 @@ function Oposicion({isOpen, handleClose, user}) {
     );
     setCheckboxes(updatedCheckboxes);
   };
+
+      
+  const handlePostRequest = () => {
+    /*  fetch("/api/arco", {
+         method: "POST",
+         headers: {
+             'Content-Type': 'application/json'
+         }, body: JSON.stringify({
+             user_id: user.row.ID,
+             derecho: "O",
+             fecha_resuelta: date.toISOString().substring(0,10)+" "+date.toTimeString().substring(0,8),
+         })
+     })
+     .then(response => response.json())
+     .catch(error => console.error(error)); */
+/* 
+     fetch('/api/oposicion', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json'
+       },
+       body: JSON.stringify({
+           user_id: user.row.ID,
+           marketing: Number(checkboxes[0].isChecked),
+           rewards: Number(checkboxes[1].isChecked),
+           testimony: Number(checkboxes[2].isChecked),
+           services: Number(checkboxes[3].isChecked),
+       })
+     })
+       .then(response => response.json())
+       .then(data => console.log(data))
+       .catch(error => console.error(error)); */
+ }
 
   return (
     <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
