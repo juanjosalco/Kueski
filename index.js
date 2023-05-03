@@ -84,28 +84,30 @@ app.patch("/users/:id", async (req, res) => {
     is_client,
     userId,
   ];
-  const userResult = await pool.query(userQuery, userValues);
+  connection.query(query = userQuery, userValues, function (err, result, fields) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+  // const userResult = await pool.query(userQuery, userValues);
 
   // Update address in the database
-  const addressQuery =
-    "UPDATE ADDRESS SET COUNTRY = ?, STATE = ?, CITY = ?, NEIGHBORHOOD = ?, ZIP_CODE = ?, STREET = ?, EXT_NUMBER = ?, INT_NUMBER = ? WHERE ADDRESS_ID = ?";
-    const addressValues = [
-      country, state,
-      city, neighborhood,
-      zip_code, street,
-      ext_number, int_number,
-      address_id,
-    ];
-  const addressResult = await pool.query(addressQuery, addressValues);
+  // const addressQuery =
+  //   "UPDATE ADDRESS SET COUNTRY = ?, STATE = ?, CITY = ?, NEIGHBORHOOD = ?, ZIP_CODE = ?, STREET = ?, EXT_NUMBER = ?, INT_NUMBER = ? WHERE ADDRESS_ID = ?";
+  //   const addressValues = [
+  //     country, state,
+  //     city, neighborhood,
+  //     zip_code, street,
+  //     ext_number, int_number,
+  //     address_id,
+  //   ];
+  // const addressResult = await pool.query(addressQuery, addressValues);
 
-  // Update identification in the database
-  const idQuery =
-    "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE USER_ID = ?";
-  const idValues = [id_type, id_number, userId];
-  const idResult = await pool.query(idQuery, idValues);
-
-  res.send("User updated successfully.");
-});
+  // // Update identification in the database
+  // const idQuery =
+  //   "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE USER_ID = ?";
+  // const idValues = [id_type, id_number, userId];
+  // const idResult = await pool.query(idQuery, idValues);
 
 
 //arco
