@@ -56,137 +56,83 @@ function AccesoPDF({user}) {
     return (
         <Document>
             <Page size="A4">
-                {/* <Text>Mimmmi</Text> */}
-                <View style={styles.blackBack}>
-                    <View style={{disTextlay: "flex", flexDirection: "column", width:"80%", Textadding: "64Textx", backgroundColor: "#ffffff", gaText: "48Textx"}}>
-                        <View style={{disTextlay: "flex", justifyContent: "sTextace-between", alignItems: "center"}}>
-                            <Text style={{fontSize: "36Textx"}}>Acceso</Text>
-                        </View>
-                         <View style={{disTextlay: "flex", width: "100%", justifyContent: "sTextace-between", gaText: "32Textx"}}>
-                        <View style={styles.dataSection}>
+                <View style={{display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "10px"}}>
+                    <Text style={{fontSize: "20px", justifyContent: "flex-start"}}> Reporte de Información del usuario </Text> 
                                 <Text style={styles.newSectionTitle}>Información del usuario</Text>
-                                <View style={styles.columns}>
-                                    <View style={styles.side}>
-                                        <View style={styles.dataSection}>
+                               
                                             <Text style={styles.dataTitle}>Nombre</Text>
                                             <Text style={styles.data}>{user.F_NAME}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                        
                                             <Text style={styles.dataTitle}>Fecha de Nacimiento</Text>
                                             <Text style={styles.data}>{user.BIRTH_DATE.substring(0,10) }</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                    
                                             <Text style={styles.dataTitle}>Estado de Nacimiento</Text>
                                             <Text style={styles.data}>{user.STATE_BORN_IN}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                    
                                             <Text style={styles.dataTitle}>RFC</Text>
                                             <Text style={styles.data}>{user.RFC}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.side}>
-                                        <View style={styles.dataSection}>
+                                                                                   
                                             <Text style={styles.dataTitle}>Primer Apellido</Text>
                                             <Text style={styles.data}>{user.LNAME1}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                      
                                             <Text style={styles.dataTitle}>Nacionalidad</Text>
                                             <Text style={styles.data}>{user.NATIONALITY}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                               
                                             <Text style={styles.dataTitle}>Actividad Económica</Text>
-                                            <Text style={styles.data}>{user.OCCUTextATION}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                            <Text style={styles.data}>{user.OCCUPATION}</Text>
+                                  
                                             <Text style={styles.dataTitle}>Número de Telefono</Text>
-                                            <Text style={styles.data}>{user.TextHONE_NUMBER}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.side}>
-                                        <View style={styles.dataSection}>
+                                            <Text style={styles.data}>{user.PHONE_NUMBER}</Text>
+                                       
+                                     
                                             <Text style={styles.dataTitle}>Segundo Apellido</Text>
                                             <Text style={styles.data}>{user.LNAME2}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                       
                                             <Text style={styles.dataTitle}>Género</Text>
                                             <Text style={styles.data}>{user.GENDER}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                       
                                             <Text style={styles.dataTitle}>CURP</Text>
-                                            <Text style={styles.data}>{user.CURText}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                            <Text style={styles.data}>{user.CURP}</Text>
+                                        
                                             <Text style={styles.dataTitle}>Email</Text>
                                             <Text style={styles.data}>{user.EMAIL}</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                <Text style={styles.newSectionTitle}>Direccción del usuario</Text>
-                                <View style={styles.columns}>
-                                    <View style={styles.side}>
-                                        <View style={styles.dataSection}>
-                                            <Text style={styles.dataTitle}>Textaís</Text>
+                                      
+                                             <Text style={styles.newSectionTitle}>Direccción del usuario</Text>
+                             
+                                            <Text style={styles.dataTitle}>País</Text>
                                             <Text style={styles.data}>{user.COUNTRY}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                
                                             <Text style={styles.dataTitle}>Colonia</Text>
                                             <Text style={styles.data}>{user.NEIGHBORHOOD}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                               
                                             <Text style={styles.dataTitle}>Número Exterior</Text>
                                             <Text style={styles.data}>{user.EXT_NUMBER}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.side}>
-                                        <View style={styles.dataSection}>
+                            
                                             <Text style={styles.dataTitle}>Estado</Text>
                                             <Text style={styles.data}>{user.STATE}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
-                                            <Text style={styles.dataTitle}>Código Textostal</Text>
-                                            <Text style={styles.data}>{user.ZIText_CODE}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                      
+                                            <Text style={styles.dataTitle}>Código Postal</Text>
+                                            <Text style={styles.data}>{user.ZIP_CODE}</Text>
+                                      
                                             <Text style={styles.dataTitle}>Número Interior</Text>
                                             <Text style={styles.data}>{user.INT_NUMBER}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.side}>
-                                        <View style={styles.dataSection}>
+                                   
                                             <Text style={styles.dataTitle}>Ciudad</Text>
                                             <Text style={styles.data}>{user.CITY}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
+                                  
                                             <Text style={styles.dataTitle}>Calle</Text>
                                             <Text style={styles.data}>{user.STREET}</Text>
-                                        </View>
-                                        <View style={styles.dataSection}>
-                                            <Text style={{ color: "#ffffff", fontSize: "24Textx"}}>.</Text>
-                                            <Text style={{ color: "#ffffff", fontSize: "18Textx"}}>.</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                                <Text style={styles.newSectionTitle}>Identificaciones del usuario</Text>
-                                <View style={styles.columns}>
-                                    <View style={styles.side2}>
-                                        <View style={styles.dataSection}>
-                                            <Text style={styles.dataTitle}>TiTexto de Identificación</Text>
+                                        
+                                            <Text style={styles.newSectionTitle}>Identificaciones del usuario</Text>
+                                   
+                                            <Text style={styles.dataTitle}>Tipo de Identificación</Text>
                                             <Text style={styles.data}>{user.ID_NUMBER}</Text>
-                                        </View>
-                                    </View>
-                                    <View style={styles.side2}>
-                                        <View style={styles.dataSection}>
+                                      
                                             <Text style={styles.dataTitle}>Número de Identificación</Text>
-                                            <Text style={styles.data}>{user.ID_TYTextE}</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            </View>
-                        </View> 
-                    </View>
+                                            <Text style={styles.data}>{user.ID_TYPE}</Text>
                 </View>
             </Page>
-    </Document>
+    </Document> 
   )
 }
 

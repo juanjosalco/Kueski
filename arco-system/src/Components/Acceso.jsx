@@ -193,7 +193,7 @@ function Acceso({isOpen, handleClose, user}) {
                         </section>
                     </section>
                 </section>
-               <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName='Prueba.pdf'>
+               <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName='Reporte.pdf'>
                     <button style={{maxWidtccesoPDh: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
                 </PDFDownloadLink> 
                 <section>
