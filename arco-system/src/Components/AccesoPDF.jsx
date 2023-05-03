@@ -15,14 +15,14 @@ const styles = StyleSheet.create({
           fontSize: 16,
           borderBottomWidth: 1,
           borderBottomColor: '#ccc',
-          padding: 10,
+          padding: 10, 
+          display: 'grid',
         },
         dataTitle: {
           fontWeight: 'bold',
           marginRight: 10,
           marginBottom: 5,
-          color: '#333',
-          fontSize: 12,
+          fontSize: 14,
         },
         data: {
           fontSize: 12,
@@ -50,10 +50,10 @@ function AccesoPDF({user}) {
             <Page size="A4" >
                 <View style = {styles.pag} >
                     <View style={styles.section}>
-                    <Text style={{ fontSize: 20, marginBottom: 10 }}>Reporte de Información del usuario</Text>
+                    <Text style={{ fontSize: 18, marginBottom: 10 }}>Reporte de Información del usuario</Text>
                      </View>
                     <View style={styles.section}>
-                        <Text style={{ fontSize: 18, marginBottom: 10 }}>Información del usuario</Text>
+                        <Text style={{ fontSize: 16, marginBottom: 10 }}>Información del usuario</Text>
 
                         <View style={styles.row}>
                             <View style={styles.column}>
@@ -118,9 +118,73 @@ function AccesoPDF({user}) {
                                 <Text style={styles.data}>{user.EMAIL}</Text>
                             </View>
                         </View>
-                       
+                    </View>
+                    <View style={styles.section}>
+                        <Text style={{ fontSize: 16, marginBottom: 10 }}>Dirección del usuario</Text>
+
+                        <View style={styles.row}>
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>País</Text>
+                                <Text style={styles.data}>{user.COUNTRY}</Text>
+                            </View>
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>Estado:</Text>
+                                <Text style={styles.data}>{user.STATE}</Text>
+                            </View>
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>Ciudad:</Text>
+                                <Text style={styles.data}>{user.CITY}</Text>
+                            </View>
+                        </View>
+                        <View style={styles.row}>
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>Colonia:</Text>
+                                <Text style={styles.data}>{user.NEIGHBORHOOD}</Text>
+                            </View>
+                            
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>Calle:</Text>
+                                <Text style={styles.data}>{user.STREET}</Text>
+                            </View>
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>Código Postal:</Text>
+                                <Text style={styles.data}>{user.ZIP_CODE}</Text>
+                            </View>
+                            
+                        </View>
+                        <View style={styles.row}>
+                            
+                            <View style={styles.column}>
+                                    <Text style={styles.dataTitle}>Número Exterior</Text>
+                                    <Text style={styles.data}>{user.EXT_NUMBER}</Text>
+                            </View>
+
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>Número Interior</Text>
+                                <Text style={styles.data}>{user.INT_NUMBER}</Text>
+                            </View>
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}></Text>
+                                <Text style={styles.data}></Text>
+                            </View>
+                        </View>
+                        
+                        </View>
+                        <View style={styles.section}>
+                        <Text style={{ fontSize: 16, marginBottom: 10 }}>Identificación del usuario</Text>
+
+                        <View style={styles.row}>
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>Tipo de Identificación</Text>
+                                <Text style={styles.data}>{user.ID_NUMBER}</Text>
+                            </View>
+                            <View style={styles.column}>
+                                <Text style={styles.dataTitle}>Número de Identificación</Text>
+                                <Text style={styles.data}>{user.ID_TYPE}</Text>
+                        </View>
                     </View>
                 </View>
+                    </View>
             </Page>
     </Document> 
   )
