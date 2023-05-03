@@ -89,10 +89,14 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                         <Button onClick={handleClose} variant="outlined">Cerrar</Button>
                     </div>
                     <div className={classes.row}>
-                        <div className={classes.column}>
                                 {data.map((dato) =>{
                                     return(
-                                        <div style={{display: "flex", flexDirection: "column", gap: "32px"}}>
+                                <div className={classes.column}>
+                                    <div style={{display: "flex", flexDirection: "column", gap: "32px"}}>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>ARCO_ID</h1>
+                                            <p className={classes.data}>{dato.ARCO_ID}</p>
+                                        </section>
                                         <section className={classes.dataSection}>
                                             <h1 className={classes.dataTitle}>Nombre</h1>
                                             <p className={classes.data}>{dato.F_NAME} {dato.LNAME1}</p>
@@ -100,14 +104,6 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                                         <section className={classes.dataSection}>
                                             <h1 className={classes.dataTitle}>Email</h1>
                                             <p className={classes.data}>{dato.EMAIL}</p>
-                                        </section>
-                                        <section className={classes.dataSection}>
-                                            <h1 className={classes.dataTitle}>ARCO_ID</h1>
-                                            <p className={classes.data}>{dato.ARCO_ID}</p>
-                                        </section>
-                                        <section className={classes.dataSection}>
-                                            <h1 className={classes.dataTitle}>Derecho</h1>
-                                            <p className={classes.data}>{dato.DERECHO}</p>
                                         </section>
                                         <section className={classes.dataSection}>
                                             <h1 className={classes.dataTitle}>Fecha de resolución</h1>
@@ -118,17 +114,21 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                                             <p className={classes.data}>{dato.PHONE_NUMBER}</p>
                                         </section>
                                         {dato.DERECHO === "O" ? <p>METER BASE DE DATOS OPOSICÓN</p> : null}
-                                    </div>)
-                                })}
-                            <div>
-                                <section className={classes.dataSection}>
-                                    <h1 className={classes.dataTitle}>Comentario</h1>
-                                    {comentarios.length >0 ? comentarios.map((comentario) => {
-                                        return(<p className={classes.data}>{comentario.COMENTARIO}</p>)
-                                    }) : "sin comentarios"}
-                                </section>
-                            </div>
-                        </div>
+                                    </div>
+                                    <div style={{display: "flex", flexDirection: "column", gap: "32px"}}>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>Comentario</h1>
+                                            {comentarios.length >0 ? comentarios.map((comentario) => {
+                                                return(<p className={classes.data}>{comentario.COMENTARIO}</p>)
+                                            }) : <p className={classes.data}>sin comentarios</p>}
+                                        </section>
+                                        <section className={classes.dataSection}>
+                                            <h1 className={classes.dataTitle}>Derecho</h1>
+                                            <p className={classes.data}>{dato.DERECHO}</p>
+                                        </section>
+                                    </div>
+                                </div>
+                            )})}
                     </div>
                 </div>
             </div>
