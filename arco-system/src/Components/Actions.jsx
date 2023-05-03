@@ -41,7 +41,9 @@ function Actions({isOpen, handleClose,setOpenOP, setOpenCN,setOpenAC,setOpenRN})
               
               <section style={{display: "flex", width: "100%", justifyContent: "space-between"}}>
                 <h3 style={{}}>¿Qué Acción Arco te gustaría realizar?</h3>
-                <button onClick={handleClose} style={{padding: "6px"}}>Exit</button>
+                <button style={{height: "50px", backgroundColor: "#ffffff", border: "0"}} onClick={handleClose}>
+                  <img src="https://firebasestorage.googleapis.com/v0/b/nolbertocastroweb.appspot.com/o/button.png?alt=media&token=470e1b7a-7a01-454b-9cce-0bfdeaf12681" alt="close"  style={{height: "100%"}}></img>
+                </button>
               </section>
               <section style={{display: "flex", flexDirection: "column", gap: "50px" }}>
               <div className={classes.DDOption}>
