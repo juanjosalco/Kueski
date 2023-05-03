@@ -3,6 +3,7 @@ import React from 'react'
 import { Box, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from 'react';
+import { Tooltip, Alert } from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
   blackBack:{
@@ -80,7 +81,11 @@ function Oposicion({isOpen, handleClose, user}) {
                 <section style={{display: "grid", gap: "15px", paddingBottom:"5px"}}>
                     <section style={{justifyContent: "left"}}>
                     <h2 style={{fontSize: "20px", paddingBottom: "5px"}}>Razones Primarias de Oposición </h2>
-                    <p style={{fontSize: "16px", paddingBottom: "5px"}}>Finalidad de uso de datos: prestación de servicios.</p>
+                    <Tooltip title={<Alert severity="info">Solo se puede aplicar si el usuario no es cliente.</Alert>} arrow placement="top" >
+                        <p style={{fontSize: "16px"}}>
+                            Finalidad de uso de datos: prestación de servicios.
+                        </p>
+                    </Tooltip>
                     <section style={{gap: "20px"}}>
                         <div className={classes.element}>
                             <input type="checkbox" id="myCheckBox" className={classes.check} disabled={user.row.IS_CLIENT ? true: false}/>
@@ -128,6 +133,11 @@ function Oposicion({isOpen, handleClose, user}) {
                         </div>
                     </section>
                     <h2 style={{fontSize: "20px", paddingBottom: "5px"}}>Razones Secundarias de Oposición </h2>
+                    <Tooltip title={<Alert severity="info">Información que siempre se debe dejar de usar en caso de que el cliente lo solicite.</Alert>}  arrow placement='top'>
+                        <p style={{fontSize: "16px", paddingBottom: "5px"}}>
+                            Finalidad de uso de datos: comercial, marketing, testimonial.
+                        </p>
+                    </Tooltip>
                     <section style={{ justifyContent: "space-between"}}>
                         <div className={classes.element}>
                             <input type="checkbox"  className={classes.check}/>
