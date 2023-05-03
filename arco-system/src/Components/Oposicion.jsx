@@ -70,7 +70,7 @@ function Oposicion({isOpen, handleClose, user}) {
 
       
   const handlePostRequest = () => {
-    /*  fetch("/api/arco", {
+     fetch("/api/arco", {
          method: "POST",
          headers: {
              'Content-Type': 'application/json'
@@ -81,8 +81,8 @@ function Oposicion({isOpen, handleClose, user}) {
          })
      })
      .then(response => response.json())
-     .catch(error => console.error(error)); */
-/* 
+     .catch(error => console.error(error));
+
      fetch('/api/oposicion', {
        method: 'POST',
        headers: {
@@ -98,7 +98,7 @@ function Oposicion({isOpen, handleClose, user}) {
      })
        .then(response => response.json())
        .then(data => console.log(data))
-       .catch(error => console.error(error)); */
+       .catch(error => console.error(error));
  }
 
   return (
