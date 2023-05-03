@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
           fontSize: 16,
           borderBottomWidth: 1,
           borderBottomColor: '#ccc',
-          padding: 10, 
+          padding: 5, 
           display: 'grid',
         },
         dataTitle: {

@@ -3,8 +3,7 @@ import { Box, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState, useEffect } from 'react';
 import AccesoPDF from "./AccesoPDF";
-//import Test from "./Test";
-import { PDFViewer, PDFDownloadLink} from '@react-pdf/renderer'
+import { PDFDownloadLink} from '@react-pdf/renderer'
 
 const useStyles = makeStyles((theme) => ({
     blackBack:{
@@ -193,7 +192,7 @@ function Acceso({isOpen, handleClose, user}) {
                         </section>
                     </section>
                 </section>
-               <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName='Reporte.pdf'>
+               <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}>
                     <button style={{maxWidtccesoPDh: "200px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize:"18px", padding: "8px", alignSelf: "flex-end"}}>Generar Reporte</button>
                 </PDFDownloadLink> 
                 <section>
