@@ -41,7 +41,7 @@ const handler = (req, res) => {
   res.end(d.toString())
 }
 
-module.exports = allowCors(handler)
+allowCors(handler)
 
 app.get("/api/users", (req, res) => {
   connection.connect(function (err) {
