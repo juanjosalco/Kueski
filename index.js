@@ -84,7 +84,7 @@ app.patch("/users/:id", async (req, res) => {
     is_client,
     userId,
   ];
-  const userResult = await pool.query(userQuery, userValues);
+  const userResult = await connection.query(userQuery, userValues);
 
   // Update address in the database
   const addressQuery =
@@ -96,13 +96,13 @@ app.patch("/users/:id", async (req, res) => {
       ext_number, int_number,
       address_id,
     ];
-  const addressResult = await pool.query(addressQuery, addressValues);
+  const addressResult = await connection.query(addressQuery, addressValues);
 
   // Update identification in the database
   const idQuery =
     "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE USER_ID = ?";
   const idValues = [id_type, id_number, userId];
-  const idResult = await pool.query(idQuery, idValues);
+  const idResult = await connection.query(idQuery, idValues);
 
   res.send({
     message: "User updated successfully",
