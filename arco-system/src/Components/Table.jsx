@@ -22,7 +22,7 @@ function Table() {
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [data]);
 
   const columns = [
     { field: "ID", headerName: "ID", flex: 1, align: "center" },
