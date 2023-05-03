@@ -2,10 +2,21 @@ import React, { useEffect, useState } from "react";
 
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import Actions from "./Actions";
+import Oposicion from "./Oposicion"
+import Cancelacion from "./Cancelacion";
+import Acceso from "./Acceso";
+import Rectificacion from "./Rectificacion";
 
 function Table() {
   const [data, setData] = useState([]);
 
+  const [open, setOpen] = useState(false);
+  const [openOP, setOpenOP] = useState(false);
+  const [openCN, setOpenCN] = useState(false);
+  const [openAC, setOpenAC] = useState(false);
+  const [openRN, setOpenRN] = useState(false);
+  const [user, setUser] = useState(null);
   useEffect(() => {
     fetch("/api/users")
       .then((res) => res.json())
@@ -62,18 +73,23 @@ function Table() {
       width: 150,
       align: "center",
       renderCell: (params) => {
-        const handleDeleteClick = () => {
-          // Handle delete button click here
-          console.log(params.row);
+        const openView = () => {
+          setUser(params);
+          setOpen(true);
         };
 
-        return <Button onClick={handleDeleteClick}>ACCIONES
+        return <Button onClick={openView}>ACCIONES
               </Button>;
       },
     },
   ];
 
   return (<>
+    <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)}/>
+    {openAC && <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)} user={user} />}
+    <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
+    <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)}/>
+    <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN} setOpenAC={setOpenAC} setOpenRN={setOpenRN}/>
     <DataGrid
       style={{zIndex:"0"}}
       getRowId={(row) => row.ID}

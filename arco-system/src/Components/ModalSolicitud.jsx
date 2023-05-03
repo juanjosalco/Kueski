@@ -72,8 +72,6 @@ const useStyles = makeStyles((theme) => ({
         "&:checked": {
         },
     },
-    
-    
 }));    
 const ModalSolicitud = function({id, isOpen, handleClose}){
     const classes = useStyles();
@@ -92,14 +90,12 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
             .catch((err) => console.log(err));
         })
     }, [id]);
-
     useEffect(() => {
         fetch(`/api/comentarios/${id}`)
         .then((res) => res.json())
         .then((data) => setComentarios(data))
         .catch((err) => console.log(err));
     }, [id]);
-
     return(
         <Modal open={isOpen} onClose={handleClose}>
             <div className={classes.modalContent}>

@@ -9,7 +9,6 @@ export default function Search() {
   useEffect(() => {
     fetch(URL, {mode: 'no-cors'})
       .then((res) => res.json())
-      .then((data) => console.log(data))
       .catch((err) => console.log(err));
   }, []);
   
