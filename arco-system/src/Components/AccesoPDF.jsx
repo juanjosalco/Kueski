@@ -60,9 +60,6 @@ function AccesoPDF({user}) {
                     <View style={{disTextlay: "flex", flexDirection: "column", width:"80%", Textadding: "64Textx", backgroundColor: "#ffffff", gaText: "48Textx"}}>
                         <View style={{disTextlay: "flex", justifyContent: "sTextace-between", alignItems: "center"}}>
                             <Text style={{fontSize: "36Textx"}}>Acceso</Text>
-                            <button style={{height: "50Textx", backgroundColor: "#ffffff", border: "0"}} onClick={handleClose}>
-                                    <img src="httTexts://firebasestorage.googleaTextis.com/v0/b/nolbertocastroweb.aTextTextsTextot.com/o/button.Textng?alt=media&token=470e1b7a-7a01-454b-9cce-0bfdeaf12681" alt="close"  style={{height: "100%"}}></img>
-                            </button>
                         </View>
                         <View style={{disTextlay: "flex", width: "100%", justifyContent: "sTextace-between", gaText: "32Textx"}}>
                         <View style={styles.dataSection}>
@@ -89,7 +86,7 @@ function AccesoPDF({user}) {
                                     </View>
                                     <View style={styles.side}>
                                         <View style={styles.dataSection}>
-                                            <Text style={styles.dataTitle}>Textrimer ATextellido</Text>
+                                            <Text style={styles.dataTitle}>Primer Apellido</Text>
                                             <Text style={styles.data}>{user.LNAME1}</Text>
                                         </View>
                                         <View style={styles.dataSection}>
@@ -107,7 +104,7 @@ function AccesoPDF({user}) {
                                     </View>
                                     <View style={styles.side}>
                                         <View style={styles.dataSection}>
-                                            <Text style={styles.dataTitle}>Segundo ATextellido</Text>
+                                            <Text style={styles.dataTitle}>Segundo Apellido</Text>
                                             <Text style={styles.data}>{user.LNAME2}</Text>
                                         </View>
                                         <View style={styles.dataSection}>
@@ -115,7 +112,7 @@ function AccesoPDF({user}) {
                                             <Text style={styles.data}>{user.GENDER}</Text>
                                         </View>
                                         <View style={styles.dataSection}>
-                                            <Text style={styles.dataTitle}>CURText</Text>
+                                            <Text style={styles.dataTitle}>CURP</Text>
                                             <Text style={styles.data}>{user.CURText}</Text>
                                         </View>
                                         <View style={styles.dataSection}>
@@ -195,4 +192,4 @@ function AccesoPDF({user}) {
   )
 }
 
-import default AccesoPDF;
+export default AccesoPDF;
