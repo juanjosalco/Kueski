@@ -156,7 +156,6 @@ function Rectificacion({ isOpen, handleClose , id}) {
     method: 'PATCH',
     mode: 'cors',
     headers: {
-      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json'
       },
     body:body,
