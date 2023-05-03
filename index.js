@@ -109,7 +109,6 @@ app.patch("/users/:id", async (req, res) => {
     if (err) throw err;
   });
   
-
   res.send({
     message: "User updated successfully",
   });

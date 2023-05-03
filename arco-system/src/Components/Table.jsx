@@ -27,7 +27,7 @@ function Table() {
   const columns = [
     { field: "ID", headerName: "ID", flex: 1, align: "center" },
     { field: "F_NAME", headerName: "Nombre", flex: 1, align: "center" },
-    { field: "L_NAME1", headerName: "Apellido", flex: 1, align: "center" },
+    { field: "LNAME1", headerName: "Apellido", flex: 1, align: "center" },
     {
       headerName: "F. Nacimiento",
       field: "BIRTH_DATE",
