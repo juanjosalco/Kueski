@@ -83,67 +83,6 @@ function Rectificacion({ isOpen, handleClose , id}) {
   const [ext_number, setext_number] = useState("");
   const [int_number, setint_number] = useState("");
   
-/*   app.put("/users/:id", async (req, res) => {
-    const userId = req.params.id;
-    const {
-      address_id, f_name,
-      lname1, lname2,
-      birth_date, nationality,
-      state_born_in, occupation,
-      curp, gender,
-      phone_number, email,
-      rfc, is_client,
-      id_type, id_number,
-      country, state,
-      city, neighborhood,
-      zip_code, street,
-      ext_number, int_number,
-    } = req.body;
-    const updated_at = new Date();
-    // Update user in the database
-    const userQuery =
-      "UPDATE USERS SET ADDRESS_ID = ?, F_NAME = ?, LNAME1 = ?, LNAME2 = ?, BIRTH_DATE = ?, NATIONALITY = ?, STATE_BORN_IN = ?, OCCUPATION = ?, CURP = ?, GENDER = ?, PHONE_NUMBER = ?, EMAIL = ?, RFC = ?, IS_CLIENT = ? WHERE ID = ?";
-    const userValues = [
-      address_id,
-      f_name,
-      lname1,
-      lname2,
-      birth_date,
-      nationality,
-      state_born_in,
-      occupation,
-      curp,
-      gender,
-      phone_number,
-      email,
-      rfc,
-      is_client,
-      userId,
-    ];
-    const userResult = await pool.query(userQuery, userValues);
-  
-    // Update address in the database
-    const addressQuery =
-      "UPDATE ADDRESS SET COUNTRY = ?, STATE = ?, CITY = ?, NEIGHBORHOOD = ?, ZIP_CODE = ?, STREET = ?, EXT_NUMBER = ?, INT_NUMBER = ? WHERE ADDRESS_ID = ?";
-      const addressValues = [
-        country, state,
-        city, neighborhood,
-        zip_code, street,
-        ext_number, int_number,
-        address_id,
-      ];
-    const addressResult = await pool.query(addressQuery, addressValues);
-  
-    // Update identification in the database
-    const idQuery =
-      "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE USER_ID = ?";
-    const idValues = [id_type, id_number, userId];
-    const idResult = await pool.query(idQuery, idValues);
-  
-    res.status(200).send("User updated successfully");
-  });
-  
-*/  
   fetch(`users/${id}`,
   {
     method: 'PUT',
