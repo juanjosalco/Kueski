@@ -19,18 +19,6 @@ const path = require("path");
 
 app.use(bodyParser.json());
 
-app.get("/api/movies", (req, res) => {
-  connection.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-    connection.query("SELECT * FROM movies", function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-      res.send(result);
-    });
-  });
-});
-
 app.get("/api/users", (req, res) => {
   connection.connect(function (err) {
     if (err) throw err;
@@ -141,6 +129,7 @@ app.get("/api/arco/:id", (req, res) => {
     res.send(result);
   });
 });
+
 app.post("/api/arco", (req, res) => {
   const { user_id, derecho, fecha_resuelta } = req.body;
   var query =

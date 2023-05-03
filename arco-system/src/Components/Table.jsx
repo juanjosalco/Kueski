@@ -87,7 +87,7 @@ function Table() {
   return (<>
     <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)}/>
     {openAC && <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)} user={user} />}
-    <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
+    {openCN && <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)} user={user} />}
     <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)}/>
     <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN} setOpenAC={setOpenAC} setOpenRN={setOpenRN}/>
     <DataGrid

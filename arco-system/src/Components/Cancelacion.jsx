@@ -1,7 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { Box, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     blackBack:{
@@ -42,9 +41,10 @@ const useStyles = makeStyles((theme) => ({
       }
 }));
 
-function Cancelacion({isOpen, handleClose}) {
+function Cancelacion({isOpen, handleClose, user}) {
     const classes = useStyles();
     const [cancelText, setCancelText] = useState('');
+
   return (
     <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
@@ -56,29 +56,10 @@ function Cancelacion({isOpen, handleClose}) {
                     </button>
                 </div>
                 <section style={{display: "grid", gap:"32px"}}>
-                    <p style={{fontSize: "18px"}}>Velit recusandae non voluptas earum est aut non. Laborum illum reprehenderit ratione sunt natus qui a dolorem eaque architecto rem. Officia beatae voluptatum impedit ut rem dicta suscipit. Et modi et doloribus qui non at animi sed quia et. Aut itaque sit rerum excepturi sit facilis odit eius eveniet aperiam suscipit aliquam enim.</p>
-                    <section style={{display: "flex", justifyContent: "space-between"}}>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                    </section>
+                    <p style={{fontSize: "18px"}}>Por medio del presente y en atención a los derechos ARCO con los que cuenta el usuario<b> {user.row.F_NAME} {user.row.LNAME1} {user.row.LNAME2} </b>
+                     solicita la cancelación en el tratamiento de sus datos personales.</p>
+                    <p style={{fontSize: "18px"}}>Motivo por el que el usuario solicita la cancelación:</p>
+                   
                     <textarea value={cancelText} onChange={(e) => setCancelText(e.target.value)} className={classes.textAreas}/>
                     <button style={{display: "flex", maxWidth: "300px", backgroundColor: "#48cd00", fontWeight: "700", color: "#ffffff", fontSize: "18px", padding: "8px", justifySelf: "end", border: "0"}}>Registrar Cancelación</button>
                 </section>
