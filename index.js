@@ -19,17 +19,29 @@ const path = require("path");
 
 app.use(bodyParser.json());
 
-app.get("/api/movies", (req, res) => {
-  connection.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-    connection.query("SELECT * FROM movies", function (err, result, fields) {
-      if (err) throw err;
-      console.log(result);
-      res.send(result);
-    });
-  });
-});
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
+}
+
+const handler = (req, res) => {
+  const d = new Date()
+  res.end(d.toString())
+}
+
+module.exports = allowCors(handler)
 
 app.get("/api/users", (req, res) => {
   connection.connect(function (err) {
