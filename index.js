@@ -114,7 +114,7 @@ app.put("/users/:id", async (req, res) => {
   const idValues = [id_type, id_number, userId];
   const idResult = await pool.query(idQuery, idValues);
 
-  res.status(200).send("User updated successfully");
+  res.send("User updated successfully.");
 });
 
 

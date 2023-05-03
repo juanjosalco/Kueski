@@ -151,27 +151,29 @@ function Rectificacion({ isOpen, handleClose , id}) {
     int_number: int_number,
   });
   console.log(body);
-   fetch(`users/${id}`,{
+   
+  fetch(`https://kueski.vercel.app/users/${id}`,{
     method: 'PUT',
+    cors: 'no-cors',
     headers: {
         'Content-Type': 'application/json'
-    },
+          },
     body:body,
-    }).then(res => res.json())
-    .catch(err => {console.log(err)})
-    //Log Request
-    fetch("/api/arco", {
-      method: "POST",
-      headers: {
-          'Content-Type': 'application/json'
-      }, body: JSON.stringify({
-          user_id: id,
-          derecho: "R",
-          fecha_resuelta: date.toISOString().substring(0,10)+" "+date.toTimeString().substring(0,8),
-      })
+    })
+.then(res => res.json())
+.catch(err => {console.log(err)})
+//Log Request
+  fetch("/api/arco", {
+    method: "POST",
+    headers: {
+        'Content-Type': 'application/json'
+    }, body: JSON.stringify({
+        user_id: id,
+        derecho: "R",
+        fecha_resuelta: date.toISOString().substring(0,10)+" "+date.toTimeString().substring(0,8),
+    })
   })
   .then(response => response.json())
-  .then(data => console.log(data))
   .catch(error => console.error(error));
   handleClose();
   }
