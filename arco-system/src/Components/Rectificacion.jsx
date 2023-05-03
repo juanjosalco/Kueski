@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useEffect} from "react";
 import { Box, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
@@ -58,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Rectificacion({ isOpen, handleClose , id}) {
   const classes = useStyles();
+  const [data, setData] = useState([]);
   const [address_id, setaddress_id] = useState("");
   const [f_name, setf_name] = useState("");
   const [lname1, setlname1] = useState("");
@@ -82,42 +83,99 @@ function Rectificacion({ isOpen, handleClose , id}) {
   const [street, setstreet] = useState("");
   const [ext_number, setext_number] = useState("");
   const [int_number, setint_number] = useState("");
-  
-  fetch(`users/${id}`,
-  {
+  function loadUser(data) {
+    data.map((user) => {
+      //ID
+      setaddress_id(user.ADDRESS_ID);
+      //Usuario
+      setf_name(user.F_NAME);
+      setlname1(user.LNAME1);
+      setlname2(user.LNAME2);
+      setbirth_date(user.BIRTH_DATE);
+      setnationality(user.NATIONALITY);
+      setstate_born_in(user.STATE_BORN_IN);
+      setoccupation(user.OCCUPATION);
+      setcurp(user.CURP);
+      setgender(user.GENDER);
+      setphone_number(user.PHONE_NUMBER);
+      setemail(user.EMAIL);
+      setrfc(user.RFC);
+      setis_client(user.IS_CLIENT);
+      //Identificacion
+      setid_type(user.ID_TYPE);
+      setid_number(user.ID_NUMBER);
+      //Address
+      setcountry(user.COUNTRY);
+      setstate(user.STATE);
+      setcity(user.CITY);
+      setneighborhood(user.NEIGHBORHOOD);
+      setzip_code(user.ZIP_CODE);
+      setstreet(user.STREET);
+      setext_number(user.EXT_NUMBER);
+      setint_number(user.INT_NUMBER);
+    });
+  }
+  useEffect(() => {
+    fetch(`api/users/${id}`)
+    .then(res => res.json())
+    .then(data =>  loadUser(data))
+    .catch(err => {console.log(err)});
+  }, [id]);
+
+  function handleClick(){
+  const date = new Date();
+  const body =  JSON.stringify({
+    address_id: address_id,
+    f_name: f_name,
+    lname1: lname1,
+    lname2: lname2,
+    birth_date: birth_date,
+    nationality: nationality,
+    state_born_in: state_born_in,
+    occupation: occupation,
+    curp: curp,
+    gender: gender,
+    phone_number: phone_number,
+    email: email,
+    rfc: rfc,
+    is_client: is_client,
+    id_type: id_type,
+    id_number: id_number,
+    country: country,
+    state: state,
+    city: city,
+    neighborhood: neighborhood,
+    zip_code: zip_code,
+    street: street,
+    ext_number: ext_number,
+    int_number: int_number,
+  });
+  console.log(body);
+   fetch(`users/${id}`,{
     method: 'PUT',
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-        address_id: address_id,
-        f_name: f_name,
-        lname1: lname1,
-        lname2: lname2,
-        birth_date: birth_date,
-        nationality: nationality,
-        state_born_in: state_born_in,
-        occupation: occupation,
-        curp: curp,
-        gender: gender,
-        phone_number: phone_number,
-        email: email,
-        rfc: rfc,
-        is_client: is_client,
-        id_type: id_type,
-        id_number: id_number,
-        country: country,
-        state: state,
-        city: city,
-        neighborhood: neighborhood,
-        zip_code: zip_code,
-        street: street,
-        ext_number: ext_number,
-        int_number: int_number,
-    })
+    body:body,
     }).then(res => res.json())
     .catch(err => {console.log(err)})
-  return (
+    //Log Request
+    fetch("/api/arco", {
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      }, body: JSON.stringify({
+          user_id: id,
+          derecho: "R",
+          fecha_resuelta: date.toISOString().substring(0,10)+" "+date.toTimeString().substring(0,8),
+      })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+  handleClose();
+  }
+    return (
     <Modal open={isOpen} onClose={handleClose} style={{ overflow: "scroll" }}>
       <div className={classes.blackBack}>
         <section
@@ -267,7 +325,7 @@ function Rectificacion({ isOpen, handleClose , id}) {
                   fontSize: "18px",
                   padding: "8px",
                   alignSelf: "flex-end",
-                }}
+                }} onClick={handleClick}
               >
                 Generar Reporte
               </button>
