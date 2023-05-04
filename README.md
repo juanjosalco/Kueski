@@ -8,7 +8,7 @@ This software is distributed under the MIT License. The full text of the license
 
 ## Copyright
 
-Copyright (c) 2023 [Israel Vidal Paredes], [Javier Eric Hernández], [Juan José Salazar Cortés], [Mariana Bustos Hernández], [Mariana Esquivel Hernández], [Nolberto Castro Sánchez].
+Copyright (c) 2023 [Kueski].
 
 
 All rights reserved.
@@ -19,11 +19,11 @@ This software uses the following external resources:
 
 - React: a JavaScript library for building user interfaces. 
   - Source: [React](https://reactjs.org/)
-  - Terms of Use: React is distributed under the MIT License.
+  - Terms of Use: React is distributed under the MIT License. For more information, please see the React License.
 
 - Material-UI: a library of user interface components for React.
   - Source: [Material-UI](https://material-ui.com/)
-  - Terms of Use: Material-UI is distributed under the MIT License.
+  - Terms of Use: Material-UI is distributed under the MIT License. For more information, please see the Material-UI License.
 
 - PlanetScale: a distributed, scalable database in the cloud.
   - Source: [PlanetScale](https://www.planetscale.com/)
@@ -49,6 +49,4 @@ This software uses the following external resources:
   - Source: [Node.js](https://nodejs.org/)
   - Terms of Use: Node.js is distributed under the MIT License.
 
-Any use or distribution of this software and its external resources is subject to the terms of the licenses and corresponding terms of use for each external resource used.
-
-Any use or distribution of this software and its external resources is subject to the terms of the MIT License.````. 
+Any use or distribution of this software and its external resources is subject to the terms of the MIT License and the corresponding terms of use for each external resource used.````. 
