@@ -43,12 +43,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Cancelacion({ isOpen, handleClose, id, user }) {
+function Cancelacion({ isOpen, handleClose, id}) {
       const classes = useStyles();
+
       const [address_id, setaddress_id] = useState("");
       const [f_name, setf_name] = useState("");
       const [lname1, setlname1] = useState("");
-      const [lname2, setlname2] = useState("");
+      const [lname2, setlname2] = useState(""); 
       const [birth_date, setbirth_date] = useState("");
       const [nationality, setnationality] = useState("");
       const [state_born_in, setstate_born_in] = useState("");
@@ -69,6 +70,7 @@ function Cancelacion({ isOpen, handleClose, id, user }) {
       const [street, setstreet] = useState("");
       const [ext_number, setext_number] = useState("");
       const [int_number, setint_number] = useState("");
+
       function loadUser(data) {
         data.map((user) => {
           //ID
@@ -113,61 +115,33 @@ function Cancelacion({ isOpen, handleClose, id, user }) {
     
     function handleClick() {
       console.log("Cancelacion");
-      setf_name(".");
       const date = new Date();
-      const value = ".";
       const body = JSON.stringify({
-        // address_id: null,
-        // f_name: null,
-        // lname1: null,
-        // lname2: null,
-        // birth_date: null,
-        // nationality: null,
-        // state_born_in: null,
-        // occupation: null,
-        // curp: null,
-        // gender: null,
-        // phone_number: null,
-        // email: null,
-        // rfc: null,
-        // is_client: null,
-        // id_type: null,
-        // id_number: null,
-        // country: null,
-        // state: null,
-        // city: null,
-        // neighborhood: null,
-        // zip_code: null,
-        // street: null,
-        // ext_number: null,
-        // int_number: null,
-        // deleted_at: '0001-01-01'
         address_id: address_id,
-        f_name: f_name,
-        lname1: lname1, 
-        // ' '
-        lname2: lname2,
-        birth_date: birth_date.slice(0, 10),
-        nationality: null,
-        state_born_in: state_born_in,
-        occupation: occupation,
-        curp: curp,
-        gender: gender,
-        phone_number: phone_number,
-        email: email,
-        rfc: rfc,
-        is_client: is_client,
-        id_type: id_type,
-        id_number: id_number,
-        country: country,
-        state: state,
-        city: city,
-        neighborhood: neighborhood,
-        zip_code: zip_code,
-        street: street,
-        ext_number: ext_number,
-        int_number: int_number,
-        deleted_at: '0001-01-01'
+        f_name: '',
+        lname1: '',
+        lname2: '',
+        birth_date: '0001-01-01',
+        nationality: '',
+        state_born_in: '',
+        occupation: '',
+        curp: '',
+        gender: '',
+        phone_number: '',
+        email: '',
+        rfc: '',
+        is_client: '',
+        id_type: '',
+        id_number: '',
+        country: '',
+        state: '',
+        city: '',
+        neighborhood: '',
+        zip_code: '',
+        street: '',
+        ext_number: '',
+        int_number: '',
+        deleted_at: {date}
       });
       
       fetch(`https://kueski.vercel.app/users/${id}`, {
@@ -195,19 +169,11 @@ function Cancelacion({ isOpen, handleClose, id, user }) {
         .then((response) => response.json())
         .catch((error) => console.error(error));
         handleClose();
-        
-      }    
-        // función asíncrona para llamar a Cancelacion
-  function handleCancelacion() {
-    console.log("Cancelacion");
-    setf_name(".");
-  };
-
+      }
       
       return (
         <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
-
             <section style={{display: "flex", flexDirection: "column", width:"80%", padding: "64px", backgroundColor: "#ffffff", gap: "48px"}}>
                 <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                     <h1 style={{fontSize: "36px"}}>Cancelación</h1>
@@ -216,20 +182,10 @@ function Cancelacion({ isOpen, handleClose, id, user }) {
                     </button>
                 </div>
                 <section style={{display: "grid", gap:"32px"}}>
-                    <p style={{fontSize: "18px"}}>Por medio del presente y en atención a los derechos ARCO con los que cuenta el usuario<b> {user.row.F_NAME} {user.row.LNAME1} {user.row.LNAME2} </b>
+                    <p style={{fontSize: "18px"}}>Por medio del presente y en atención a los derechos ARCO con los que cuenta el usuario<b> {f_name} {lname1} {lname2} </b>
                      solicita la cancelación en el tratamiento de sus datos personales.</p>
                     <p style={{fontSize: "18px"}}>Motivo por el que el usuario solicita la cancelación:</p>
-                    {/* <textarea value={cancelText} onChange={(e) => setCancelText(e.target.value)} className={classes.textAreas}/> */}
-                    <Button variant="contained"onClick={handleClick}>Confirmar cancelacion</Button>
-                    {console.log(user.NATIONALITY)}
-                    <Button variant="contained"    
-                        // onClick={handleCancelacion}     
-                        onClick={handleClick}     
-
-                    // value={"."}
-                    > 
-                      Cambiar Null </Button>                    
-                    
+                    <Button variant="contained" onClick={handleClick}>Confirmar cancelacion</Button>                 
                 </section>
             </section>
         </div>
