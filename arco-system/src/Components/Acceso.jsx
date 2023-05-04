@@ -42,13 +42,14 @@ const useStyles = makeStyles((theme) => ({
         display: "grid",
         width: "33%",
         height: "50%",
-        gap: "32px"
+        gap: "32px",
     },
     side2:{
         display: "grid",
         width: "50%",
         height: "100%",
-        gap: "32px"
+        gap: "32px",
+        paddingBottom: "16px"
     },
     columns: {
         display: "flex",
@@ -60,6 +61,16 @@ function Acceso({isOpen, handleClose, user}) {
     console.log(user)
 
     const date = new Date();
+    const ids = user.row.IDENTIFICATION_DATA;
+    const dataPairs = ids.split(", ");
+    const identifications = [];
+
+    dataPairs.forEach(pair => {
+        const [identificationType, identificationId] = pair.split(": ");
+        
+        // Store the extracted data as an object in the identifications array
+        identifications.push({ type: identificationType, id: identificationId });
+    });
     
     const handlePostRequest = () => {
         fetch("/api/arco", {
@@ -189,19 +200,26 @@ function Acceso({isOpen, handleClose, user}) {
                         </section>
                         <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
                         <hr className={classes.divisor}/>
-                        <section className={classes.columns}>
-                            <section className={classes.side2}>
-                                <section className={classes.dataSection}>
-                                    <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
-                                    <p className={classes.data}>{user.row.ID_NUMBER}</p>
-                                </section>
-                            </section>
-                            <section className={classes.side2}>
-                                <section className={classes.dataSection}>
-                                    <h1 className={classes.dataTitle}>Número de Identificación</h1>
-                                    <p className={classes.data}>{user.row.ID_TYPE}</p>
-                                </section>
-                            </section>
+                        <section>
+                            {  identifications.map((identification, index) => {
+                                 return (
+                                        <section className={classes.columns} key={index}>
+                                            <section className={classes.side2}>
+                                                <section className={classes.dataSection}>
+                                                    <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
+                                                    <p className={classes.data}>{identification.type}</p>
+                                                </section>
+                                            </section>
+                                            <section className={classes.side2}>
+                                                <section className={classes.dataSection}>
+                                                    <h1 className={classes.dataTitle}>Número de Identificación</h1>
+                                                    <p className={classes.data}>{identification.id}</p>
+                                                </section>
+                                            </section>
+                                        </section>
+                                  );
+                            })
+                            }
                         </section>
                     </section>
                 </section>
