@@ -94,6 +94,7 @@ function Rectificacion({ isOpen, handleClose, id }) {
   const [street, setstreet] = useState("");
   const [ext_number, setext_number] = useState("");
   const [int_number, setint_number] = useState("");
+
   function loadUser(data) {
     data.map((user) => {
       //ID
@@ -126,6 +127,7 @@ function Rectificacion({ isOpen, handleClose, id }) {
       setint_number(user.INT_NUMBER);
     });
   }
+
   useEffect(() => {
     fetch(`api/users/${id}`)
       .then((res) => res.json())
@@ -172,6 +174,7 @@ function Rectificacion({ isOpen, handleClose, id }) {
       },
       body: body,
     });
+    
     //Log Request
     fetch("/api/arco", {
       method: "POST",
@@ -377,7 +380,7 @@ function Rectificacion({ isOpen, handleClose, id }) {
                       <h1 className={classes.dataTitle}>Estado</h1>
                       <input
                         value={state}
-                        onChange={(e) => setstate(e.target.value)}
+                        onChange={(e) => setstate("e.target.value")}
                         className={classes.inputAction}
                       ></input>
                       </section>
