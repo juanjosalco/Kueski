@@ -60,18 +60,23 @@ const useStyles = makeStyles((theme) => ({
     data:{
         fontSize: "18px"
     },
-
 }));    
 const ModalSolicitud = function({id, isOpen, handleClose}){
     const classes = useStyles();
     const [data, setData] = useState([]);
     const [comentarios, setComentarios] = useState([]);
-    
+    const [oposicion, setOposicion] = useState([]);
     useEffect(() => {
         fetch(`/api/arco/${id}`)
         .then((res) => res.json())
         .then((data) => setData(data))
         .catch((err) => console.log(err));
+        data.map((dato) => {
+            fetch(`/api/oposicion/${dato.USER_ID}`)
+            .then((res) => res.json())
+            .then((data) => setOposicion(data))
+            .catch((err) => console.log(err));
+        })
     }, [id]);
     useEffect(() => {
         fetch(`/api/comentarios/${id}`)
@@ -79,7 +84,6 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
         .then((data) => setComentarios(data))
         .catch((err) => console.log(err));
     }, [id]);
-    
     return(
         <Modal open={isOpen} onClose={handleClose}>
             <div className={classes.modalContent}>

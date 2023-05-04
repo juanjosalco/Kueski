@@ -20,7 +20,6 @@ const cors = require('cors');
 
 
 app.use(bodyParser.json());
-
 app.get("/api/users", (req, res) => {
   connection.connect(function (err) {
     if (err) throw err;
@@ -66,22 +65,16 @@ app.patch("/users/:id", async (req, res) => {
   const updated_at = new Date();
   // Update user in the database
   const userQuery =
-    "UPDATE USERS SET ADDRESS_ID = ?, F_NAME = ?, LNAME1 = ?, LNAME2 = ?, BIRTH_DATE = ?, NATIONALITY = ?, STATE_BORN_IN = ?, OCCUPATION = ?, CURP = ?, GENDER = ?, PHONE_NUMBER = ?, EMAIL = ?, RFC = ?, IS_CLIENT = ? WHERE ID = ?";
+    "UPDATE USERS SET ADDRESS_ID = ?, F_NAME = ?, LNAME1 = ?, LNAME2 = ?, BIRTH_DATE = ?, NATIONALITY = ?, STATE_BORN_IN = ?, OCCUPATION = ?, CURP = ?, GENDER = ?, PHONE_NUMBER = ?, EMAIL = ?, RFC = ?, IS_CLIENT = ?, UPDATED_AT = ? WHERE ID = ?";
   const userValues = [
-    address_id,
-    f_name,
-    lname1,
-    lname2,
-    birth_date,
-    nationality,
-    state_born_in,
-    occupation,
-    curp,
-    gender,
-    phone_number,
-    email,
-    rfc,
-    is_client,
+    address_id, f_name,
+    lname1, lname2,
+    birth_date, nationality,
+    state_born_in, occupation,
+    curp, gender,
+    phone_number, email,
+    rfc, is_client,
+    updated_at,
     userId,
   ];
   connection.query(userQuery, userValues, function (err, result, fields) {
@@ -149,7 +142,25 @@ app.get("/api/comentarios/:id", (req, res) => {
     res.send(result);
   });
 });
-  
+
+app.get("/api/oposicion/:id", (req, res) => {
+  var query = "SELECT * FROM OPPOSITION WHERE USER_ID=" + req.params.id;
+  connection.query(query, function (err, result, fields) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+app.post("/api/oposicion", (req, res) => {
+  const { user_id, marketing,rewards, testimony, services } = req.body;
+  var query =
+    "INSERT INTO OPPOSITION (USER_ID, MARKETING, REWARDS, TESTIMONY, SERVICES) VALUES (" +  
+    user_id + ", " + marketing+ ", " + rewards+ ", " + testimony+ ", " + services+ ")";
+  connection.query(query, function (err, result, fields) {
+    if (err) throw err;
+    res.send(result);
+  });
+})
+
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });

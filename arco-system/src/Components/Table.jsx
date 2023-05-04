@@ -16,7 +16,7 @@ function Table() {
   const [openCN, setOpenCN] = useState(false);
   const [openAC, setOpenAC] = useState(false);
   const [openRN, setOpenRN] = useState(false);
-  const [userID, setId]= useState(null);
+  const [user, setUser] = useState(null);
   useEffect(() => {
     fetch("/api/users")
       .then((res) => res.json())
@@ -75,7 +75,7 @@ function Table() {
       align: "center",
       renderCell: (params) => {
         const openView = () => {
-          setId(params.id);
+          setUser(params);
           setOpen(true);
         };
 
@@ -87,9 +87,9 @@ function Table() {
 
   return (<>
     <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)} id={userID}/>
-    <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)}/>
+    {openAC && <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)} user={user} />}
     <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
-    <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)}/>
+    {openOP && <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)} user={user} />}
     <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN} setOpenAC={setOpenAC} setOpenRN={setOpenRN}/>
     <DataGrid
       style={{zIndex:"0", marginTop: "50px"}}

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/juanjosalco/Kueski#readme",
   "dependencies": {
+    "@react-pdf/renderer": "^3.1.9",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
