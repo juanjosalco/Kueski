@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState, useEffect } from 'react';
 import AccesoPDF from "./AccesoPDF";

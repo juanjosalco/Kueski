@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from 'react';
 import { Tooltip, Alert } from '@mui/material';
@@ -189,6 +189,8 @@ function Oposicion({isOpen, handleClose, user}) {
                     <section style={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "20px", paddingTop: "15px"}}>
                     <button className={classes.button} onClick={()=>handlePostRequest()}> Registrar Oposición</button>
                     </section>
+                    <textarea value={portext} onChange={(e) => setPortext(e.target.value)} className={classes.textAreas}/>
+                    <Button variant="contained" onClick={()=>{handleClose()}}>Registrar Cancelación</Button>
                 </section>
             </section>
             </section>

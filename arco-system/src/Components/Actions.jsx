@@ -41,11 +41,11 @@ function Actions({isOpen, handleClose,setOpenOP, setOpenCN,setOpenAC,setOpenRN})
               
               <section style={{display: "flex", width: "100%", justifyContent: "space-between"}}>
                 <h3 style={{}}>¿Qué Acción Arco te gustaría realizar?</h3>
-                <button onClick={handleClose} style={{padding: "6px"}}>Exit</button>
+                <Button onClick={handleClose} style={{padding: "6px"}} variant="outlined">Exit</Button>
               </section>
               <section style={{display: "flex", flexDirection: "column", gap: "50px" }}>
               <div className={classes.DDOption}>
-                  <Button variant="contained" onClick={(e) => HandleAcceso(e)}>Acceso</Button>
+                  <Button variant="outlined" onClick={(e) => HandleAcceso(e)}>Acceso</Button>
                   <p>Es la facultad de solicitar el acceso a los datos
                   personales que se encuentran en las bases de datos, sistemas, archivos,
                   registros o expedientes de la SFP, que los almacena o utiliza, así como
@@ -54,14 +54,14 @@ function Actions({isOpen, handleClose,setOpenOP, setOpenCN,setOpenAC,setOpenRN})
                   </p>
               </div>
               <div className={classes.DDOption}>
-                  <Button variant="contained" onClick={(e) => HandleRectificacion(e)}>Rectificación</Button>
+                  <Button variant="outlined" onClick={(e) => HandleRectificacion(e)}>Rectificación</Button>
                   <p>Es la facultad de solicitar a la SFP la corrección
                   de los datos personales en su posesión, cuando éstos sean inexactos o
                   incompletos o no se encuentren actualizados. 
                   </p>
               </div>
               <div className={classes.DDOption}>
-                  <Button variant="contained" onClick={(e) => HandleCancelacion(e)}>Cancelación</Button>
+                  <Button variant="outlined" onClick={(e) => HandleCancelacion(e)}>Cancelación</Button>
                   <p>Es la facultad de solicitar que los datos
                   personales sean suprimidos o eliminados de los archivos, registros,
                   expedientes, sistemas, bases de datos de la SFP y dejen de ser tratados
@@ -69,7 +69,7 @@ function Actions({isOpen, handleClose,setOpenOP, setOpenCN,setOpenAC,setOpenRN})
                   </p>
               </div>
               <div className={classes.DDOption}>
-                  <Button variant="contained" onClick={(e) => HandleOposicion(e)}>Oposición</Button>
+                  <Button variant="outlined" onClick={(e) => HandleOposicion(e)}>Oposición</Button>
                   <p>Es la facultad de solicitar a la SFP que se
                   abstenga de utilizar información personal para ciertos fines, por
                   ejemplo, la publicación de datos personales en alguna fuente de acceso

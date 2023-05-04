@@ -48,7 +48,7 @@ function ARCO() {
             setModalID(params.row.ARCO_ID);
             setOpen(true);
         };
-        return <Button onClick={openView}>VIEW</Button>;
+        return <Button onClick={openView} variant="outlined">Solicitud</Button>;
         },
     },
   ];
@@ -57,6 +57,7 @@ function ARCO() {
       <ModalSolicitud id={modalID} isOpen={open} handleClose={() => setOpen(false)} />
       <Box style={{width: '100%'}}>
         <DataGrid
+          style={{marginTop: "50px"}}
           getRowId={(row) => row.ARCO_ID}
           columns={columns}
           rows={data}

@@ -16,9 +16,10 @@ connection.connect(function (err) {
 const PORT = process.env.PORT || 3001;
 const app = express();
 const path = require("path");
+const cors = require('cors');
+
 
 app.use(bodyParser.json());
-
 app.get("/api/users", (req, res) => {
   connection.connect(function (err) {
     if (err) throw err;
@@ -45,7 +46,7 @@ app.get("/api/users/:id", (req, res) => {
   });
 });
 
-app.put("/users/:id", async (req, res) => {
+app.patch("/users/:id", async (req, res) => {
   const userId = req.params.id;
   const {
     address_id, f_name,
@@ -62,7 +63,6 @@ app.put("/users/:id", async (req, res) => {
     ext_number, int_number,
   } = req.body;
   const updated_at = new Date();
-
   // Update user in the database
   const userQuery =
     "UPDATE USERS SET ADDRESS_ID = ?, F_NAME = ?, LNAME1 = ?, LNAME2 = ?, BIRTH_DATE = ?, NATIONALITY = ?, STATE_BORN_IN = ?, OCCUPATION = ?, CURP = ?, GENDER = ?, PHONE_NUMBER = ?, EMAIL = ?, RFC = ?, IS_CLIENT = ?, UPDATED_AT = ? WHERE ID = ?";
@@ -77,28 +77,36 @@ app.put("/users/:id", async (req, res) => {
     updated_at,
     userId,
   ];
-  const userResult = await pool.query(userQuery, userValues);
-
+  connection.query(userQuery, userValues, function (err, result, fields) {
+    if (err) throw err;
+  });
   // Update address in the database
   const addressQuery =
     "UPDATE ADDRESS SET COUNTRY = ?, STATE = ?, CITY = ?, NEIGHBORHOOD = ?, ZIP_CODE = ?, STREET = ?, EXT_NUMBER = ?, INT_NUMBER = ? WHERE ADDRESS_ID = ?";
-  const addressValues = [
-    country, state,
-    city, neighborhood,
-    zip_code, street,
-    ext_number, int_number,
-    address_id,
-  ];
-  const addressResult = await pool.query(addressQuery, addressValues);
-
+    const addressValues = [
+      country, state,
+      city, neighborhood,
+      zip_code, street,
+      ext_number, int_number,
+      address_id,
+    ];
+  connection.query(addressQuery, addressValues, function (err, result, fields) {
+    if (err) throw err;
+  });
   // Update identification in the database
   const idQuery =
     "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE USER_ID = ?";
   const idValues = [id_type, id_number, userId];
-  const idResult = await pool.query(idQuery, idValues);
-
-  res.status(200).send("User updated successfully");
+  
+  connection.query(idQuery, idValues, function (err, result, fields) {
+    if (err) throw err;
+  });
+  
+  res.send({
+    message: "User updated successfully",
+  });
 });
+
 
 //arco
 app.get("/api/arco", (req, res) => {
@@ -157,6 +165,14 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
+app.use(cors());
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+  });
 app.use(express.static(path.resolve("arco-system/build")));
 app.get("*", (req, res) => {
     res.sendFile(path.resolve("arco-system/build", "index.html"));
