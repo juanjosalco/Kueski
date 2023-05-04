@@ -43,13 +43,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Cancelacion({ isOpen, handleClose, id}) {
+function Cancelacion({ isOpen, handleClose, user }) {
       const classes = useStyles();
-
       const [address_id, setaddress_id] = useState("");
       const [f_name, setf_name] = useState("");
       const [lname1, setlname1] = useState("");
-      const [lname2, setlname2] = useState(""); 
+      const [lname2, setlname2] = useState("");
       const [birth_date, setbirth_date] = useState("");
       const [nationality, setnationality] = useState("");
       const [state_born_in, setstate_born_in] = useState("");
@@ -70,7 +69,6 @@ function Cancelacion({ isOpen, handleClose, id}) {
       const [street, setstreet] = useState("");
       const [ext_number, setext_number] = useState("");
       const [int_number, setint_number] = useState("");
-
       function loadUser(data) {
         data.map((user) => {
           //ID
@@ -104,17 +102,20 @@ function Cancelacion({ isOpen, handleClose, id}) {
         });
       }
 
+      console.log(user);
+
       useEffect(() => {
-        fetch(`api/users/${id}`)
+        fetch(`api/users/${user.row.ID}`)
           .then((res) => res.json())
           .then((data) => loadUser(data))
           .catch((err) => {
             console.log(err);
           });
-      }, [id, isOpen]);
+      }, [isOpen]);
     
     function handleClick() {
       console.log("Cancelacion");
+      setf_name(".");
       const date = new Date();
       const body = JSON.stringify({
         address_id: address_id,
@@ -141,10 +142,10 @@ function Cancelacion({ isOpen, handleClose, id}) {
         street: '',
         ext_number: '',
         int_number: '',
-        deleted_at: {date}
+        deleted_at: '0001-01-01'
       });
       
-      fetch(`https://kueski.vercel.app/users/${id}`, {
+      fetch(`https://kueski.vercel.app/users/${user.row.ID}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -158,7 +159,7 @@ function Cancelacion({ isOpen, handleClose, id}) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            user_id: id,
+            user_id: user.row.ID,
             derecho: "C",
             fecha_resuelta:
             date.toISOString().substring(0, 10) +
@@ -169,11 +170,13 @@ function Cancelacion({ isOpen, handleClose, id}) {
         .then((response) => response.json())
         .catch((error) => console.error(error));
         handleClose();
-      }
+        
+      }    
       
       return (
         <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
+
             <section style={{display: "flex", flexDirection: "column", width:"80%", padding: "64px", backgroundColor: "#ffffff", gap: "48px"}}>
                 <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                     <h1 style={{fontSize: "36px"}}>Cancelación</h1>
@@ -182,10 +185,10 @@ function Cancelacion({ isOpen, handleClose, id}) {
                     </button>
                 </div>
                 <section style={{display: "grid", gap:"32px"}}>
-                    <p style={{fontSize: "18px"}}>Por medio del presente y en atención a los derechos ARCO con los que cuenta el usuario<b> {f_name} {lname1} {lname2} </b>
+                    <p style={{fontSize: "18px"}}>Por medio del presente y en atención a los derechos ARCO con los que cuenta el usuario<b> {user.row.F_NAME} {user.row.LNAME1} {user.row.LNAME2} </b>
                      solicita la cancelación en el tratamiento de sus datos personales.</p>
                     <p style={{fontSize: "18px"}}>Motivo por el que el usuario solicita la cancelación:</p>
-                    <Button variant="contained" onClick={handleClick}>Confirmar cancelacion</Button>                 
+                    <Button variant="contained"onClick={handleClick}>Confirmar cancelacion</Button>
                 </section>
             </section>
         </div>
