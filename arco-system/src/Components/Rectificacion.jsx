@@ -17,6 +17,8 @@ const useStyles = makeStyles((theme) => ({
   dataSection: {
     display: "grid",
     gap: "16px",
+    width: "100%",
+    heigth:  "100%"
   },
   dataTitle: {
     fontSize: "24px",
@@ -34,14 +36,24 @@ const useStyles = makeStyles((theme) => ({
     borderTopWidth: "0",
     backgroundColor: "#000000",
   },
-  side: {
+  side:{
     display: "grid",
-    width: "50%",
-    height: "100%",
-    gap: "32px",
+    width: "33%",
+    height: "50%",
+    gap: "32px"
+  },
+  side2:{
+      display: "grid",
+      width: "50%",
+      height: "100%",
+      gap: "32px"
+  },
+  columns: {
+      display: "flex",
+      justifyContent: "space-between",
   },
   inputAction: {
-    width: "100%",
+    width: "90%",
     fontSize: "18px",
     padding: "16px",
   },
@@ -150,6 +162,7 @@ function Rectificacion({ isOpen, handleClose, id }) {
       street: street,
       ext_number: ext_number,
       int_number: int_number,
+      deleted_at: '0001-01-01'
     });
 
     fetch(`https://kueski.vercel.app/users/${id}`, {
@@ -223,199 +236,220 @@ function Rectificacion({ isOpen, handleClose, id }) {
               gap: "32px",
             }}
           >
-            <section className={classes.side}>
               <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Nombre</h1>
-                <input
-                  value={f_name}
-                  onChange={(e) => setf_name(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Primer Apellido</h1>
-                <input
-                  value={lname1}
-                  onChange={(e) => setlname1(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Segundo Apellido</h1>
-                <input
-                  value={lname2}
-                  onChange={(e) => setlname2(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Fecha de Nacimiento</h1>
-                <input
-                  value={birth_date}
-                  onChange={(e) => setbirth_date(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Nacionalidad</h1>
-                <input
-                  value={nationality}
-                  onChange={(e) => setnationality(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Estado</h1>
-                <input
-                  value={state_born_in}
-                  onChange={(e) => setstate_born_in(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Actividad Económica</h1>
-                <input
-                  value={occupation}
-                  onChange={(e) => setoccupation(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>CURP</h1>
-                <input
-                  value={curp}
-                  onChange={(e) => setcurp(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>RFC</h1>
-                <input
-                  value={rfc}
-                  onChange={(e) => setrfc(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Genero</h1>
-                <input
-                  value={gender}
-                  onChange={(e) => setgender(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Número de Telefono</h1>
-                <input
-                  value={phone_number}
-                  onChange={(e) => setphone_number(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Email</h1>
-                <input
-                  value={email}
-                  onChange={(e) => setemail(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <Button variant="contained" onClick={handleClick}>
-                Generar Reporte
-              </Button>
-            </section>
-            <section className={classes.side}>
-              <section className={classes.dataSection}>
-                <h1 className={classes.newSectionTitle}>Dirección</h1>
-                <hr className={classes.divisor} />
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>País</h1>
-                <input
-                  value={country}
-                  onChange={(e) => setcountry(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Estado</h1>
-                <input
-                  value={state}
-                  onChange={(e) => setstate(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Ciudad</h1>
-                <input
-                  value={city}
-                  onChange={(e) => setcity(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Colonia</h1>
-                <input
-                  value={neighborhood}
-                  onChange={(e) => setneighborhood(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Código Postal</h1>
-                <input
-                  value={zip_code}
-                  onChange={(e) => setzip_code(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Calle</h1>
-                <input
-                  value={street}
-                  onChange={(e) => setstreet(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Número Exterior</h1>
-                <input
-                  value={ext_number}
-                  onChange={(e) => setext_number(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Número Interior</h1>
-                <input
-                  value={int_number}
-                  onChange={(e) => setint_number(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.newSectionTitle}>Identificación</h1>
-                <hr className={classes.divisor} />
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
-                <input
-                  value={id_type}
-                  onChange={(e) => setid_type(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
-              </section>
-              <section className={classes.dataSection}>
-                <h1 className={classes.dataTitle}>Número de Identificación</h1>
-                <input
-                  value={id_number}
-                  onChange={(e) => setid_number(e.target.value)}
-                  className={classes.inputAction}
-                ></input>
+                <h1 className={classes.newSectionTitle}>Información del usuario</h1>
+                <hr className={classes.divisor}/>
+                <section className={classes.columns}> 
+                  <section className={classes.side}>
+                    <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Nombre</h1>
+                      <input
+                        value={f_name}
+                        onChange={(e) => setf_name(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                    </section>
+                    <section className={classes.dataSection}>
+                    <h1 className={classes.dataTitle}>Fecha de Nacimiento</h1>
+                    <input
+                      value={birth_date}
+                      onChange={(e) => setbirth_date(e.target.value)}
+                      className={classes.inputAction}
+                    ></input>
+                    </section>
+                    <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Estado de Nacimiento</h1>
+                      <input
+                        value={state_born_in}
+                        onChange={(e) => setstate_born_in(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                    </section>
+                    <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>RFC</h1>
+                      <input
+                        value={rfc}
+                        onChange={(e) => setrfc(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                    </section>
+                  </section>
+                  <section className={classes.side}>
+                      <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Primer Apellido</h1>
+                      <input
+                        value={lname1}
+                        onChange={(e) => setlname1(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                      </section>
+                      <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Nacionalidad</h1>
+                        <input
+                          value={nationality}
+                          onChange={(e) => setnationality(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                      <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Actividad Económica</h1>
+                        <input
+                          value={occupation}
+                          onChange={(e) => setoccupation(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                      <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Número de Telefono</h1>
+                        <input
+                          value={phone_number}
+                          onChange={(e) => setphone_number(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                  </section>
+                  <section className={classes.side}>
+                      <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Segundo Apellido</h1>
+                      <input
+                        value={lname2}
+                        onChange={(e) => setlname2(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                      </section>
+                      <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Género</h1>
+                        <input
+                          value={gender}
+                          onChange={(e) => setgender(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                      <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>CURP</h1>
+                        <input
+                          value={curp}
+                          onChange={(e) => setcurp(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                      <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Email</h1>
+                        <input
+                          value={email}
+                          onChange={(e) => setemail(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                  </section>
+                </section>
+                <h1 className={classes.newSectionTitle}>Dirección del usuario</h1>
+                <hr className={classes.divisor}/>
+                <section className={classes.columns}>
+                  <section className={classes.side}>
+                    <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>País</h1>
+                      <input
+                        value={country}
+                        onChange={(e) => setcountry(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                    </section>
+                    <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Colonia</h1>
+                      <input
+                        value={neighborhood}
+                        onChange={(e) => setneighborhood(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                    </section>
+                    <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Número Exterior</h1>
+                      <input
+                        value={ext_number}
+                        onChange={(e) => setext_number(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                    </section>
+                  </section>
+                  <section className={classes.side}>
+                      <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Estado</h1>
+                      <input
+                        value={state}
+                        onChange={(e) => setstate(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                      </section>
+                      <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Código Postal</h1>
+                        <input
+                          value={zip_code}
+                          onChange={(e) => setzip_code(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                      <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Número Interior</h1>
+                        <input
+                          value={int_number}
+                          onChange={(e) => setint_number(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                  </section>
+                  <section className={classes.side}>
+                  <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Ciudad</h1>
+                      <input
+                        value={city}
+                        onChange={(e) => setcity(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                  </section>
+                  <section className={classes.dataSection}>
+                      <h1 className={classes.dataTitle}>Calle</h1>
+                      <input
+                        value={street}
+                        onChange={(e) => setstreet(e.target.value)}
+                        className={classes.inputAction}
+                      ></input>
+                    </section>
+                  </section>
+                </section>
+                  <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
+                  <hr className={classes.divisor}/>
+                  <section className={classes.columns}>
+                    <section className={classes.side2}>
+                    <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
+                        <input
+                          value={id_type}
+                          onChange={(e) => setid_type(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                    </section>
+                    <section className={classes.side2}>
+                        <section className={classes.dataSection}>
+                        <h1 className={classes.dataTitle}>Número de Identificación</h1>
+                        <input
+                          value={id_number}
+                          onChange={(e) => setid_number(e.target.value)}
+                          className={classes.inputAction}
+                        ></input>
+                      </section>
+                    </section>
+                  </section>
+                  <section>
+                  <Button variant="contained" onClick={handleClick} >
+                    Generar Reporte
+                  </Button>
+                </section>
+            
               </section>
             </section>
           </section>
-        </section>
       </div>
     </Modal>
   );

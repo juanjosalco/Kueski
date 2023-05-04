@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   optionText: {
     fontSize: "16px",
     fontWeight: "500",
+    marginBlock: 8,
   },
   button: {
     display: "flex",
@@ -43,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     padding: "8px",
     justifySelf: "end",
     border: "0",
+  },
+  subtitle: {
+    marginBlock: 16,
   },
 }));
 
@@ -56,7 +60,7 @@ function Oposicion({ isOpen, handleClose, user }) {
       id: 1,
       isChecked: false,
       label:
-        "Fines mercadotécnicos, publicitarios y/o de prospección comercial.",
+        "Fines mercado técnicos, publicitarios y/o de prospección comercial.",
     },
     {
       id: 2,
@@ -166,22 +170,24 @@ function Oposicion({ isOpen, handleClose, user }) {
           </p>
           <section style={{ display: "grid", gap: "15px", paddingBottom: "5px" }}>
             <section style={{ justifyContent: "left" }}>
-              <h2 style={{ fontSize: "20px", paddingBottom: "5px" }}>
-                Razones Primarias de Oposición{" "}
-              </h2>
-              <Tooltip
-                title={
-                  <Alert severity="info">
-                    Solo se puede aplicar si el usuario no es cliente.
-                  </Alert>
-                }
-                arrow
-                placement="top"
-              >
-                <p style={{ fontSize: "16px" }}>
-                  Finalidad de uso de datos: prestación de servicios.
-                </p>
-              </Tooltip>
+              <Box className={classes.subtitle}>
+                <h2 style={{ fontSize: "20px", paddingBottom: "5px" }}>
+                  Razones Primarias de Oposición{" "}
+                </h2>
+                <Tooltip
+                  title={
+                    <Alert severity="info">
+                      Solo se puede aplicar si el usuario no es cliente.
+                    </Alert>
+                  }
+                  arrow
+                  placement="top"
+                >
+                  <p style={{ fontSize: "16px" }}>
+                    Finalidad de uso de datos: prestación de servicios.
+                  </p>
+                </Tooltip>
+              </Box>
               <section style={{ gap: "20px" }}>
                 <div className={classes.element}>
                   <input
@@ -317,23 +323,26 @@ function Oposicion({ isOpen, handleClose, user }) {
                   </label>
                 </div>
               </section>
-              <h2 style={{ fontSize: "20px", paddingBottom: "5px" }}>
-                Razones Secundarias de Oposición{" "}
-              </h2>
-              <Tooltip
-                title={
-                  <Alert severity="info">
-                    Información que siempre se debe dejar de usar en caso de que
-                    el cliente lo solicite.
-                  </Alert>
-                }
-                arrow
-                placement="top"
-              >
-                <p style={{ fontSize: "16px", paddingBottom: "5px" }}>
-                  Finalidad de uso de datos: comercial, marketing, testimonial.
-                </p>
-              </Tooltip>
+              <Box className={classes.subtitle}>
+                <h2 style={{ fontSize: "20px", paddingBottom: "5px" }}>
+                  Razones Secundarias de Oposición{" "}
+                </h2>
+                <Tooltip
+                  title={
+                    <Alert severity="info">
+                      Información que siempre se debe dejar de usar en caso de
+                      que el cliente lo solicite.
+                    </Alert>
+                  }
+                  arrow
+                  placement="top"
+                >
+                  <p style={{ fontSize: "16px", paddingBottom: "5px" }}>
+                    Finalidad de uso de datos: comercial, marketing,
+                    testimonial.
+                  </p>
+                </Tooltip>
+              </Box>
               <section style={{ justifyContent: "space-between" }}>
                 {checkboxes.map((checkbox) => (
                   <div key={checkbox.id} className={classes.element}>

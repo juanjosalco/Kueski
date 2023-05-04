@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme) => ({
         heigth:  "100%"
     },
     dataTitle:{
-        fontSize: "24px"
+        fontSize: "24px",
     },
     data:{
         fontSize: "18px"
     },
     newSectionTitle:{
-        fontSize: "30px"
+        fontSize: "30px",
     },
     divisor:{
         marginTop: "16px",
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     side:{
         display: "grid",
         width: "33%",
-        height: "100%",
+        height: "50%",
         gap: "32px"
     },
     side2:{
@@ -52,16 +52,6 @@ const useStyles = makeStyles((theme) => ({
     },
     columns: {
         display: "flex",
-    },
-    button : {
-        maxWidtccesoPDh: "200px", 
-        backgroundColor: "#48cd00", 
-        fontWeight: "700", 
-        color: "#ffffff", 
-        fontSize:"18px", 
-        padding: "8px", 
-        alignSelf: "flex-end"
-
     }
 }));
 
@@ -194,10 +184,6 @@ function Acceso({isOpen, handleClose, user}) {
                                     <h1 className={classes.dataTitle}>Calle</h1>
                                     <p className={classes.data}>{user.row.STREET}</p>
                                 </section>
-                                <section className={classes.dataSection}>
-                                    <h1 style={{ color: "#ffffff", fontSize: "24px"}}>.</h1>
-                                    <p style={{ color: "#ffffff", fontSize: "18px"}}>.</p>
-                                </section>
                             </section>
                         </section>
                         <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
@@ -219,7 +205,7 @@ function Acceso({isOpen, handleClose, user}) {
                     </section>
                 </section>
                <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}>
-                    <button className={classes.button} onClick={()=>handlePostRequest()}>Generar Reporte</button>
+                    <Button variant="contained" onClick={()=>handlePostRequest()}>Generar Reporte</Button>
                 </PDFDownloadLink> 
                 <section>
                 </section>
