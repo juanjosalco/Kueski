@@ -186,11 +186,8 @@ function Oposicion({isOpen, handleClose, user}) {
                         </div>
                         ))}
                     </section>
-                    <section style={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "20px", paddingTop: "15px"}}>
-                    <button className={classes.button} onClick={()=>handlePostRequest()}> Registrar Oposición</button>
-                    </section>
-                    <textarea value={portext} onChange={(e) => setPortext(e.target.value)} className={classes.textAreas}/>
-                    <Button variant="contained" onClick={()=>{handleClose()}}>Registrar Cancelación</Button>
+                    <section style={{display: "flex", justifyContent: "space-between", alignItems: "center", gap: "20px", paddingTop: "15px"}}>                    </section>
+                    <Button variant="contained" onClick={()=>{handlePostRequest()}}>Registrar Oposición</Button>
                 </section>
             </section>
             </section>

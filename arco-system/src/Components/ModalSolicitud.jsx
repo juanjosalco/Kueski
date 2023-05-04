@@ -117,7 +117,6 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                                             <h1 className={classes.dataTitle}>Telefono</h1>
                                             <p className={classes.data}>{dato.PHONE_NUMBER}</p>
                                         </section>
-                                        {dato.DERECHO === "O" ? <p>METER BASE DE DATOS OPOSICÓN</p> : null}
                                     </div>
                                     <div style={{display: "flex", flexDirection: "column", gap: "32px"}}>
                                         <section className={classes.dataSection}>
@@ -129,6 +128,7 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                                         <section className={classes.dataSection}>
                                             <h1 className={classes.dataTitle}>Derecho</h1>
                                             <p className={classes.data}>{dato.DERECHO}</p>
+                                            {dato.DERECHO === "O" ? <p>METER BASE DE DATOS OPOSICÓN</p> : null}
                                         </section>
                                     </div>
                                 </div>

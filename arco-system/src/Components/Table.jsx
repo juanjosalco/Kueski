@@ -86,7 +86,7 @@ function Table() {
   ];
 
   return (<>
-    <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)} id={userID}/>
+    <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)} id={user}/>
     {openAC && <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)} user={user} />}
     <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
     {openOP && <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)} user={user} />}
