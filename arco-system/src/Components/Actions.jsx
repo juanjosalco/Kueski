@@ -41,7 +41,7 @@ function Actions({isOpen, handleClose,setOpenOP, setOpenCN,setOpenAC,setOpenRN})
               
               <section style={{display: "flex", width: "100%", justifyContent: "space-between"}}>
                 <h3 style={{}}>¿Qué Acción Arco te gustaría realizar?</h3>
-                <Button onClick={handleClose} style={{padding: "6px"}} variant="outlined">Exit</Button>
+                <Button onClick={handleClose} style={{padding: "6px", cursor: "pointer",}} variant="outlined">Exit</Button>
               </section>
               <section style={{display: "flex", flexDirection: "column", gap: "50px" }}>
               <div className={classes.DDOption}>

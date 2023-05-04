@@ -160,13 +160,11 @@ function Oposicion({ isOpen, handleClose, user }) {
             </button>
           </div>
           <p style={{ fontSize: "18px" }}>
-            Selecciona las razones por la que {user.row.F_NAME}{" "}
-            {user.row.LNAME1} {user.row.LNAME2} desea oponerse al uso de sus
+            Selecciona las razones por la que <b>{user.row.F_NAME}{" "}
+            {user.row.LNAME1} {user.row.LNAME2}</b> desea oponerse al uso de sus
             datos personales.
           </p>
-          <section
-            style={{ display: "grid", gap: "15px", paddingBottom: "5px" }}
-          >
+          <section style={{ display: "grid", gap: "15px", paddingBottom: "5px" }}>
             <section style={{ justifyContent: "left" }}>
               <h2 style={{ fontSize: "20px", paddingBottom: "5px" }}>
                 Razones Primarias de Oposición{" "}
