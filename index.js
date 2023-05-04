@@ -61,12 +61,11 @@ app.patch("/users/:id", async (req, res) => {
     city, neighborhood,
     zip_code, street,
     ext_number, int_number,
-    deleted_at,
   } = req.body;
   const updated_at = new Date();
   // Update user in the database
   const userQuery =
-    "UPDATE USERS SET ADDRESS_ID = ?, F_NAME = ?, LNAME1 = ?, LNAME2 = ?, BIRTH_DATE = ?, NATIONALITY = ?, STATE_BORN_IN = ?, OCCUPATION = ?, CURP = ?, GENDER = ?, PHONE_NUMBER = ?, EMAIL = ?, RFC = ?, IS_CLIENT = ?, UPDATED_AT = ? , DELETED_AT = ? WHERE ID = ?";
+    "UPDATE USERS SET ADDRESS_ID = ?, F_NAME = ?, LNAME1 = ?, LNAME2 = ?, BIRTH_DATE = ?, NATIONALITY = ?, STATE_BORN_IN = ?, OCCUPATION = ?, CURP = ?, GENDER = ?, PHONE_NUMBER = ?, EMAIL = ?, RFC = ?, IS_CLIENT = ?, UPDATED_AT = ? WHERE ID = ?";
   const userValues = [
     address_id, f_name,
     lname1, lname2,

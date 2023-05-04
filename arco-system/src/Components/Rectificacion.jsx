@@ -150,8 +150,6 @@ function Rectificacion({ isOpen, handleClose, id }) {
       street: street,
       ext_number: ext_number,
       int_number: int_number,
-      //null not zero date
-      deleted_at: "0001-01-01",
     });
 
     fetch(`https://kueski.vercel.app/users/${id}`, {
