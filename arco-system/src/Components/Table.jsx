@@ -24,7 +24,7 @@ function Table() {
       .then((data) => setData(data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(data);
+  
   const columns = [
     { field: "ID", headerName: "ID", flex: 1, align: "center" },
     { field: "F_NAME", headerName: "Nombre", flex: 2, align: "center" },
@@ -88,7 +88,7 @@ function Table() {
   ];
 
   return (<>
-    <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)} id={userID}/>
+    {openRN && <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)} user={user}/>}
     {openAC && <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)} user={user} />}
     <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
     {openOP && <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)} user={user} />}
