@@ -28,8 +28,8 @@ function Table() {
 
   const columns = [
     { field: "ID", headerName: "ID", flex: 1, align: "center" },
-    { field: "F_NAME", headerName: "Nombre", flex: 1, align: "center" },
-    { field: "LNAME1", headerName: "Apellido", flex: 1, align: "center" },
+    { field: "F_NAME", headerName: "Nombre", flex: 2, align: "center" },
+    { field: "LNAME1", headerName: "Apellido", flex: 2, align: "center" },
     {
       headerName: "F. Nacimiento",
       field: "BIRTH_DATE",
