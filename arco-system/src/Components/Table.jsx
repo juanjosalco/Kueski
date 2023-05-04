@@ -10,7 +10,6 @@ import Rectificacion from "./Rectificacion";
 
 function Table() {
   const [data, setData] = useState([]);
-
   const [open, setOpen] = useState(false);
   const [openOP, setOpenOP] = useState(false);
   const [openCN, setOpenCN] = useState(false);
@@ -24,8 +23,8 @@ function Table() {
       .then((res) => res.json())
       .then((data) => setData(data))
       .catch((err) => console.log(err));
-  }, [data]);
-
+  }, []);
+  console.log(data);
   const columns = [
     { field: "ID", headerName: "ID", flex: 1, align: "center" },
     { field: "F_NAME", headerName: "Nombre", flex: 2, align: "center" },

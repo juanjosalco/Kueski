@@ -24,7 +24,7 @@ app.get("/api/users", (req, res) => {
   connection.connect(function (err) {
     if (err) throw err;
     const query =
-      "SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID";
+      "SELECT U.*, A.*, GROUP_CONCAT(CONCAT(I.ID_TYPE, ': ', I.ID_NUMBER) SEPARATOR ', ') AS IDENTIFICATION_DATA FROM USERS U JOIN ADDRESS A ON U.ADDRESS_ID = A.ADDRESS_ID JOIN IDENTIFICATIONS I ON U.ID = I.USER_ID GROUP BY U.ID";
     connection.query(query, function (err, result) {
       if (err) throw err;
        console.log(result);
@@ -35,8 +35,7 @@ app.get("/api/users", (req, res) => {
 
 app.get("/api/users/:id", (req, res) => {
   var query =
-    "SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID WHERE USERS.ID=" +
-    req.params.id;
+  "SELECT U.*, A.*, GROUP_CONCAT(CONCAT(I.ID_TYPE, ': ', I.ID_NUMBER) SEPARATOR ', ') AS IDENTIFICATION_DATA FROM USERS U JOIN ADDRESS A ON U.ADDRESS_ID = A.ADDRESS_ID JOIN IDENTIFICATIONS I ON U.ID = I.USER_ID WHERE U.ID="+ req.params.id;+"GROUP BY U.ID";
   connection.query(query, function (err, result, fields) {
     if (err) {
       res.send("No existe el usuario");
