@@ -97,15 +97,16 @@ function Rectificacion({ isOpen, handleClose, user }) {
   for(let i = 0; i < identification_data_array.length; i++){
       identification_data_array[i]=[identification_data_array[i].split(":")[0], identification_data_array[i].split(":")[1], identification_data_array[i].split(":")[2]];
   }  
-  console.log(identification_data_array);
   const [identificationDataArray, setIdentificationDataArray] = useState(identification_data_array);
   function changeIdentificationDataArray(index, value, index2){
     const newArray = [...identificationDataArray];
     newArray[index][index2] = value;
+    
     setIdentificationDataArray(newArray);
   }
   function handleClick() {
     const date = new Date();
+    console.log(identificationDataArray)
     const body = JSON.stringify({
       address_id: address_id,
       f_name: f_name,
@@ -130,7 +131,7 @@ function Rectificacion({ isOpen, handleClose, user }) {
       ext_number: ext_number,
       int_number: int_number,
       deleted_at: '0001-01-01',
-      identification_data_array: identification_data_array,
+      identification_data_array: identificationDataArray,
     });
     
     fetch(`https://kueski.vercel.app/users/${user.row.ID}`, {
@@ -139,7 +140,9 @@ function Rectificacion({ isOpen, handleClose, user }) {
         "Content-Type": "application/json",
     },
     body: body,
-  });
+  })
+  .then((response) => console.log(response))
+  .catch((error) => console.error(error));
   //Log Request
   fetch("/api/arco", {
     method: "POST",

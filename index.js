@@ -35,7 +35,7 @@ app.get("/api/users", (req, res) => {
 
 app.get("/api/users/:id", (req, res) => {
   var query =
-  "SELECT U.*, A.*, GROUP_CONCAT(CONCAT(I.ID_TYPE, ': ', I.ID_NUMBER) SEPARATOR ', ') AS IDENTIFICATION_DATA FROM USERS U JOIN ADDRESS A ON U.ADDRESS_ID = A.ADDRESS_ID JOIN IDENTIFICATIONS I ON U.ID = I.USER_ID WHERE U.ID="+ req.params.id;+"GROUP BY U.ID";
+  "SELECT U.*, A.*, GROUP_CONCAT(CONCAT(I.ID_TYPE, ':', I.ID_NUMBER) SEPARATOR ', ') AS IDENTIFICATION_DATA FROM USERS U JOIN ADDRESS A ON U.ADDRESS_ID = A.ADDRESS_ID JOIN IDENTIFICATIONS I ON U.ID = I.USER_ID WHERE U.ID="+ req.params.id;+"GROUP BY U.ID";
   connection.query(query, function (err, result, fields) {
     if (err) {
       res.send("No existe el usuario");
@@ -96,11 +96,9 @@ app.patch("/users/:id", async (req, res) => {
     if (err) throw err;
   });
   const identificationQuery =
-  "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE USER_ID = ?";
+  "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE IDENTIFICATION_ID = ?";
   for(var i = 0; i < identification_data_array.length; i++){
-        const identificationValues = [
-          identification_data_array[i][1], identification_data_array[i][2], identification_data_array[i][0]
-        ];
+        const identificationValues = [identification_data_array[i][1], identification_data_array[i][2], identification_data_array[i][0]];
         connection.query(identificationQuery, identificationValues, function (err, result, fields) {
           if (err) throw err;
         });
