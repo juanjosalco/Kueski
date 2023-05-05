@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import Actions from "./Actions";
-import Oposicion from "./Oposicion"
+import Oposicion from "./Oposicion";
 import Cancelacion from "./Cancelacion";
 import Acceso from "./Acceso";
 import Rectificacion from "./Rectificacion";
@@ -18,13 +18,17 @@ function Table() {
   const [user, setUser] = useState(null);
   const [userID, setUserID] = useState(null);
 
-  useEffect(() => {
-    fetch("/api/users")
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.log(err));
-  }, []);
-  console.log(data);
+  function HandleFetch() {
+    useEffect(() => {
+      fetch("/api/users")
+        .then((res) => res.json())
+        .then((data) => setData(data))
+        .catch((err) => console.log(err));
+    }, []);
+  }
+
+  HandleFetch();
+
   const columns = [
     { field: "ID", headerName: "ID", flex: 1, align: "center" },
     { field: "F_NAME", headerName: "Nombre", flex: 2, align: "center" },
@@ -81,25 +85,52 @@ function Table() {
           setOpen(true);
         };
 
-        return <Button onClick={openView} variant="outlined">ACCIONES
-              </Button>;
+        return (
+          <Button onClick={openView} variant="outlined">
+            ACCIONES
+          </Button>
+        );
       },
     },
   ];
 
-  return (<>
-    <Rectificacion isOpen={openRN} handleClose = {() => setOpenRN(false)} id={userID}/>
-    {openAC && <Acceso isOpen={openAC} handleClose = {() => setOpenAC(false)} user={user} />}
-    <Cancelacion isOpen={openCN} handleClose = {() => setOpenCN(false)}/>
-    {openOP && <Oposicion isOpen={openOP} handleClose = {() => setOpenOP(false)} user={user} />}
-    <Actions isOpen={open} handleClose={() => setOpen(false)} setOpenOP={setOpenOP} setOpenCN={setOpenCN} setOpenAC={setOpenAC} setOpenRN={setOpenRN}/>
-    <DataGrid
-      style={{zIndex:"0", marginTop: "50px"}}
-      getRowId={(row) => row.ID}
-      columns={columns}
-      rows={data}
-      title="ARCO SYSTEM"
-    ></DataGrid>
+  return (
+    <>
+      <Rectificacion
+        isOpen={openRN}
+        handleClose={() => setOpenRN(false)}
+        id={userID}
+      />
+      {openAC && (
+        <Acceso
+          isOpen={openAC}
+          handleClose={() => setOpenAC(false)}
+          user={user}
+        />
+      )}
+      <Cancelacion isOpen={openCN} handleClose={() => setOpenCN(false)} />
+      {openOP && (
+        <Oposicion
+          isOpen={openOP}
+          handleClose={() => setOpenOP(false)}
+          user={user}
+        />
+      )}
+      <Actions
+        isOpen={open}
+        handleClose={() => setOpen(false)}
+        setOpenOP={setOpenOP}
+        setOpenCN={setOpenCN}
+        setOpenAC={setOpenAC}
+        setOpenRN={setOpenRN}
+      />
+      <DataGrid
+        style={{ zIndex: "0", marginTop: "50px" }}
+        getRowId={(row) => row.ID}
+        columns={columns}
+        rows={data}
+        title="ARCO SYSTEM"
+      ></DataGrid>
     </>
   );
 }
