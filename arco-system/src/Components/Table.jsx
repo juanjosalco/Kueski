@@ -106,7 +106,13 @@ function Table() {
           user={user}
         />
       )}
-      <Cancelacion isOpen={openCN} handleClose={() => setOpenCN(false)} />
+      {openCN && ( 
+        <Cancelacion 
+          isOpen={openCN} 
+          handleClose={() => setOpenCN(false)} 
+          user={user}
+        />
+      )}
       {openOP && (
         <Oposicion
           isOpen={openOP}

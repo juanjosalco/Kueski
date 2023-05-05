@@ -42,9 +42,109 @@ const useStyles = makeStyles((theme) => ({
       }
 }));
 
-function Cancelacion({isOpen, handleClose}) {
+function Cancelacion({isOpen, handleClose,user}){
     const classes = useStyles();
     const [cancelText, setCancelText] = useState('');
+    const [address_id, setaddress_id] = useState(user.row.ADDRESS_ID);
+    const [f_name, setf_name] = useState(user.row.F_NAME);
+    const [lname1, setlname1] = useState(user.row.LNAME1);
+    const [lname2, setlname2] = useState(user.row.LNAME2);
+    const [birth_date, setbirth_date] = useState(user.row.BIRTH_DATE.slice(0, 10));
+    const [nationality, setnationality] = useState(user.row.NATIONALITY);
+    const [state_born_in, setstate_born_in] = useState(user.row.STATE_BORN_IN);
+    const [occupation, setoccupation] = useState(user.row.OCCUPATION);
+    const [curp, setcurp] = useState(user.row.CURP);
+    const [gender, setgender] = useState(user.row.GENDER);
+    const [phone_number, setphone_number] = useState(user.row.PHONE_NUMBER);
+    const [email, setemail] = useState(user.row.EMAIL);
+    const [rfc, setrfc] = useState(user.row.RFC);
+    const [is_client, setis_client] = useState(user.row.IS_CLIENT);
+    const [country, setcountry] = useState(user.row.COUNTRY);
+    const [state, setstate] = useState(user.row.STATE);
+    const [city, setcity] = useState(user.row.CITY);
+    const [neighborhood, setneighborhood] = useState(user.row.NEIGHBORHOOD);
+    const [zip_code, setzip_code] = useState(user.row.ZIP_CODE);
+    const [street, setstreet] = useState(user.row.STREET);
+    const [ext_number, setext_number] = useState(user.row.EXT_NUMBER);
+    const [int_number, setint_number] = useState(user.row.INT_NUMBER);  
+    const[identification_data, setidentification_data] = useState(user.row.IDENTIFICATION_DATA);
+    const identification_data_array = identification_data.split(", ");//"100:INE: 264885096, 200:Pasaporte: 264885096"
+    for(let i = 0; i < identification_data_array.length; i++){
+        identification_data_array[i]=[identification_data_array[i].split(":")[0], identification_data_array[i].split(":")[1], identification_data_array[i].split(":")[2]];
+    }  
+    const [identificationDataArray, setIdentificationDataArray] = useState(identification_data_array);
+    function changeIdentificationDataArray(index, value, index2){
+      const newArray = [...identificationDataArray];
+      newArray[index][index2] = value;
+      
+      setIdentificationDataArray(newArray);
+    }
+    function handleClick() {
+      if(is_client === 1){
+        console.log("ISCLIENT")
+      }else{
+      let date = new Date();
+      console.log(date)
+      date = date.toISOString().substring(0, 10);
+      console.log(date)
+      for(let i = 0; i < identificationDataArray.length; i++){
+        changeIdentificationDataArray(i, identificationDataArray[i][0], 0);
+        changeIdentificationDataArray(i,"", 1);
+        changeIdentificationDataArray(i, "", 2);
+      }
+      const body = JSON.stringify({
+        address_id: address_id,
+        f_name: "",
+        lname1: "",
+        lname2: "",
+        birth_date: "0001-01-01",
+        nationality: "",
+        state_born_in: "",
+        occupation: "",
+        curp: "",
+        gender: "",
+        phone_number: "",
+        email: "",
+        rfc: "",
+        is_client: is_client,
+        country: "",
+        state: "",
+        city: "",
+        neighborhood: "",
+        zip_code: "",
+        street: "",
+        ext_number: 0,
+        int_number: 0,
+        deleted_at: date,
+        identification_data_array: identificationDataArray,
+      });
+      
+      fetch(`https://kueski.vercel.app/users/${user.row.ID}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+      },
+      body: body,
+    });
+    //Log Request
+    fetch("/api/arco", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: user.row.ID,
+        derecho: "C",
+        fecha_resuelta:date
+      }),
+    })
+      .then((response) => response.json())
+      .catch((error) => console.error(error));
+      handleClose();
+    }
+    }
+  
+  
   return (
     <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
@@ -56,31 +156,9 @@ function Cancelacion({isOpen, handleClose}) {
                     </button>
                 </div>
                 <section style={{display: "grid", gap:"32px"}}>
-                    <p style={{fontSize: "18px"}}>Velit recusandae non voluptas earum est aut non. Laborum illum reprehenderit ratione sunt natus qui a dolorem eaque architecto rem. Officia beatae voluptatum impedit ut rem dicta suscipit. Et modi et doloribus qui non at animi sed quia et. Aut itaque sit rerum excepturi sit facilis odit eius eveniet aperiam suscipit aliquam enim.</p>
-                    <section style={{display: "flex", justifyContent: "space-between"}}>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                        <div className={classes.element}>
-                            <input type="checkbox" id="html" className={classes.check}/>
-                            <label for="html" className={classes.optionText}>HTML</label>
-                        </div>
-                    </section>
+                    
                     <textarea value={cancelText} onChange={(e) => setCancelText(e.target.value)} className={classes.textAreas}/>
-                    <Button variant="contained">Registrar Cancelación</Button>
+                    <Button variant="contained" onClick={handleClick}>Registrar Cancelación</Button>
                 </section>
             </section>
         </div>

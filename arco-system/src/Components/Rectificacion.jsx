@@ -129,7 +129,7 @@ function Rectificacion({ isOpen, handleClose, user}){
       street: street,
       ext_number: ext_number,
       int_number: int_number,
-      deleted_at: '0001-01-01',
+      deleted_at: '1111-01-01',
       identification_data_array: identificationDataArray,
     });
     
@@ -150,9 +150,7 @@ function Rectificacion({ isOpen, handleClose, user}){
       user_id: user.row.ID,
       derecho: "R",
       fecha_resuelta:
-      date.toISOString().substring(0, 10) +
-        " " +
-        date.toTimeString().substring(0, 8),
+      date.toISOString().substring(0, 10)
     }),
   })
     .then((response) => response.json())
