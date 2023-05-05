@@ -404,7 +404,7 @@ function Oposicion({ isOpen, handleClose, user }) {
                         open={showModal}
                         onClose={handleCancel}
                         onConfirm={handleConfirm}
-                        message="¿Estás seguro de que quieres generar el reporte en pdf?"
+                        message="¿Estás seguro de que quieres realizar la oposición?"
                     />
             </section>
           </section>
