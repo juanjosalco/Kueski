@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Rectificacion({ isOpen, handleClose, user }) {
+function Rectificacion({ isOpen, handleClose, user}){
   const classes = useStyles();
   const [address_id, setaddress_id] = useState(user.row.ADDRESS_ID);
   const [f_name, setf_name] = useState(user.row.F_NAME);
@@ -106,7 +106,6 @@ function Rectificacion({ isOpen, handleClose, user }) {
   }
   function handleClick() {
     const date = new Date();
-    console.log(identificationDataArray)
     const body = JSON.stringify({
       address_id: address_id,
       f_name: f_name,
@@ -140,9 +139,7 @@ function Rectificacion({ isOpen, handleClose, user }) {
         "Content-Type": "application/json",
     },
     body: body,
-  })
-  .then((response) => console.log(response))
-  .catch((error) => console.error(error));
+  });
   //Log Request
   fetch("/api/arco", {
     method: "POST",
@@ -425,6 +422,6 @@ function Rectificacion({ isOpen, handleClose, user }) {
       </div>
     </Modal>
   );
-}
+};
 
 export default Rectificacion;

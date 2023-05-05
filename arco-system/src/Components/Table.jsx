@@ -18,16 +18,13 @@ function Table() {
   const [user, setUser] = useState(null);
   const [userID, setUserID] = useState(null);
 
-  function HandleFetch() {
     useEffect(() => {
       fetch("/api/users")
         .then((res) => res.json())
         .then((data) => setData(data))
         .catch((err) => console.log(err));
-    }, []);
-  }
-
-  HandleFetch();
+    }, [data]);
+ 
 
   const columns = [
     { field: "ID", headerName: "ID", flex: 1, align: "center" },
