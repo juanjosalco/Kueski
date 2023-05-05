@@ -205,13 +205,13 @@ function Acceso({isOpen, handleClose, user}) {
                                             <section className={classes.side2}>
                                                 <section className={classes.dataSection}>
                                                     <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
-                                                    <p className={classes.data}>{identification.type}</p>
+                                                    <p className={classes.data}>{identification.type.split(":")[1]}</p>
                                                 </section>
                                             </section>
                                             <section className={classes.side2}>
                                                 <section className={classes.dataSection}>
                                                     <h1 className={classes.dataTitle}>Número de Identificación</h1>
-                                                    <p className={classes.data}>{identification.id}</p>
+                                                    <p className={classes.data}>{identification.type.split(":")[2]}</p>
                                                 </section>
                                             </section>
                                         </section>

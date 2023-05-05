@@ -52,7 +52,6 @@ function AccesoPDF({user}) {
 
     dataPairs.forEach(pair => {
         const [identificationType, identificationId] = pair.split(": ");
-        
         // Store the extracted data as an object in the identifications array
         identifications.push({ type: identificationType, id: identificationId });
     });
@@ -191,11 +190,11 @@ function AccesoPDF({user}) {
                                     <View style={styles.row}  key={index}>
                                         <View style={styles.column}>
                                             <Text style={styles.dataTitle}>Tipo de Identificación</Text>
-                                            <Text style={styles.data}>{identification.type}</Text>
+                                            <Text style={styles.data}>{identification.type.split(":")[1]}</Text>
                                         </View>
                                         <View style={styles.column}>
                                             <Text style={styles.dataTitle}>Número de Identificación</Text>
-                                            <Text style={styles.data}>{identification.id}</Text>
+                                            <Text style={styles.data}>{identification.type.split(":")[2]}</Text>
                                         </View>
                                     </View>
                                 );
