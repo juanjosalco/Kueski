@@ -404,7 +404,11 @@ function Oposicion({ isOpen, handleClose, user }) {
                         open={showModal}
                         onClose={handleCancel}
                         onConfirm={handleConfirm}
+<<<<<<< HEAD
                         message="¿Estás seguro de que quieres realizar la oposición?"
+=======
+                        message="¿Estás seguro de que quieres generar el reporte en pdf?"
+>>>>>>> b13cb48 ( confirmation modal)
                     />
             </section>
           </section>
