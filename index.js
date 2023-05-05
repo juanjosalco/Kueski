@@ -105,10 +105,6 @@ app.patch("/users/:id", async (req, res) => {
           if (err) throw err;
         });
   }
-  connection.query(idQuery, idValues, function (err, result, fields) {
-    if (err) throw err;
-  });
-  
   res.send({
     message: "User updated successfully",
   });

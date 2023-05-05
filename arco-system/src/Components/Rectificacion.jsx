@@ -70,7 +70,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Rectificacion({ isOpen, handleClose, user }) {
   const classes = useStyles();
-  console.log(user);
   const [address_id, setaddress_id] = useState(user.row.ADDRESS_ID);
   const [f_name, setf_name] = useState(user.row.F_NAME);
   const [lname1, setlname1] = useState(user.row.LNAME1);
@@ -94,12 +93,16 @@ function Rectificacion({ isOpen, handleClose, user }) {
   const [ext_number, setext_number] = useState(user.row.EXT_NUMBER);
   const [int_number, setint_number] = useState(user.row.INT_NUMBER);  
   const[identification_data, setidentification_data] = useState(user.row.IDENTIFICATION_DATA);
-  const identification_data_array = identification_data.split(", ");
+  const identification_data_array = identification_data.split(", ");//"100:INE: 264885096, 200:Pasaporte: 264885096"
   for(let i = 0; i < identification_data_array.length; i++){
-    identification_data_array[i] = [identification_data_array[i].split(": ")[0], identification_data_array[i].split(": ")[1]]
+      identification_data_array[i]=[identification_data_array[i].split(":")[0], identification_data_array[i].split(":")[1], identification_data_array[i].split(":")[2]];
   }  
-  function changeIdentificationData_array(index, value, index2){
-        identification_data_array[index][index2] = value;
+  console.log(identification_data_array);
+  const [identificationDataArray, setIdentificationDataArray] = useState(identification_data_array);
+  function changeIdentificationDataArray(index, value, index2){
+    const newArray = [...identificationDataArray];
+    newArray[index][index2] = value;
+    setIdentificationDataArray(newArray);
   }
   function handleClick() {
     const date = new Date();
@@ -383,31 +386,26 @@ function Rectificacion({ isOpen, handleClose, user }) {
                 </section>
                   <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
                   <hr className={classes.divisor}/>
-                  {/* identification_data_array = [[ "INE", "264885096" ],[ "Pasaporte", "264885096" ]] */}
-                  {identification_data_array.map((identification_data, index) => (
+                  {identificationDataArray.map((identification_data, index) => (
                     <section className={classes.columns}>
                       <section className={classes.side}>
                         <section className={classes.dataSection}>
                           <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
                           <input
-                            value={identification_data[0]}
-                            onChange={(e) => {
-                              changeIdentificationData_array(index, identification_data,0)
-                            }}
-                            className={classes.inputAction}
-                          ></input>
+                          value={identification_data[1]}
+                          onChange={(e) => changeIdentificationDataArray(index, e.target.value, 1)}
+                          className={classes.inputAction}
+                        />
                         </section>
                       </section>
                       <section className={classes.side}>
                         <section className={classes.dataSection}>
                           <h1 className={classes.dataTitle}>Número de Identificación</h1>
                           <input
-                            value={identification_data[1]}
-                            onChange={(e) => {
-                              changeIdentificationData_array(index, identification_data,1)
-                            }}
+                            value={identification_data[2]}
+                            onChange={(e) => changeIdentificationDataArray(index, e.target.value, 2)}
                             className={classes.inputAction}
-                          ></input>
+                          />
                         </section>
                       </section>
                       </section>
