@@ -58,8 +58,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Acceso({isOpen, handleClose, user}) {
     const classes = useStyles();
-    console.log(user)
-
     const date = new Date();
     const ids = user.row.IDENTIFICATION_DATA;
     const dataPairs = ids.split(", ");

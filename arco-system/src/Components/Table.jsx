@@ -94,13 +94,14 @@ function Table() {
     },
   ];
 
+
   return (
     <>
-      <Rectificacion
+    {openRN &&<Rectificacion
         isOpen={openRN}
         handleClose={() => setOpenRN(false)}
-        id={userID}
-      />
+        user={user}
+      />}
       {openAC && (
         <Acceso
           isOpen={openAC}

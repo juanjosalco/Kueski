@@ -68,75 +68,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Rectificacion({ isOpen, handleClose, id }) {
+function Rectificacion({ isOpen, handleClose, user }) {
   const classes = useStyles();
-  const [address_id, setaddress_id] = useState("");
-  const [f_name, setf_name] = useState("");
-  const [lname1, setlname1] = useState("");
-  const [lname2, setlname2] = useState("");
-  const [birth_date, setbirth_date] = useState("");
-  const [nationality, setnationality] = useState("");
-  const [state_born_in, setstate_born_in] = useState("");
-  const [occupation, setoccupation] = useState("");
-  const [curp, setcurp] = useState("");
-  const [gender, setgender] = useState("");
-  const [phone_number, setphone_number] = useState("");
-  const [email, setemail] = useState("");
-  const [rfc, setrfc] = useState("");
-  const [is_client, setis_client] = useState("");
-  const [id_type, setid_type] = useState("");
-  const [id_number, setid_number] = useState("");
-  const [country, setcountry] = useState("");
-  const [state, setstate] = useState("");
-  const [city, setcity] = useState("");
-  const [neighborhood, setneighborhood] = useState("");
-  const [zip_code, setzip_code] = useState("");
-  const [street, setstreet] = useState("");
-  const [ext_number, setext_number] = useState("");
-  const [int_number, setint_number] = useState("");
-  function loadUser(data) {
-    data.map((user) => {
-      //ID
-      setaddress_id(user.ADDRESS_ID);
-      //Usuario
-      setf_name(user.F_NAME);
-      setlname1(user.LNAME1);
-      setlname2(user.LNAME2);
-      setbirth_date(user.BIRTH_DATE.slice(0, 10));
-      setnationality(user.NATIONALITY);
-      setstate_born_in(user.STATE_BORN_IN);
-      setoccupation(user.OCCUPATION);
-      setcurp(user.CURP);
-      setgender(user.GENDER);
-      setphone_number(user.PHONE_NUMBER);
-      setemail(user.EMAIL);
-      setrfc(user.RFC);
-      setis_client(user.IS_CLIENT);
-      //Identificacion
-      setid_type(user.ID_TYPE);
-      setid_number(user.ID_NUMBER);
-      //Address
-      setcountry(user.COUNTRY);
-      setstate(user.STATE);
-      setcity(user.CITY);
-      setneighborhood(user.NEIGHBORHOOD);
-      setzip_code(user.ZIP_CODE);
-      setstreet(user.STREET);
-      setext_number(user.EXT_NUMBER);
-      setint_number(user.INT_NUMBER);
-    });
+  const [address_id, setaddress_id] = useState(user.row.ADDRESS_ID);
+  const [f_name, setf_name] = useState(user.row.F_NAME);
+  const [lname1, setlname1] = useState(user.row.LNAME1);
+  const [lname2, setlname2] = useState(user.row.LNAME2);
+  const [birth_date, setbirth_date] = useState(user.row.BIRTH_DATE.slice(0, 10));
+  const [nationality, setnationality] = useState(user.row.NATIONALITY);
+  const [state_born_in, setstate_born_in] = useState(user.row.STATE_BORN_IN);
+  const [occupation, setoccupation] = useState(user.row.OCCUPATION);
+  const [curp, setcurp] = useState(user.row.CURP);
+  const [gender, setgender] = useState(user.row.GENDER);
+  const [phone_number, setphone_number] = useState(user.row.PHONE_NUMBER);
+  const [email, setemail] = useState(user.row.EMAIL);
+  const [rfc, setrfc] = useState(user.row.RFC);
+  const [is_client, setis_client] = useState(user.row.IS_CLIENT);
+  const [country, setcountry] = useState(user.row.COUNTRY);
+  const [state, setstate] = useState(user.row.STATE);
+  const [city, setcity] = useState(user.row.CITY);
+  const [neighborhood, setneighborhood] = useState(user.row.NEIGHBORHOOD);
+  const [zip_code, setzip_code] = useState(user.row.ZIP_CODE);
+  const [street, setstreet] = useState(user.row.STREET);
+  const [ext_number, setext_number] = useState(user.row.EXT_NUMBER);
+  const [int_number, setint_number] = useState(user.row.INT_NUMBER);  
+  const[identification_data, setidentification_data] = useState(user.row.IDENTIFICATION_DATA);
+  const identification_data_array = identification_data.split(", ");//"100:INE: 264885096, 200:Pasaporte: 264885096"
+  for(let i = 0; i < identification_data_array.length; i++){
+      identification_data_array[i]=[identification_data_array[i].split(":")[0], identification_data_array[i].split(":")[1], identification_data_array[i].split(":")[2]];
+  }  
+  const [identificationDataArray, setIdentificationDataArray] = useState(identification_data_array);
+  function changeIdentificationDataArray(index, value, index2){
+    const newArray = [...identificationDataArray];
+    newArray[index][index2] = value;
+    
+    setIdentificationDataArray(newArray);
   }
-  useEffect(() => {
-    fetch(`api/users/${id}`)
-      .then((res) => res.json())
-      .then((data) => loadUser(data))
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [id, isOpen]);
-
   function handleClick() {
     const date = new Date();
+    console.log(identificationDataArray)
     const body = JSON.stringify({
       address_id: address_id,
       f_name: f_name,
@@ -152,8 +122,6 @@ function Rectificacion({ isOpen, handleClose, id }) {
       email: email,
       rfc: rfc,
       is_client: is_client,
-      id_type: id_type,
-      id_number: id_number,
       country: country,
       state: state,
       city: city,
@@ -162,37 +130,40 @@ function Rectificacion({ isOpen, handleClose, id }) {
       street: street,
       ext_number: ext_number,
       int_number: int_number,
-      deleted_at: '0001-01-01'
+      deleted_at: '0001-01-01',
+      identification_data_array: identificationDataArray,
     });
-
-    fetch(`https://kueski.vercel.app/users/${id}`, {
+    
+    fetch(`https://kueski.vercel.app/users/${user.row.ID}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-      },
-      body: body,
-    });
-    //Log Request
-    fetch("/api/arco", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user_id: id,
-        derecho: "R",
-        fecha_resuelta:
-          date.toISOString().substring(0, 10) +
-          " " +
-          date.toTimeString().substring(0, 8),
-      }),
-    })
-      .then((response) => response.json())
-      .catch((error) => console.error(error));
+    },
+    body: body,
+  })
+  .then((response) => console.log(response))
+  .catch((error) => console.error(error));
+  //Log Request
+  fetch("/api/arco", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_id: user.row.ID,
+      derecho: "R",
+      fecha_resuelta:
+      date.toISOString().substring(0, 10) +
+        " " +
+        date.toTimeString().substring(0, 8),
+    }),
+  })
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
     handleClose();
   }
-  return (
-    <Modal open={isOpen} onClose={handleClose} style={{ overflow: "scroll" }}>
+    return (
+      <Modal open={isOpen} onClose={handleClose} style={{ overflow: "scroll" }}>
       <div className={classes.blackBack}>
         <section
           style={{
@@ -219,7 +190,7 @@ function Rectificacion({ isOpen, handleClose, id }) {
                 border: "0",
               }}
               onClick={handleClose}
-            >
+            >       
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/nolbertocastroweb.appspot.com/o/button.png?alt=media&token=470e1b7a-7a01-454b-9cce-0bfdeaf12681"
                 alt="close"
@@ -418,28 +389,30 @@ function Rectificacion({ isOpen, handleClose, id }) {
                 </section>
                   <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
                   <hr className={classes.divisor}/>
-                  <section className={classes.columns}>
-                    <section className={classes.side2}>
-                    <section className={classes.dataSection}>
-                        <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
-                        <input
-                          value={id_type}
-                          onChange={(e) => setid_type(e.target.value)}
-                          className={classes.inputAction}
-                        ></input>
-                      </section>
-                    </section>
-                    <section className={classes.side2}>
+                  {identificationDataArray.map((identification_data, index) => (
+                    <section className={classes.columns}>
+                      <section className={classes.side}>
                         <section className={classes.dataSection}>
-                        <h1 className={classes.dataTitle}>Número de Identificación</h1>
-                        <input
-                          value={id_number}
-                          onChange={(e) => setid_number(e.target.value)}
+                          <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
+                          <input
+                          value={identification_data[1]}
+                          onChange={(e) => changeIdentificationDataArray(index, e.target.value, 1)}
                           className={classes.inputAction}
-                        ></input>
+                        />
+                        </section>
                       </section>
-                    </section>
-                  </section>
+                      <section className={classes.side}>
+                        <section className={classes.dataSection}>
+                          <h1 className={classes.dataTitle}>Número de Identificación</h1>
+                          <input
+                            value={identification_data[2]}
+                            onChange={(e) => changeIdentificationDataArray(index, e.target.value, 2)}
+                            className={classes.inputAction}
+                          />
+                        </section>
+                      </section>
+                      </section>
+                  ))}
                   <section>
                   <Button variant="contained" onClick={handleClick} >
                     Generar Reporte
