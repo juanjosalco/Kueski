@@ -24,7 +24,7 @@ app.get("/api/users", (req, res) => {
   connection.connect(function (err) {
     if (err) throw err;
     const query =
-      "SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID";
+      "SELECT U.*, A.*, GROUP_CONCAT(CONCAT(I.IDENTIFICATION_ID, ':', I.ID_TYPE, ':', I.ID_NUMBER) SEPARATOR ', ') AS IDENTIFICATION_DATA FROM USERS U JOIN ADDRESS A ON U.ADDRESS_ID = A.ADDRESS_ID JOIN IDENTIFICATIONS I ON U.ID = I.USER_ID GROUP BY U.ID";
     connection.query(query, function (err, result) {
       if (err) throw err;
        console.log(result);
@@ -35,8 +35,7 @@ app.get("/api/users", (req, res) => {
 
 app.get("/api/users/:id", (req, res) => {
   var query =
-    "SELECT * FROM USERS JOIN ADDRESS ON USERS.ADDRESS_ID = ADDRESS.ADDRESS_ID JOIN IDENTIFICATIONS ON USERS.ID = IDENTIFICATIONS.USER_ID WHERE USERS.ID=" +
-    req.params.id;
+  "SELECT U.*, A.*, GROUP_CONCAT(CONCAT(I.ID_TYPE, ':', I.ID_NUMBER) SEPARATOR ', ') AS IDENTIFICATION_DATA FROM USERS U JOIN ADDRESS A ON U.ADDRESS_ID = A.ADDRESS_ID JOIN IDENTIFICATIONS I ON U.ID = I.USER_ID WHERE U.ID="+ req.params.id;+"GROUP BY U.ID";
   connection.query(query, function (err, result, fields) {
     if (err) {
       res.send("No existe el usuario");
@@ -61,7 +60,8 @@ app.patch("/users/:id", async (req, res) => {
     city, neighborhood,
     zip_code, street,
     ext_number, int_number,
-    deleted_at
+    deleted_at,
+    identification_data_array,
   } = req.body;
   const updated_at = new Date();
   // Update user in the database
@@ -95,15 +95,14 @@ app.patch("/users/:id", async (req, res) => {
   connection.query(addressQuery, addressValues, function (err, result, fields) {
     if (err) throw err;
   });
-  // Update identification in the database
-  const idQuery =
-    "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE USER_ID = ?";
-  const idValues = [id_type, id_number, userId];
-  
-  connection.query(idQuery, idValues, function (err, result, fields) {
-    if (err) throw err;
-  });
-  
+  const identificationQuery =
+  "UPDATE IDENTIFICATIONS SET ID_TYPE = ?, ID_NUMBER = ? WHERE IDENTIFICATION_ID = ?";
+  for(var i = 0; i < identification_data_array.length; i++){
+        const identificationValues = [identification_data_array[i][1], identification_data_array[i][2], identification_data_array[i][0]];
+        connection.query(identificationQuery, identificationValues, function (err, result, fields) {
+          if (err) throw err;
+        });
+  }
   res.send({
     message: "User updated successfully",
   });

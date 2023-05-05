@@ -57,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Acceso({isOpen, handleClose, user}) {
     const classes = useStyles();
-
     const date = new Date();
     
     const handlePostRequest = () => {

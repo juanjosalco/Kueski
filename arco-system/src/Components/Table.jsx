@@ -10,7 +10,6 @@ import Rectificacion from "./Rectificacion";
 
 function Table() {
   const [data, setData] = useState([]);
-
   const [open, setOpen] = useState(false);
   const [openOP, setOpenOP] = useState(false);
   const [openCN, setOpenCN] = useState(false);
@@ -19,16 +18,13 @@ function Table() {
   const [user, setUser] = useState(null);
   const [userID, setUserID] = useState(null);
 
-  function HandleFetch() {
     useEffect(() => {
       fetch("/api/users")
         .then((res) => res.json())
         .then((data) => setData(data))
         .catch((err) => console.log(err));
-    }, []);
-  }
-
-  HandleFetch();
+    }, [data]);
+ 
 
   const columns = [
     { field: "ID", headerName: "ID", flex: 1, align: "center" },
@@ -95,13 +91,14 @@ function Table() {
     },
   ];
 
+
   return (
     <>
-      <Rectificacion
+    {openRN &&<Rectificacion
         isOpen={openRN}
         handleClose={() => setOpenRN(false)}
-        id={userID}
-      />
+        user={user}
+      />}
       {openAC && (
         <Acceso
           isOpen={openAC}
