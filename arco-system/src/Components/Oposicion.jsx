@@ -109,7 +109,7 @@ function Oposicion({ isOpen, handleClose, user }) {
       .then((response) => response.json())
       .catch((error) => console.error(error));
     fetch("/api/oposicion", {
-      method: "POST",
+      method: "POST", 
       headers: {
         "Content-Type": "application/json",
       },
@@ -404,11 +404,7 @@ function Oposicion({ isOpen, handleClose, user }) {
                         open={showModal}
                         onClose={handleCancel}
                         onConfirm={handleConfirm}
-<<<<<<< HEAD
                         message="¿Estás seguro de que quieres realizar la oposición?"
-=======
-                        message="¿Estás seguro de que quieres generar el reporte en pdf?"
->>>>>>> b13cb48 ( confirmation modal)
                     />
             </section>
           </section>

@@ -132,8 +132,8 @@ app.post("/api/arco", (req, res) => {
     user_id + ", '" + derecho + "', '" + fecha_resuelta + "')";
   connection.query(query, function (err, result, fields) {
     if (err) throw err;
-    //res is the id of the new row
-    res.send(result.insertId.toString());
+    //res.send the last id inserted
+    res.send({ id: result.insertId });
   });
 });
 

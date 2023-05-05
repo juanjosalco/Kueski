@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Cancelacion({isOpen, handleClose,user}){
+    const [id_Solicitud, setid_Solicitud] = useState("");
     const classes = useStyles();
     const [cancelText, setCancelText] = useState('');
     const [address_id, setaddress_id] = useState(user.row.ADDRESS_ID);
@@ -126,7 +127,8 @@ function Cancelacion({isOpen, handleClose,user}){
       body: body,
     });
     //Log Request
-    fetch("/api/arco", {
+    //    res.send({ id: result.insertId });
+    fetch("https://kueski.vercel.app/api/arco", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +140,22 @@ function Cancelacion({isOpen, handleClose,user}){
       }),
     })
       .then((response) => response.json())
+      .then((data) => {
+        setid_Solicitud(data.id);
+      })
       .catch((error) => console.error(error));
+      //console.log(id_Solicitud)
+      fetch("https://kueski.vercel.app/api/comentarios", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id_solicitud : id_Solicitud, 
+          comentario : cancelText,
+        }),
+      })
+        .catch((error) => console.error(error));
       handleClose();
     }
     }
@@ -155,7 +172,9 @@ function Cancelacion({isOpen, handleClose,user}){
                     </button>
                 </div>
                 <section style={{display: "grid", gap:"32px"}}>
-                    
+                <p style={{fontSize: "18px"}}>Por medio del presente y en atención a los derechos ARCO con los que cuenta el usuario<b> {user.row.F_NAME} {user.row.LNAME1} {user.row.LNAME2} </b>
+                     solicita la cancelación en el tratamiento de sus datos personales.</p>
+                    <p style={{fontSize: "18px"}}>Motivo por el que el usuario solicita la cancelación:</p>
                     <textarea value={cancelText} onChange={(e) => setCancelText(e.target.value)} className={classes.textAreas}/>
                     <Button variant="contained" onClick={handleClick}>Registrar Cancelación</Button>
                 </section>
