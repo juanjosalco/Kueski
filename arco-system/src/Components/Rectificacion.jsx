@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Rectificacion({ isOpen, handleClose, user }) {
   const classes = useStyles();
+  console.log(user);
   const [address_id, setaddress_id] = useState(user.row.ADDRESS_ID);
   const [f_name, setf_name] = useState(user.row.F_NAME);
   const [lname1, setlname1] = useState(user.row.LNAME1);
@@ -93,7 +94,13 @@ function Rectificacion({ isOpen, handleClose, user }) {
   const [ext_number, setext_number] = useState(user.row.EXT_NUMBER);
   const [int_number, setint_number] = useState(user.row.INT_NUMBER);  
   const[identification_data, setidentification_data] = useState(user.row.IDENTIFICATION_DATA);
-  console.log(user.row.IDENTIFICATION_DATA)
+  const identification_data_array = identification_data.split(", ");
+  for(let i = 0; i < identification_data_array.length; i++){
+    identification_data_array[i] = [identification_data_array[i].split(": ")[0], identification_data_array[i].split(": ")[1]]
+  }  
+  function changeIdentificationData_array(index, value, index2){
+        identification_data_array[index][index2] = value;
+  }
   function handleClick() {
     const date = new Date();
     const body = JSON.stringify({
@@ -119,7 +126,8 @@ function Rectificacion({ isOpen, handleClose, user }) {
       street: street,
       ext_number: ext_number,
       int_number: int_number,
-      deleted_at: '0001-01-01'
+      deleted_at: '0001-01-01',
+      identification_data_array: identification_data_array,
     });
     
     fetch(`https://kueski.vercel.app/users/${user.row.ID}`, {
@@ -374,9 +382,36 @@ function Rectificacion({ isOpen, handleClose, user }) {
                   </section>
                 </section>
                   <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
-                  {/* IDENTIFICATION_DATA: "INE: 264885096, Pasaporte: 264885096" */}
                   <hr className={classes.divisor}/>
-
+                  {/* identification_data_array = [[ "INE", "264885096" ],[ "Pasaporte", "264885096" ]] */}
+                  {identification_data_array.map((identification_data, index) => (
+                    <section className={classes.columns}>
+                      <section className={classes.side}>
+                        <section className={classes.dataSection}>
+                          <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
+                          <input
+                            value={identification_data[0]}
+                            onChange={(e) => {
+                              changeIdentificationData_array(index, identification_data,0)
+                            }}
+                            className={classes.inputAction}
+                          ></input>
+                        </section>
+                      </section>
+                      <section className={classes.side}>
+                        <section className={classes.dataSection}>
+                          <h1 className={classes.dataTitle}>Número de Identificación</h1>
+                          <input
+                            value={identification_data[1]}
+                            onChange={(e) => {
+                              changeIdentificationData_array(index, identification_data,1)
+                            }}
+                            className={classes.inputAction}
+                          ></input>
+                        </section>
+                      </section>
+                      </section>
+                  ))}
                   <section>
                   <Button variant="contained" onClick={handleClick} >
                     Generar Reporte
