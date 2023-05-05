@@ -54,7 +54,7 @@ function ARCO() {
   ];
   return(
     <>
-      <ModalSolicitud id={modalID} isOpen={open} handleClose={() => setOpen(false)} />
+      {open&&<ModalSolicitud id={modalID} isOpen={open} handleClose={() => setOpen(false)} />}
       <Box style={{width: '100%'}}>
         <DataGrid
           style={{marginTop: "50px"}}

@@ -244,14 +244,9 @@ function Acceso({isOpen, handleClose, user}) {
                         </section>
                     </section>
                 </section>
-                    <Button variant="contained" onClick={()=> handleClick()}>Generar Reporte</Button>
-                    
-                    <ConfirmationModal
-                        open={showModal}
-                        onClose={handleCancel}
-                        onConfirm={handleConfirm}
-                        message="¿Estás seguro de que quieres generar el reporte en pdf?"
-                    />
+                    <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}>
+                        <Button variant="contained" onClick={()=>handlePostRequest()}>Generar Reporte</Button>
+                    </PDFDownloadLink> 
                 <section>
                 </section>
             </section> 

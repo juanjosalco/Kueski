@@ -71,27 +71,29 @@ const ModalSolicitud = function ({ id, isOpen, handleClose }) {
     fetch(`/api/arco/${id}`)
       .then((res) => res.json())
       .then((data) => setData(data))
+      .then(() => Oposition(data[0].USER_ID))
       .catch((err) => console.log(err));
-    data.map((dato) => {
-      fetch(`/api/oposicion/${dato.USER_ID}`)
-        .then((res) => res.json())
-        .then((data) => setOposicion(data))
-        .catch((err) => console.log(err));
-    });
-  }, [id]);
+  }, [data]);
+  function Oposition(id){
+    fetch(`/api/oposicion/${id}`)
+    .then((res) => res.json())
+    .then((data) => setOposicion(data))
+    .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
     fetch(`/api/comentarios/${id}`)
       .then((res) => res.json())
       .then((data) => setComentarios(data))
       .catch((err) => console.log(err));
-  }, [id]);
+  }, [comentarios]);
+
   const [page, setPage] = useState(1);
   const itemsPerPage = 1; // Número de elementos por página
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const itemsToShow = oposicion.slice(startIndex, endIndex);
   const totalPages = Math.ceil(oposicion.length / itemsPerPage);
-
   return (
     <Modal open={isOpen} onClose={handleClose}>
       <div className={classes.modalContent}>
