@@ -43,8 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Cancelacion({isOpen, handleClose,user}){
-    const [id_Solicitud, setid_Solicitud] = useState("");
-    const classes = useStyles();
+  const classes = useStyles();
     const [cancelText, setCancelText] = useState('');
     const [address_id, setaddress_id] = useState(user.row.ADDRESS_ID);
     const [f_name, setf_name] = useState(user.row.F_NAME);
@@ -138,19 +137,21 @@ function Cancelacion({isOpen, handleClose,user}){
         fecha_resuelta:date
       }),
     })
-      .then((response) => console.log(response))
+      .then((response) => response.json())
       .then((data) => {
-        setid_Solicitud(data.id);
+        comment(data.id);
       })
       .catch((error) => console.error(error));
-      //console.log(id_Solicitud)
+    }
+      
+     function comment( idArco) {
       fetch("https://kueski.vercel.app/api/comentarios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id_solicitud : id_Solicitud, 
+          id_solicitud : idArco, 
           comentario : cancelText,
         }),
       })
