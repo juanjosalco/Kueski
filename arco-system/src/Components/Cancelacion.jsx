@@ -140,8 +140,8 @@ function Cancelacion({ isOpen, handleClose, user }) {
         neighborhood: '',
         zip_code: '',
         street: '',
-        ext_number: '',
-        int_number: '',
+        ext_number: 0,
+        int_number: 0,
         deleted_at: '0001-01-01'
       });
       
@@ -156,22 +156,21 @@ function Cancelacion({ isOpen, handleClose, user }) {
       fetch("/api/arco", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user_id: user.row.ID,
-            derecho: "C",
-            fecha_resuelta:
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: user.row.ID,
+          derecho: "C",
+          fecha_resuelta:
             date.toISOString().substring(0, 10) +
             " " +
             date.toTimeString().substring(0, 8),
-          }),
-        })
+        }),
+      })
         .then((response) => response.json())
         .catch((error) => console.error(error));
-        handleClose();
-        
-      }    
+      handleClose();
+    }
       
       return (
         <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>

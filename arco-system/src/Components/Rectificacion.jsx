@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Rectificacion({ isOpen, handleClose, id }) {
+function Rectificacion({ isOpen, handleClose, user}) {
   const classes = useStyles();
   const [address_id, setaddress_id] = useState("");
   const [f_name, setf_name] = useState("");
@@ -129,13 +129,13 @@ function Rectificacion({ isOpen, handleClose, id }) {
   }
 
   useEffect(() => {
-    fetch(`api/users/${id}`)
+    fetch(`api/users/user.row.ID`)
       .then((res) => res.json())
       .then((data) => loadUser(data))
       .catch((err) => {
         console.log(err);
       });
-  }, [id, isOpen]);
+  }, [isOpen]);
 
   function handleClick() {
     const date = new Date();
@@ -167,14 +167,14 @@ function Rectificacion({ isOpen, handleClose, id }) {
       deleted_at: '0001-01-01'
     });
 
-    fetch(`https://kueski.vercel.app/users/${id}`, {
+    fetch(`https://kueski.vercel.app/users/${user.row.ID}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: body,
     });
-    
+
     //Log Request
     fetch("/api/arco", {
       method: "POST",
@@ -182,7 +182,7 @@ function Rectificacion({ isOpen, handleClose, id }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user_id: id,
+        user_id: user.row.ID,
         derecho: "R",
         fecha_resuelta:
           date.toISOString().substring(0, 10) +
