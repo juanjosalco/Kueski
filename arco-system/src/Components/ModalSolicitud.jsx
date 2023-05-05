@@ -5,6 +5,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
     modalContent: {
+        paddingTop: "50px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -66,6 +67,7 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
     const [data, setData] = useState([]);
     const [comentarios, setComentarios] = useState([]);
     const [oposicion, setOposicion] = useState([]);
+    
     useEffect(() => {
         fetch(`/api/arco/${id}`)
         .then((res) => res.json())
@@ -84,6 +86,13 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
         .then((data) => setComentarios(data))
         .catch((err) => console.log(err));
     }, [id]);
+    const [page, setPage] = useState(1);
+    const itemsPerPage = 1; // Número de elementos por página
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const itemsToShow = oposicion.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(oposicion.length / itemsPerPage);
+    
     return(
         <Modal open={isOpen} onClose={handleClose}>
             <div className={classes.modalContent}>
@@ -128,7 +137,38 @@ const ModalSolicitud = function({id, isOpen, handleClose}){
                                         <section className={classes.dataSection}>
                                             <h1 className={classes.dataTitle}>Derecho</h1>
                                             <p className={classes.data}>{dato.DERECHO}</p>
-                                            {dato.DERECHO === "O" ? <p>METER BASE DE DATOS OPOSICÓN</p> : null}
+                                            {dato.DERECHO === "O" ? 
+                                            <div>
+                                                <h1 className={classes.dataTitle}>Oposición</h1>
+                                                {itemsToShow.map((oposicion) => {
+                                                    return(
+                                                        <div styles={{display: "flex", flexDirection: "column"}}>
+                                                            {itemsToShow.map(item => (
+                                                            <div style={{display: "flex", flexDirection: "column", gap: "10px"}}> 
+                                                            <div style={{gap: "5px"}}>
+                                                                <p className={classes.data}>Oposition ID: {item.OPPOSITION_ID}</p>
+                                                                {Object.keys(item).filter(key => key !== 'USER_ID' && key !== 'OPPOSITION_ID').map(key => (
+                                                                    <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+                                                                    <p className={classes.data}>{key}</p>
+                                                                    <input type = "checkbox" checked = {item[key]} disabled style={{width: "20px", height: "20px", backgroundColor: "white", border: "1px solid #008AD7"}}/>
+                                                                    </div>                                                    
+                                                                    ))}
+                                                            </div>
+                                                            <div style={{display: "flex", flexDirection: "row", gap: "10px"}}>
+                                                            {Array.from({ length: totalPages }, (_, index) => (
+                                                            <button key={index} onClick={() => setPage(index + 1)} style={{backgroundColor: index + 1 === page ? "#008AD7" : "white", padding: "8px", borderRadius: "10px", border: "1px solid #008AD7", color: index + 1 === page ? "white" : "#008AD7"}}>
+                                                            {index + 1}
+                                                            </button>
+                                                            ))}
+                                                            </div>
+                                                            </div>
+
+                                                            ))}
+                                                        </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                                : null }
                                         </section>
                                     </div>
                                 </div>
