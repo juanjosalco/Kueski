@@ -24,7 +24,7 @@ app.get("/api/users", (req, res) => {
   connection.connect(function (err) {
     if (err) throw err;
     const query =
-      "SELECT U.*, A.*, GROUP_CONCAT(CONCAT(I.IDENTIFICATION_ID, ':', I.ID_TYPE, ': ', I.ID_NUMBER) SEPARATOR ', ') AS IDENTIFICATION_DATA FROM USERS U JOIN ADDRESS A ON U.ADDRESS_ID = A.ADDRESS_ID JOIN IDENTIFICATIONS I ON U.ID = I.USER_ID GROUP BY U.ID";
+      "SELECT U.*, A.*, GROUP_CONCAT(CONCAT(I.IDENTIFICATION_ID, ':', I.ID_TYPE, ':', I.ID_NUMBER) SEPARATOR ', ') AS IDENTIFICATION_DATA FROM USERS U JOIN ADDRESS A ON U.ADDRESS_ID = A.ADDRESS_ID JOIN IDENTIFICATIONS I ON U.ID = I.USER_ID GROUP BY U.ID";
     connection.query(query, function (err, result) {
       if (err) throw err;
        console.log(result);
