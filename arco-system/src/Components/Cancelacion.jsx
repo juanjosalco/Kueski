@@ -127,7 +127,6 @@ function Cancelacion({isOpen, handleClose,user}){
       body: body,
     });
     //Log Request
-    //    res.send({ id: result.insertId });
     fetch("https://kueski.vercel.app/api/arco", {
       method: "POST",
       headers: {
@@ -139,7 +138,7 @@ function Cancelacion({isOpen, handleClose,user}){
         fecha_resuelta:date
       }),
     })
-      .then((response) => response.json())
+      .then((response) => console.log(response))
       .then((data) => {
         setid_Solicitud(data.id);
       })
