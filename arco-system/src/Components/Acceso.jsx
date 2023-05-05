@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { useState, useEffect } from 'react';
 import AccesoPDF from "./AccesoPDF";
 import { PDFDownloadLink} from '@react-pdf/renderer'
+import ConfirmationModal from './ConfirmationModal';
 
 const useStyles = makeStyles((theme) => ({
     blackBack:{
@@ -84,6 +85,28 @@ function Acceso({isOpen, handleClose, user}) {
         .then(response => response.json())
         .catch(error => console.error(error));
     }
+
+    const [showModal, setShowModal] = useState(false);
+
+    function handleClick() {
+        setShowModal(true);
+    }
+
+    function handleConfirm() {
+        // perform some action
+        console.log("User confirmed the operation");
+        // call callback function passed as prop
+        setShowModal(false);
+        handlePostRequest()
+        /* return (
+            <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}></PDFDownloadLink> 
+            ) */
+      }
+    
+    function handleCancel() {
+        setShowModal(false);
+    }
+
     return (
         <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
@@ -221,9 +244,14 @@ function Acceso({isOpen, handleClose, user}) {
                         </section>
                     </section>
                 </section>
-               <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}>
-                    <Button variant="contained" onClick={()=>handlePostRequest()}>Generar Reporte</Button>
-                </PDFDownloadLink> 
+                    <Button variant="contained" onClick={()=> handleClick()}>Generar Reporte</Button>
+                    
+                    <ConfirmationModal
+                        open={showModal}
+                        onClose={handleCancel}
+                        onConfirm={handleConfirm}
+                        message="¿Estás seguro de que quieres generar el reporte en pdf?"
+                    />
                 <section>
                 </section>
             </section> 
