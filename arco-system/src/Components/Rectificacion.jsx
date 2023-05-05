@@ -2,6 +2,7 @@ import { React, useEffect } from "react";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useState } from "react";
+import ConfirmationModal from './ConfirmationModal';
 
 const useStyles = makeStyles((theme) => ({
   blackBack: {
@@ -104,7 +105,7 @@ function Rectificacion({ isOpen, handleClose, user}){
     
     setIdentificationDataArray(newArray);
   }
-  function handleClick() {
+  function handleRectification() {
     const date = new Date();
     const body = JSON.stringify({
       address_id: address_id,
@@ -156,6 +157,22 @@ function Rectificacion({ isOpen, handleClose, user}){
     .then((response) => response.json())
     .catch((error) => console.error(error));
     handleClose();
+  }
+
+  const [showModal, setShowModal] = useState(false);
+
+  function handleClick() {
+      setShowModal(true);
+  }
+
+  function handleConfirm() {
+      console.log("User confirmed the operation");
+      setShowModal(false);
+      handleRectification();
+    }
+
+  function handleCancel() {
+      setShowModal(false);
   }
     return (
       <Modal open={isOpen} onClose={handleClose} style={{ overflow: "scroll" }}>
@@ -412,6 +429,12 @@ function Rectificacion({ isOpen, handleClose, user}){
                   <Button variant="contained" onClick={handleClick} >
                     Generar Reporte
                   </Button>
+                  <ConfirmationModal
+                        open={showModal}
+                        onClose={handleCancel}
+                        onConfirm={handleConfirm}
+                        message="¿Estás seguro de que quieres realizar la rectificación?"
+                    />
                 </section>
             
               </section>
