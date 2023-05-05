@@ -91,7 +91,6 @@ function Table() {
     },
   ];
 
-
   return (
     <>
     {openRN &&<Rectificacion
@@ -106,7 +105,13 @@ function Table() {
           user={user}
         />
       )}
-      <Cancelacion isOpen={openCN} handleClose={() => setOpenCN(false)} />
+      {openCN && ( 
+        <Cancelacion 
+          isOpen={openCN} 
+          handleClose={() => setOpenCN(false)} 
+          user={user}
+        />
+      )}
       {openOP && (
         <Oposicion
           isOpen={openOP}
@@ -126,7 +131,7 @@ function Table() {
         style={{ zIndex: "0", marginTop: "50px" }}
         getRowId={(row) => row.ID}
         columns={columns}
-        rows={data}
+        rows={data.filter(dato => dato.F_NAME !== '')}
         title="ARCO SYSTEM"
       ></DataGrid>
     </>
