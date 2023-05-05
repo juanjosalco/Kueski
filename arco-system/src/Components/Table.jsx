@@ -91,7 +91,6 @@ function Table() {
     },
   ];
 
-
   return (
     <>
     {openRN &&<Rectificacion
@@ -132,7 +131,7 @@ function Table() {
         style={{ zIndex: "0", marginTop: "50px" }}
         getRowId={(row) => row.ID}
         columns={columns}
-        rows={data}
+        rows={data.filter(dato => dato.F_NAME !== '')}
         title="ARCO SYSTEM"
       ></DataGrid>
     </>
