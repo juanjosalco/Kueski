@@ -45,6 +45,18 @@ const styles = StyleSheet.create({
   
 
 function AccesoPDF({user}) {
+
+    const ids = user.IDENTIFICATION_DATA;
+    const dataPairs = ids.split(", ");
+    const identifications = [];
+
+    dataPairs.forEach(pair => {
+        const [identificationType, identificationId] = pair.split(": ");
+        
+        // Store the extracted data as an object in the identifications array
+        identifications.push({ type: identificationType, id: identificationId });
+    });
+
     return (
         <Document>
             <Page size="A4" >
@@ -173,15 +185,21 @@ function AccesoPDF({user}) {
                         <View style={styles.section}>
                         <Text style={{ fontSize: 16, marginBottom: 10 }}>Identificación del usuario</Text>
 
-                        <View style={styles.row}>
-                            <View style={styles.column}>
-                                <Text style={styles.dataTitle}>Tipo de Identificación</Text>
-                                <Text style={styles.data}>{user.ID_NUMBER}</Text>
-                            </View>
-                            <View style={styles.column}>
-                                <Text style={styles.dataTitle}>Número de Identificación</Text>
-                                <Text style={styles.data}>{user.ID_TYPE}</Text>
-                        </View>
+                        <View>
+                            {identifications.map((identification, index) => {
+                                return (
+                                    <View style={styles.row}  key={index}>
+                                        <View style={styles.column}>
+                                            <Text style={styles.dataTitle}>Tipo de Identificación</Text>
+                                            <Text style={styles.data}>{identification.type}</Text>
+                                        </View>
+                                        <View style={styles.column}>
+                                            <Text style={styles.dataTitle}>Número de Identificación</Text>
+                                            <Text style={styles.data}>{identification.id}</Text>
+                                        </View>
+                                    </View>
+                                );
+                            })}
                     </View>
                 </View>
                     </View>
