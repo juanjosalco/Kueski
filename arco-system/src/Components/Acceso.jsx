@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { useState, useEffect } from 'react';
 import AccesoPDF from "./AccesoPDF";
 import { PDFDownloadLink} from '@react-pdf/renderer'
+import ConfirmationModal from './ConfirmationModal';
 
 const useStyles = makeStyles((theme) => ({
     blackBack:{
@@ -42,13 +43,14 @@ const useStyles = makeStyles((theme) => ({
         display: "grid",
         width: "33%",
         height: "50%",
-        gap: "32px"
+        gap: "32px",
     },
     side2:{
         display: "grid",
         width: "50%",
         height: "100%",
-        gap: "32px"
+        gap: "32px",
+        paddingBottom: "16px"
     },
     columns: {
         display: "flex",
@@ -58,6 +60,16 @@ const useStyles = makeStyles((theme) => ({
 function Acceso({isOpen, handleClose, user}) {
     const classes = useStyles();
     const date = new Date();
+    const ids = user.row.IDENTIFICATION_DATA;
+    const dataPairs = ids.split(", ");
+    const identifications = [];
+
+    dataPairs.forEach(pair => {
+        const [identificationType, identificationId] = pair.split(": ");
+        
+        // Store the extracted data as an object in the identifications array
+        identifications.push({ type: identificationType, id: identificationId });
+    });
     
     const handlePostRequest = () => {
         fetch("/api/arco", {
@@ -73,6 +85,28 @@ function Acceso({isOpen, handleClose, user}) {
         .then(response => response.json())
         .catch(error => console.error(error));
     }
+
+    const [showModal, setShowModal] = useState(false);
+
+    function handleClick() {
+        setShowModal(true);
+    }
+
+    function handleConfirm() {
+        // perform some action
+        console.log("User confirmed the operation");
+        // call callback function passed as prop
+        setShowModal(false);
+        handlePostRequest()
+        /* return (
+            <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}></PDFDownloadLink> 
+            ) */
+      }
+    
+    function handleCancel() {
+        setShowModal(false);
+    }
+
     return (
         <Modal open={isOpen} onClose={handleClose} style={{overflow: "scroll"}}>
         <div className={classes.blackBack}>
@@ -187,25 +221,37 @@ function Acceso({isOpen, handleClose, user}) {
                         </section>
                         <h1 className={classes.newSectionTitle}>Identificaciones del usuario</h1>
                         <hr className={classes.divisor}/>
-                        <section className={classes.columns}>
-                            <section className={classes.side2}>
-                                <section className={classes.dataSection}>
-                                    <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
-                                    <p className={classes.data}>{user.row.ID_NUMBER}</p>
-                                </section>
-                            </section>
-                            <section className={classes.side2}>
-                                <section className={classes.dataSection}>
-                                    <h1 className={classes.dataTitle}>Número de Identificación</h1>
-                                    <p className={classes.data}>{user.row.ID_TYPE}</p>
-                                </section>
-                            </section>
+                        <section>
+                            {  identifications.map((identification, index) => {
+                                 return (
+                                        <section className={classes.columns} key={index}>
+                                            <section className={classes.side2}>
+                                                <section className={classes.dataSection}>
+                                                    <h1 className={classes.dataTitle}>Tipo de Identificación</h1>
+                                                    <p className={classes.data}>{identification.type.split(":")[1]}</p>
+                                                </section>
+                                            </section>
+                                            <section className={classes.side2}>
+                                                <section className={classes.dataSection}>
+                                                    <h1 className={classes.dataTitle}>Número de Identificación</h1>
+                                                    <p className={classes.data}>{identification.type.split(":")[2]}</p>
+                                                </section>
+                                            </section>
+                                        </section>
+                                  );
+                            })
+                            }
                         </section>
                     </section>
                 </section>
-               <PDFDownloadLink document={<AccesoPDF user={user.row} />} fileName= {'ReporteUser'+user.row.ID+".pdf"}>
-                    <Button variant="contained" onClick={()=>handlePostRequest()}>Generar Reporte</Button>
-                </PDFDownloadLink> 
+                    <Button variant="contained" onClick={()=> handleClick()}>Generar Reporte</Button>
+                    
+                    <ConfirmationModal
+                        open={showModal}
+                        onClose={handleCancel}
+                        onConfirm={handleConfirm}
+                        message="¿Estás seguro de que quieres generar el reporte en pdf?"
+                    />
                 <section>
                 </section>
             </section> 
