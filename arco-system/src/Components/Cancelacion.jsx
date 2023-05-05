@@ -84,9 +84,8 @@ function Cancelacion({isOpen, handleClose,user}){
         console.log("ISCLIENT")
       }else{
       let date = new Date();
-      console.log(date)
+      
       date = date.toISOString().substring(0, 10);
-      console.log(date)
       for(let i = 0; i < identificationDataArray.length; i++){
         changeIdentificationDataArray(i, identificationDataArray[i][0], 0);
         changeIdentificationDataArray(i,"", 1);
