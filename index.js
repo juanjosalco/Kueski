@@ -132,7 +132,8 @@ app.post("/api/arco", (req, res) => {
     user_id + ", '" + derecho + "', '" + fecha_resuelta + "')";
   connection.query(query, function (err, result, fields) {
     if (err) throw err;
-    res.send(result);
+    //res is the id of the new row
+    res.send(result.insertId.toString());
   });
 });
 
@@ -143,6 +144,18 @@ app.get("/api/comentarios/:id", (req, res) => {
     res.send(result);
   });
 });
+
+app.post("/api/comentarios", (req, res) => {
+  const { id_solicitud, comentario } = req.body;
+  var query =
+    "INSERT INTO COMENTARIOS (ID_SOLICITUD, COMENTARIO) VALUES (" +
+    id_solicitud + ", '" + comentario + "')";
+  connection.query(query, function (err, result, fields) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
 
 app.get("/api/oposicion/:id", (req, res) => {
   var query = "SELECT * FROM OPPOSITION WHERE USER_ID=" + req.params.id;
